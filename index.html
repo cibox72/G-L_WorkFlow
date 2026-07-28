@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>G&LStudio — Workflow Foto & Video</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
   body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     min-height: 100vh; padding: 20px; color: #333;
   }
-  .container { max-width: 1200px; margin: 0 auto; }
+  .container { max-width: 1400px; margin: 0 auto; }
 
   /* LOGIN */
   .login-box {
@@ -59,6 +60,7 @@
   .actions button:hover { transform: translateY(-2px); }
   .btn-new { background: linear-gradient(45deg, #f093fb, #f5576c); color: white; }
   .btn-archive { background: linear-gradient(45deg, #667eea, #764ba2); color: white; }
+  .btn-table { background: linear-gradient(45deg, #ff9a9e, #fad0c4); color: white; }
   .btn-backup { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; }
   .btn-restore { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
   .btn-logout { background: linear-gradient(45deg, #fa709a, #fee140); color: white; }
@@ -191,6 +193,81 @@
     padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1em;
   }
 
+  /* TABELLA CLIENTI */
+  .table-container {
+    background: white; border-radius: 18px; padding: 20px; margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); overflow-x: auto;
+  }
+  .table-header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 15px; margin-bottom: 15px;
+  }
+  .table-header h2 { color: #4a3f8c; }
+  .table-toolbar { display: flex; gap: 10px; flex-wrap: wrap; }
+  .workflow-table {
+    width: 100%; border-collapse: collapse; font-size: 0.85em;
+    min-width: 1400px;
+  }
+  .workflow-table thead {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white; position: sticky; top: 0;
+  }
+  .workflow-table th {
+    padding: 12px 8px; text-align: center; font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.3); font-size: 0.8em;
+    white-space: nowrap;
+  }
+  .workflow-table th:first-child, .workflow-table th:nth-child(2), .workflow-table th:nth-child(3) {
+    position: sticky; left: 0; background: linear-gradient(45deg, #667eea, #764ba2); z-index: 2;
+  }
+  .workflow-table th:nth-child(2) { left: 150px; }
+  .workflow-table th:nth-child(3) { left: 300px; }
+  .workflow-table td {
+    padding: 8px; border: 1px solid #e0e0e0; text-align: center;
+    vertical-align: middle;
+  }
+  .workflow-table td:first-child {
+    position: sticky; left: 0; background: #f8f9ff; font-weight: 600;
+    color: #4a3f8c; z-index: 1; min-width: 150px; text-align: left;
+  }
+  .workflow-table td:nth-child(2) {
+    position: sticky; left: 150px; background: #f8f9ff; z-index: 1; min-width: 150px;
+  }
+  .workflow-table td:nth-child(3) {
+    position: sticky; left: 300px; background: #f8f9ff; z-index: 1; min-width: 100px;
+  }
+  .workflow-table tbody tr:nth-child(even) { background: #fafbff; }
+  .workflow-table tbody tr:hover { background: #f0f4ff; }
+  .workflow-table tbody tr:hover td:first-child,
+  .workflow-table tbody tr:hover td:nth-child(2),
+  .workflow-table tbody tr:hover td:nth-child(3) { background: #e8ecff; }
+  .cell-step {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .cell-step input[type=checkbox] {
+    width: 18px; height: 18px; accent-color: #43e97b; cursor: pointer;
+  }
+  .cell-step input[type=date] {
+    font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 90px;
+  }
+  .cell-done { background: linear-gradient(90deg, #e0ffe0, #f0fff0) !important; }
+  .cell-actions {
+    display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;
+  }
+  .cell-actions button {
+    padding: 4px 8px; border: none; border-radius: 5px; cursor: pointer;
+    font-size: 0.8em; font-weight: 600;
+  }
+  .mini-view { background: #667eea; color: white; }
+  .mini-edit { background: #f093fb; color: white; }
+  .mini-pdf { background: #4facfe; color: white; }
+  .mini-del { background: #fa709a; color: white; }
+
+  .badge-cell {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    color: white; font-size: 0.8em; font-weight: 600;
+  }
+
   @media (max-width: 600px) {
     .logo { font-size: 1.5em; }
     .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
@@ -218,6 +295,7 @@
       <div class="actions">
         <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
         <button class="btn-archive" onclick="showArchive()"> Archivio</button>
+        <button class="btn-table" onclick="showTable()">📊 Tabella Clienti</button>
         <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
         <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
         <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
@@ -231,7 +309,7 @@
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <option value="Matrimonio">💒 Matrimonio</option>
+          <option value="Matrimonio"> Matrimonio</option>
           <option value="Battesimo">👶 Battesimo</option>
           <option value="18° Compleanno">🎉 18° Compleanno</option>
           <option value="Compleanno">🎂 Compleanno</option>
@@ -273,6 +351,23 @@
       <div id="archiveList"></div>
     </div>
 
+    <!-- TABELLA CLIENTI -->
+    <div id="tableView" style="display:none;">
+      <div class="table-container">
+        <div class="table-header">
+          <h2> Tabella Clienti — Workflow Completo</h2>
+          <div class="table-toolbar">
+            <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca..." oninput="renderTable()" style="min-width:200px;">
+            <button class="btn-pdf" onclick="generateTablePDF()"> PDF Tabella</button>
+            <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="workflow-table" id="workflowTable"></table>
+        </div>
+      </div>
+    </div>
+
     <div id="servicesList"></div>
   </div>
 </div>
@@ -292,7 +387,7 @@
 <div id="editModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h2>✏️ Modifica Servizio</h2>
+      <h2>️ Modifica Servizio</h2>
       <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
     </div>
     <div class="modal-body">
@@ -327,27 +422,27 @@ const PASS = "12763Mlg";
 
 // ===== STEP DEL WORKFLOW =====
 const STEPS = [
-  { id: "download",    label: "📥 Download schede dopo servizio" },
-  { id: "backupAB",    label: "💾 Archiviazione sicurezza HD A + HD B" },
-  { id: "rawToJpg",    label: "🔄 Conversione RAW → JPEG" },
-  { id: "selection",   label: "👀 Selezione foto con cliente + copertina", extra: true },
-  { id: "albumEdit",   label: "🎨 Lavorazione file per album" },
-  { id: "sendLab",     label: "📤 Invio file al laboratorio" },
-  { id: "labToStudio", label: "📦 Consegna laboratorio → Studio" },
-  { id: "albumClient", label: "🎁 Consegna album al cliente" },
-  { id: "filesClient", label: "📁 Consegna file e video al cliente" },
-  { id: "confirmDel",  label: "✅ Conferma cliente — autorizzazione cancellazione" }
+  { id: "download",    label: "📥 Download schede", short: "📥" },
+  { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
+  { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
+  { id: "selection",   label: " Selezione + Copertina", short: "", extra: true },
+  { id: "albumEdit",   label: " Lavorazione album", short: "🎨" },
+  { id: "sendLab",     label: "📤 Invio laboratorio", short: "📤" },
+  { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
+  { id: "albumClient", label: " Album al cliente", short: "🎁" },
+  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
+  { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
 const TYPE_COLORS = {
-  "Matrimonio":     "linear-gradient(45deg,#f093fb,#f5576c)",
-  "Battesimo":      "linear-gradient(45deg,#4facfe,#00f2fe)",
-  "18° Compleanno": "linear-gradient(45deg,#fa709a,#fee140)",
-  "Compleanno":     "linear-gradient(45deg,#ff9a9e,#fad0c4)",
-  "Anniversario":   "linear-gradient(45deg,#a18cd1,#fbc2eb)",
-  "Comunione":      "linear-gradient(45deg,#84fab0,#8fd3f4)",
-  "Cresima":        "linear-gradient(45deg,#fccb90,#d57eeb)",
-  "Evento":         "linear-gradient(45deg,#667eea,#764ba2)"
+  "Matrimonio":     "#f5576c",
+  "Battesimo":      "#4facfe",
+  "18° Compleanno": "#fa709a",
+  "Compleanno":     "#ff9a9e",
+  "Anniversario":   "#a18cd1",
+  "Comunione":      "#84fab0",
+  "Cresima":        "#fccb90",
+  "Evento":         "#667eea"
 };
 
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
@@ -401,7 +496,7 @@ function saveService() {
   renderServices();
 }
 
-// ===== RENDER =====
+// ===== RENDER CARDS =====
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
@@ -437,11 +532,6 @@ function renderServices(data = services) {
 function renderSteps(s) {
   return STEPS.map(st => {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-    const extraHtml = st.extra && (d.extra?.supplier || d.extra?.article) ? `
-      <div class="step-extra">
-        ${d.extra?.supplier ? `<span>🏭 ${d.extra.supplier}</span>` : ''}
-        ${d.extra?.article ? `<span>📦 ${d.extra.article}</span>` : ''}
-      </div>` : "";
     return `
       <div class="step ${d.done ? 'done' : ''}">
         <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked)">
@@ -481,6 +571,7 @@ function deleteService(id) {
   if (!confirm("Eliminare questo servizio?")) return;
   services = services.filter(x => x.id !== id);
   save(); renderServices();
+  renderTable();
 }
 function save() {
   localStorage.setItem("gl_services", JSON.stringify(services));
@@ -551,15 +642,15 @@ function saveEdit() {
   save();
   closeModal('editModal');
   renderServices();
+  renderTable();
 }
 
-// ===== PDF =====
+// ===== PDF SINGOLO =====
 async function generatePDF(id) {
   const s = services.find(x => x.id === id);
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
-  // Header
   doc.setFillColor(102, 126, 234);
   doc.rect(0, 0, 210, 40, 'F');
   doc.setTextColor(255, 255, 255);
@@ -568,14 +659,12 @@ async function generatePDF(id) {
   doc.setFontSize(12);
   doc.text("Workflow Foto & Video", 15, 28);
   
-  // Info cliente
   doc.setTextColor(0, 0, 0);
   doc.setFontSize(14);
   doc.text(`Cliente: ${s.client}`, 15, 55);
   doc.text(`Tipo: ${s.type}`, 15, 63);
   doc.text(`Data Evento: ${s.date || 'N/D'}`, 15, 71);
   
-  // Steps
   doc.setFontSize(12);
   doc.text("WORKFLOW COMPLETAMENTO:", 15, 85);
   
@@ -603,7 +692,6 @@ async function generatePDF(id) {
     }
   });
   
-  // Footer
   doc.setFontSize(10);
   doc.setTextColor(150, 150, 150);
   doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')}`, 15, 285);
@@ -614,12 +702,21 @@ async function generatePDF(id) {
 // ===== ARCHIVIO =====
 function showArchive() {
   document.getElementById("servicesList").style.display = "none";
+  document.getElementById("tableView").style.display = "none";
   document.getElementById("newService").classList.remove("open");
   document.getElementById("archiveView").style.display = "block";
   filterServices();
 }
+function showTable() {
+  document.getElementById("servicesList").style.display = "none";
+  document.getElementById("archiveView").style.display = "none";
+  document.getElementById("newService").classList.remove("open");
+  document.getElementById("tableView").style.display = "block";
+  renderTable();
+}
 function showMain() {
   document.getElementById("archiveView").style.display = "none";
+  document.getElementById("tableView").style.display = "none";
   document.getElementById("servicesList").style.display = "block";
   renderServices();
 }
@@ -665,6 +762,129 @@ function filterServices() {
   }).join("");
 }
 
+// ===== TABELLA CLIENTI =====
+function renderTable() {
+  const search = (document.getElementById("tableSearch")?.value || "").toLowerCase();
+  let filtered = services;
+  if (search) {
+    filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || s.type.toLowerCase().includes(search));
+  }
+  
+  const table = document.getElementById("workflowTable");
+  if (filtered.length === 0) {
+    table.innerHTML = '<tr><td colspan="100%" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
+    return;
+  }
+  
+  // HEADER
+  let thead = '<thead><tr>';
+  thead += '<th>Cliente</th><th>Tipo</th><th>Data Evento</th>';
+  STEPS.forEach(st => {
+    thead += `<th title="${st.label}">${st.short}</th>`;
+  });
+  thead += '<th>Azioni</th></tr></thead>';
+  
+  // BODY
+  let tbody = '<tbody>';
+  filtered.forEach(s => {
+    const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
+    tbody += '<tr>';
+    tbody += `<td>${s.client}</td>`;
+    tbody += `<td><span class="badge-cell" style="background:${color}">${s.type}</span></td>`;
+    tbody += `<td>${s.date || '-'}</td>`;
+    
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+      const cellClass = d.done ? 'cell-done' : '';
+      tbody += `<td class="${cellClass}">
+        <div class="cell-step">
+          <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked); renderTable();">
+          <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value); renderTable();">
+        </div>
+      </td>`;
+    });
+    
+    tbody += `<td>
+      <div class="cell-actions">
+        <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">️</button>
+        <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
+        <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
+        <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
+      </div>
+    </td>`;
+    tbody += '</tr>';
+  });
+  tbody += '</tbody>';
+  
+  table.innerHTML = thead + tbody;
+}
+
+// ===== PDF TABELLA =====
+function generateTablePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+  
+  // Header
+  doc.setFillColor(102, 126, 234);
+  doc.rect(0, 0, 297, 25, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.text("G&LStudio - Tabella Workflow Clienti", 14, 16);
+  
+  // Table data
+  const head = [['Cliente', 'Tipo', 'Data']];
+  STEPS.forEach(st => head[0].push(st.short));
+  head[0].push('Stato');
+  
+  const body = services.map(s => {
+    const doneCount = Object.values(s.steps).filter(x => x.done).length;
+    const pct = Math.round((doneCount / STEPS.length) * 100);
+    const row = [s.client, s.type, s.date || '-'];
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "" };
+      row.push(d.done ? (d.date || '✓') : '-');
+    });
+    row.push(`${pct}%`);
+    return row;
+  });
+  
+  doc.autoTable({
+    startY: 30,
+    head: head,
+    body: body,
+    theme: 'grid',
+    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 8, halign: 'center' },
+    bodyStyles: { fontSize: 7, cellPadding: 2 },
+    columnStyles: {
+      0: { cellWidth: 35 },
+      1: { cellWidth: 25, halign: 'center' },
+      2: { cellWidth: 22, halign: 'center' },
+      [head[0].length - 1]: { cellWidth: 15, halign: 'center', fontStyle: 'bold' }
+    },
+    alternateRowStyles: { fillColor: [240, 245, 255] },
+    didParseCell: function(data) {
+      if (data.section === 'body' && data.column.index >= 3 && data.column.index < head[0].length - 1) {
+        const val = data.cell.raw;
+        if (val && val !== '-') {
+          data.cell.styles.fillColor = [220, 255, 220];
+          data.cell.styles.textColor = [0, 100, 0];
+        }
+      }
+    }
+  });
+  
+  // Footer
+  const pageCount = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFontSize(9);
+    doc.setTextColor(150, 150, 150);
+    doc.text(`Pagina ${i} di ${pageCount} - Generato il ${new Date().toLocaleDateString('it-IT')}`, 14, doc.internal.pageSize.height - 10);
+  }
+  
+  doc.save(`G&LStudio_Tabella_Clienti_${new Date().toISOString().slice(0,10)}.pdf`);
+}
+
 // ===== BACKUP / RIPRISTINO =====
 function doBackup() {
   const data = { version: 1, exportedAt: new Date().toISOString(), services };
@@ -684,7 +904,7 @@ function doRestore(e) {
       if (!data.services || !Array.isArray(data.services)) throw new Error();
       if (!confirm("Il ripristino sovrascriverà i dati attuali. Continuare?")) return;
       services = data.services;
-      save(); renderServices();
+      save(); renderServices(); renderTable();
       alert("✅ Ripristino completato!");
     } catch { alert("❌ File di backup non valido"); }
   };
