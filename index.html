@@ -13,8 +13,6 @@
     min-height: 100vh; padding: 20px; color: #333;
   }
   .container { max-width: 1400px; margin: 0 auto; }
-  
-  /* LOGIN */
   .login-box {
     max-width: 420px; margin: 80px auto; background: rgba(255,255,255,0.97);
     border-radius: 20px; padding: 40px; box-shadow: 0 15px 50px rgba(0,0,0,0.3);
@@ -38,8 +36,6 @@
   }
   .login-box button:hover { transform: translateY(-2px); }
   .login-error { color: #e74c3c; margin-top: 10px; font-size: 0.9em; min-height: 20px; }
-
-  /* APP HEADER */
   .app { display: none; }
   .app.active { display: block; }
   header {
@@ -64,8 +60,6 @@
   .btn-backup { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; }
   .btn-restore { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
   .btn-logout { background: linear-gradient(45deg, #fa709a, #fee140); color: white; }
-
-  /* FORMS */
   .new-service {
     background: white; border-radius: 18px; padding: 25px; margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); display: none;
@@ -84,8 +78,6 @@
   }
   .btn-save { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
   .btn-cancel { background: #eee; color: #555; }
-
-  /* CARDS */
   .card {
     background: white; border-radius: 18px; padding: 20px; margin-bottom: 18px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: transform 0.2s;
@@ -103,8 +95,6 @@
     padding: 6px 14px; border-radius: 20px; font-size: 0.85em;
     color: white; font-weight: 600; text-transform: uppercase;
   }
-  
-  /* PROGRESS BARS */
   .progress-bar {
     background: #eee; height: 10px; border-radius: 5px; margin-top: 12px; overflow: hidden;
   }
@@ -114,10 +104,8 @@
   }
   .progress-text { font-size: 0.85em; color: #666; margin-top: 5px; }
   .progress-row { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 8px; }
-  .progress-row > div { flex: 1; min-width: 200px; }
+  .progress-row > div { flex: 1; min-width: 180px; }
   .progress-label { font-size: 0.75em; color: #888; margin-bottom: 3px; font-weight: 600; }
-
-  /* STEPS & SECTIONS */
   .steps { margin-top: 18px; display: none; padding-top: 15px; }
   .steps.open { display: block; }
   .section-title {
@@ -126,7 +114,9 @@
   }
   .section-title.preview { background: linear-gradient(45deg, #ffd700, #ffb347); }
   .section-title.service { background: linear-gradient(45deg, #667eea, #764ba2); }
-  
+  .section-title.maternity { background: linear-gradient(45deg, #fbc2eb, #a6c1ee); }
+  .section-title.newborn { background: linear-gradient(45deg, #a1c4fd, #c2e9fb); }
+  .section-title.family { background: linear-gradient(45deg, #84fab0, #8fd3f4); }
   .step {
     display: flex; align-items: center; padding: 10px; margin: 6px 0;
     background: #f8f9ff; border-radius: 10px; gap: 12px; flex-wrap: wrap;
@@ -149,8 +139,6 @@
   .step.done .step-label { text-decoration: line-through; color: #888; }
   .step-extra { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; width: 100%; padding-left: 34px; }
   .step-extra input, .step-extra select { flex: 1; min-width: 150px; }
-
-  /* FOOTER & BUTTONS */
   .card-footer {
     margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px;
     padding-top: 15px; border-top: 1px dashed #ddd; flex-wrap: wrap;
@@ -159,13 +147,10 @@
   .btn-edit { background: linear-gradient(45deg, #f093fb, #f5576c); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
   .btn-pdf { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
   .btn-del { background: linear-gradient(45deg, #fa709a, #fee140); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
-
   .empty {
     text-align: center; padding: 60px 20px; color: white; font-size: 1.2em;
     background: rgba(255,255,255,0.15); border-radius: 20px;
   }
-
-  /* MODALS */
   .modal {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
@@ -197,8 +182,6 @@
   .step-detail .step-name { font-weight: 600; margin-bottom: 5px; }
   .step-detail .step-date { color: #667eea; font-size: 0.9em; }
   .step-detail .step-extra-info { color: #888; font-size: 0.85em; margin-top: 3px; }
-
-  /* ARCHIVE & TABLE */
   .archive-header {
     background: white; border-radius: 18px; padding: 20px; margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
@@ -262,24 +245,20 @@
   .workflow-table tbody tr:hover td:nth-child(2),
   .workflow-table tbody tr:hover td:nth-child(3),
   .workflow-table tbody tr:hover td:nth-child(4) { background: #e8ecff; }
-  
   .cell-step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .cell-step input[type=checkbox] { width: 18px; height: 18px; accent-color: #43e97b; cursor: pointer; }
   .cell-step input[type=date] { font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 90px; }
   .cell-step input[type=text] { font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 110px; }
   .cell-step select { font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 110px; background: white; }
   .cell-done { background: linear-gradient(90deg, #e0ffe0, #f0fff0) !important; }
-  
   .cell-actions { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
   .cell-actions button { padding: 4px 8px; border: none; border-radius: 5px; cursor: pointer; font-size: 0.8em; font-weight: 600; }
   .mini-view { background: #667eea; color: white; }
   .mini-edit { background: #f093fb; color: white; }
   .mini-pdf { background: #4facfe; color: white; }
   .mini-del { background: #fa709a; color: white; }
-  
   .badge-cell { display: inline-block; padding: 3px 10px; border-radius: 12px; color: white; font-size: 0.8em; font-weight: 600; }
-  .summary-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600; color: white; }
-
+  .summary-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 600; color: white; margin: 2px; }
   @media (max-width: 600px) {
     .logo { font-size: 1.5em; }
     .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
@@ -289,7 +268,6 @@
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen" class="login-box">
   <h1>📸 G&LStudio</h1>
   <p>Foto & Video — Workflow Manager</p>
@@ -299,7 +277,6 @@
   <div class="login-error" id="loginError"></div>
 </div>
 
-<!-- APP -->
 <div id="app" class="app">
   <div class="container">
     <header>
@@ -314,26 +291,30 @@
       </div>
     </header>
 
-    <!-- FORM NUOVO -->
     <div id="newService" class="new-service">
       <h2>✨ Nuovo Servizio</h2>
       <div class="form-row">
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <option value="Anteprima + Matrimonio">💒 Anteprima + Matrimonio</option>
-          <option value="Anteprima + Battesimo">🎬👶 Anteprima + Battesimo</option>
-          <option value="Anteprima + 18° Compleanno">🎬 Anteprima + 18° Compleanno</option>
+          <option value="Anteprima + Matrimonio"> Anteprima + Matrimonio</option>
+          <option value="Anteprima + Battesimo">👶 Anteprima + Battesimo</option>
+          <option value="Anteprima + 18° Compleanno">🎉 Anteprima + 18° Compleanno</option>
+          <option value="Maternity + New Born">🍼 Maternity + New Born</option>
+          <option value="Maternity + Family">🤰👨‍‍👧 Maternity + Family</option>
+          <option value="Maternity + New Born + Family">🤰🍼‍👩‍👧 Maternity + New Born + Family</option>
           <option value="Matrimonio">💒 Matrimonio</option>
-          <option value="Battesimo">👶 Battesimo</option>
+          <option value="Battesimo"> Battesimo</option>
           <option value="New Born">🍼 New Born</option>
+          <option value="Maternity">🤰 Maternity</option>
+          <option value="Family">👨‍👩‍ Family</option>
           <option value="1° Compleanno">🎈 1° Compleanno</option>
           <option value="18° Compleanno">🎉 18° Compleanno</option>
           <option value="Compleanno">🎂 Compleanno</option>
           <option value="Anniversario">💍 Anniversario</option>
           <option value="Comunione">⛪ Comunione</option>
           <option value="Cresima">✝️ Cresima</option>
-          <option value="Evento"> Evento</option>
+          <option value="Evento">🎊 Evento</option>
         </select>
       </div>
       <div class="form-row">
@@ -346,7 +327,6 @@
       </div>
     </div>
 
-    <!-- ARCHIVIO -->
     <div id="archiveView" style="display:none;">
       <div class="archive-header">
         <h2>📁 Archivio Servizi</h2>
@@ -357,9 +337,14 @@
             <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
             <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
             <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
+            <option value="Maternity + New Born">Maternity + New Born</option>
+            <option value="Maternity + Family">Maternity + Family</option>
+            <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
             <option value="Matrimonio">Matrimonio</option>
             <option value="Battesimo">Battesimo</option>
             <option value="New Born">New Born</option>
+            <option value="Maternity">Maternity</option>
+            <option value="Family">Family</option>
             <option value="1° Compleanno">1° Compleanno</option>
             <option value="18° Compleanno">18° Compleanno</option>
             <option value="Compleanno">Compleanno</option>
@@ -374,11 +359,10 @@
       <div id="archiveList"></div>
     </div>
 
-    <!-- TABELLA -->
     <div id="tableView" style="display:none;">
       <div class="table-container">
         <div class="table-header">
-          <h2>📊 Tabella Clienti — Workflow Completo</h2>
+          <h2> Tabella Clienti — Workflow Completo</h2>
           <div class="table-toolbar">
             <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca..." oninput="renderTable()" style="min-width:200px;">
             <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
@@ -395,7 +379,6 @@
   </div>
 </div>
 
-<!-- MODAL DETTAGLI -->
 <div id="detailModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -406,7 +389,6 @@
   </div>
 </div>
 
-<!-- MODAL MODIFICA -->
 <div id="editModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -420,9 +402,14 @@
           <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
           <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
           <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
+          <option value="Maternity + New Born">Maternity + New Born</option>
+          <option value="Maternity + Family">Maternity + Family</option>
+          <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
           <option value="Matrimonio">Matrimonio</option>
           <option value="Battesimo">Battesimo</option>
           <option value="New Born">New Born</option>
+          <option value="Maternity">Maternity</option>
+          <option value="Family">Family</option>
           <option value="1° Compleanno">1° Compleanno</option>
           <option value="18° Compleanno">18° Compleanno</option>
           <option value="Compleanno">Compleanno</option>
@@ -434,7 +421,7 @@
       </div>
       <div class="form-row">
         <input type="date" id="editDate">
-        <input type="text" id="editVideographer" placeholder=" Videografo/Collega">
+        <input type="text" id="editVideographer" placeholder="🎥 Videografo/Collega">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
@@ -448,19 +435,19 @@
 const USER = "G&LStudio";
 const PASS = "12763Mlg";
 
-// STEP DEL SERVIZIO (completo)
+// STEP COMPLETI per ogni sezione
 const STEPS = [
   { id: "download",    label: " Download schede", short: "📥" },
   { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
   { id: "archiveVideo",label: "🎬 Archiviazione Video", short: "🎬", extra: true, extraType: "archivedBy" },
   { id: "backupAltro", label: " Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
   { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
-  { id: "selection",   label: "👀 Selezione + Copertina", short: "", extra: true, extraType: "cover" },
+  { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraType: "cover" },
   { id: "albumEdit",   label: "🎨 Lavorazione album", short: "🎨" },
-  { id: "sendLab",     label: "📤 Invio laboratorio", short: "📤" },
-  { id: "labToStudio", label: "📦 Lab → Studio", short: "" },
-  { id: "albumClient", label: "🎁 Album al cliente", short: "" },
-  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
+  { id: "sendLab",     label: "📤 Invio laboratorio", short: "" },
+  { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
+  { id: "albumClient", label: "🎁 Album al cliente", short: "🎁" },
+  { id: "filesClient", label: " File e video al cliente", short: "" },
   { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
@@ -468,19 +455,38 @@ const STEPS = [
 const STEPS_PREVIEW = [
   { id: "p_download",    label: "📥 Download schede", short: "P" },
   { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "💾P" },
-  { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "🎬P", extra: true, extraType: "archivedBy" },
+  { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "P", extra: true, extraType: "archivedBy" },
   { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "💿P", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
   { id: "p_rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄P" },
-  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "P" }
+  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "📤P" }
 ];
+
+// COMBINAZIONI MULTI-SEZIONE
+const COMBO_TYPES = {
+  "Maternity + New Born": ["Maternity", "New Born"],
+  "Maternity + Family": ["Maternity", "Family"],
+  "Maternity + New Born + Family": ["Maternity", "New Born", "Family"]
+};
+
+// COLORI SEZIONI
+const SECTION_COLORS = {
+  "Maternity": { bg: "linear-gradient(45deg, #fbc2eb, #a6c1ee)", hex: "#fbc2eb" },
+  "New Born":  { bg: "linear-gradient(45deg, #a1c4fd, #c2e9fb)", hex: "#a1c4fd" },
+  "Family":    { bg: "linear-gradient(45deg, #84fab0, #8fd3f4)", hex: "#84fab0" }
+};
 
 const TYPE_COLORS = {
   "Anteprima + Matrimonio": "#ff8c42",
   "Anteprima + Battesimo": "#4facfe",
   "Anteprima + 18° Compleanno": "#fa709a",
+  "Maternity + New Born": "#e8a0bf",
+  "Maternity + Family": "#a0d8e8",
+  "Maternity + New Born + Family": "#b8a0e8",
   "Matrimonio":     "#f5576c",
   "Battesimo":      "#4facfe",
   "New Born":       "#a1c4fd",
+  "Maternity":      "#fbc2eb",
+  "Family":         "#84fab0",
   "1° Compleanno":  "#ffd700",
   "18° Compleanno": "#fa709a",
   "Compleanno":     "#ff9a9e",
@@ -495,19 +501,31 @@ let editingId = null;
 
 // ===== MIGRAZIONE =====
 function migrateService(s) {
-  // Inizializza step servizio se mancano
   if (!s.steps) s.steps = {};
   STEPS.forEach(st => {
     if (!s.steps[st.id]) s.steps[st.id] = { done: false, date: "", extra: {} };
     if (!s.steps[st.id].extra) s.steps[st.id].extra = {};
   });
   
-  // Inizializza step anteprima se il tipo è ibrido
+  // Anteprima
   if (isPreviewType(s.type)) {
     if (!s.previewSteps) s.previewSteps = {};
     STEPS_PREVIEW.forEach(st => {
       if (!s.previewSteps[st.id]) s.previewSteps[st.id] = { done: false, date: "", extra: {} };
       if (!s.previewSteps[st.id].extra) s.previewSteps[st.id].extra = {};
+    });
+  }
+  
+  // Combo multi-sezione
+  if (isComboType(s.type)) {
+    if (!s.sections) s.sections = {};
+    COMBO_TYPES[s.type].forEach(secName => {
+      if (!s.sections[secName]) {
+        s.sections[secName] = {};
+        STEPS.forEach(st => {
+          s.sections[secName][st.id] = { done: false, date: "", extra: {} };
+        });
+      }
     });
   }
   
@@ -518,6 +536,12 @@ services = services.map(migrateService);
 
 function isPreviewType(type) {
   return type && type.startsWith("Anteprima +");
+}
+function isComboType(type) {
+  return type && COMBO_TYPES[type];
+}
+function getComboSections(type) {
+  return COMBO_TYPES[type] || [];
 }
 
 function doLogin() {
@@ -562,10 +586,17 @@ function saveService() {
     createdAt: new Date().toISOString()
   };
   
-  // Se è un tipo ibrido, aggiungi anche previewSteps
   if (isPreviewType(type)) {
     newService.previewSteps = {};
     STEPS_PREVIEW.forEach(s => newService.previewSteps[s.id] = { done: false, date: "", extra: {} });
+  }
+  
+  if (isComboType(type)) {
+    newService.sections = {};
+    COMBO_TYPES[type].forEach(secName => {
+      newService.sections[secName] = {};
+      STEPS.forEach(st => newService.sections[secName][st.id] = { done: false, date: "", extra: {} });
+    });
   }
   
   services.unshift(newService);
@@ -598,15 +629,16 @@ function renderServices(data = services) {
     return;
   }
   list.innerHTML = data.map(s => {
-    const serviceDone = countDone(s.steps, STEPS);
-    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
-    const videoInfo = s.videographer ? `<div class="videographer-info"> Videografo: ${s.videographer}</div>` : '';
+    const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
     
     let progressHtml = '';
+    
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
       const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+      const serviceDone = countDone(s.steps, STEPS);
+      const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `
         <div class="progress-row">
           <div>
@@ -620,7 +652,25 @@ function renderServices(data = services) {
             <div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div>
           </div>
         </div>`;
+    } else if (isComboType(s.type)) {
+      const sections = getComboSections(s.type);
+      progressHtml = '<div class="progress-row">';
+      sections.forEach(secName => {
+        const secSteps = s.sections?.[secName] || {};
+        const done = countDone(secSteps, STEPS);
+        const pct = Math.round((done / STEPS.length) * 100);
+        const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
+        progressHtml += `
+          <div>
+            <div class="progress-label">${getSectionEmoji(secName)} ${secName.toUpperCase()}</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div>
+            <div class="progress-text">${done}/${STEPS.length} (${pct}%)</div>
+          </div>`;
+      });
+      progressHtml += '</div>';
     } else {
+      const serviceDone = countDone(s.steps, STEPS);
+      const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
         <div class="progress-text">Avanzamento: ${serviceDone}/${STEPS.length} (${servicePct}%)</div>`;
     }
@@ -630,7 +680,7 @@ function renderServices(data = services) {
         <div class="card-header" onclick="toggleSteps(${s.id})">
           <div class="client-info">
             <div class="client-name">${s.client}</div>
-            <div class="client-date">${s.date ? ' ' + s.date : ''}</div>
+            <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
             ${videoInfo}
           </div>
           <div class="service-badge" style="background:${color}">${s.type}</div>
@@ -638,8 +688,8 @@ function renderServices(data = services) {
         ${progressHtml}
         <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
         <div class="card-footer">
-          <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
-          <button class="btn-edit" onclick="editService(${s.id})">️ Modifica</button>
+          <button class="btn-view" onclick="viewService(${s.id})">️ Visualizza</button>
+          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
           <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
           <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
         </div>
@@ -647,16 +697,31 @@ function renderServices(data = services) {
   }).join("");
 }
 
+function getSectionEmoji(name) {
+  const map = { "Maternity": "🤰", "New Born": "🍼", "Family": "👨👩‍👧" };
+  return map[name] || "📋";
+}
+
 function renderSteps(s) {
   let html = '';
   
-  // Sezione ANTEPRIMA (solo per tipi ibridi)
+  // Anteprima
   if (isPreviewType(s.type)) {
-    html += `<div class="section-title preview"> ANTEPRIMA</div>`;
+    html += `<div class="section-title preview">🎬 ANTEPRIMA</div>`;
     html += STEPS_PREVIEW.map(st => renderStepRow(s, st, 'preview')).join('');
   }
   
-  // Sezione SERVIZIO
+  // Combo multi-sezione
+  if (isComboType(s.type)) {
+    const sections = getComboSections(s.type);
+    sections.forEach(secName => {
+      html += `<div class="section-title ${secName.toLowerCase().replace(' ', '')}">${getSectionEmoji(secName)} ${secName.toUpperCase()}</div>`;
+      html += STEPS.map(st => renderComboStepRow(s, st, secName)).join('');
+    });
+    return html;
+  }
+  
+  // Servizio singolo
   const serviceTitle = isPreviewType(s.type) ? '💒 SERVIZIO (' + s.type.replace("Anteprima + ", "") + ')' : '📋 WORKFLOW SERVIZIO';
   html += `<div class="section-title service">${serviceTitle}</div>`;
   html += STEPS.map(st => renderStepRow(s, st, 'service')).join('');
@@ -667,7 +732,6 @@ function renderSteps(s) {
 function renderStepRow(s, st, section) {
   const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
   const d = stepsObj[st.id] || { done: false, date: "", extra: {} };
-  
   let extraHtml = "";
   if (st.extra) {
     if (st.extraType === "archivedBy") {
@@ -694,12 +758,49 @@ function renderStepRow(s, st, section) {
         </div>`;
     }
   }
-  
   return `
     <div class="step ${d.done ? 'done' : ''}">
       <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked,'${section}')">
       <div class="step-label">${st.label}</div>
       <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value,'${section}')">
+      ${extraHtml}
+    </div>`;
+}
+
+function renderComboStepRow(s, st, sectionName) {
+  const stepsObj = s.sections?.[sectionName] || {};
+  const d = stepsObj[st.id] || { done: false, date: "", extra: {} };
+  let extraHtml = "";
+  if (st.extra) {
+    if (st.extraType === "archivedBy") {
+      const currentVal = d.extra?.archivedBy || "G&LStudio";
+      const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
+      const displayVal = isAltro ? currentVal : "";
+      extraHtml = `
+        <div class="step-extra">
+          <select onchange="handleComboArchiveByChange(${s.id}, '${sectionName}', '${st.id}', this.value)">
+            ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
+          </select>
+          ${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','archivedBy',this.value)">` : ''}
+        </div>`;
+    } else if (st.extraType === "cover") {
+      extraHtml = `
+        <div class="step-extra">
+          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','supplier',this.value)">
+          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','article',this.value)">
+        </div>`;
+    } else if (st.extraLabel) {
+      extraHtml = `
+        <div class="step-extra">
+          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','luogo',this.value)" style="flex:2;">
+        </div>`;
+    }
+  }
+  return `
+    <div class="step ${d.done ? 'done' : ''}">
+      <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleComboStep(${s.id},'${sectionName}','${st.id}',this.checked)">
+      <div class="step-label">${st.label}</div>
+      <input type="date" value="${d.date || ''}" onchange="updateComboDate(${s.id},'${sectionName}','${st.id}',this.value)">
       ${extraHtml}
     </div>`;
 }
@@ -715,6 +816,18 @@ function handleArchiveByChange(serviceId, stepId, value, section) {
   document.getElementById("steps-" + serviceId).classList.add("open");
 }
 
+function handleComboArchiveByChange(serviceId, sectionName, stepId, value) {
+  const s = services.find(x => x.id === serviceId);
+  if (value === "__altro__") return;
+  if (!s.sections[sectionName]) s.sections[sectionName] = {};
+  if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
+  s.sections[sectionName][stepId].extra = s.sections[sectionName][stepId].extra || {};
+  s.sections[sectionName][stepId].extra.archivedBy = value;
+  save();
+  renderServices();
+  document.getElementById("steps-" + serviceId).classList.add("open");
+}
+
 function toggleSteps(id) {
   document.getElementById("steps-" + id).classList.toggle("open");
 }
@@ -723,20 +836,40 @@ function toggleStep(id, stepId, checked, section) {
   const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
   stepsObj[stepId].done = checked;
   if (checked && !stepsObj[stepId].date) stepsObj[stepId].date = new Date().toISOString().slice(0,10);
-  
-  // Auto-set archivedBy for video archive steps
   if ((stepId === "archiveVideo" && section === 'service') || (stepId === "p_archiveVideo" && section === 'preview')) {
     if (!stepsObj[stepId].extra.archivedBy) stepsObj[stepId].extra.archivedBy = "G&LStudio";
   }
-  
   save(); renderServices();
   document.getElementById("steps-" + id).classList.add("open");
   renderTable();
 }
+
+function toggleComboStep(serviceId, sectionName, stepId, checked) {
+  const s = services.find(x => x.id === serviceId);
+  if (!s.sections[sectionName]) s.sections[sectionName] = {};
+  if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
+  s.sections[sectionName][stepId].done = checked;
+  if (checked && !s.sections[sectionName][stepId].date) {
+    s.sections[sectionName][stepId].date = new Date().toISOString().slice(0,10);
+  }
+  if (stepId === "archiveVideo" && !s.sections[sectionName][stepId].extra.archivedBy) {
+    s.sections[sectionName][stepId].extra.archivedBy = "G&LStudio";
+  }
+  save(); renderServices();
+  document.getElementById("steps-" + serviceId).classList.add("open");
+  renderTable();
+}
+
 function updateDate(id, stepId, val, section) {
   const s = services.find(x => x.id === id);
   const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
   stepsObj[stepId].date = val;
+  save();
+}
+function updateComboDate(serviceId, sectionName, stepId, val) {
+  const s = services.find(x => x.id === serviceId);
+  if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
+  s.sections[sectionName][stepId].date = val;
   save();
 }
 function updateExtra(id, stepId, field, val, section) {
@@ -746,6 +879,14 @@ function updateExtra(id, stepId, field, val, section) {
   stepsObj[stepId].extra[field] = val;
   save();
 }
+function updateComboExtra(serviceId, sectionName, stepId, field, val) {
+  const s = services.find(x => x.id === serviceId);
+  if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
+  if (!s.sections[sectionName][stepId].extra) s.sections[sectionName][stepId].extra = {};
+  s.sections[sectionName][stepId].extra[field] = val;
+  save();
+}
+
 function deleteService(id) {
   if (!confirm("Eliminare questo servizio?")) return;
   services = services.filter(x => x.id !== id);
@@ -758,11 +899,8 @@ function save() {
 
 function viewService(id) {
   const s = services.find(x => x.id === id);
-  const serviceDone = countDone(s.steps, STEPS);
-  const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-  
   let html = `
-    <div class="detail-row"><div class="detail-label"> Cliente</div><div class="detail-value">${s.client}</div></div>
+    <div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
     <div class="detail-row"><div class="detail-label"> Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
     <div class="detail-row"><div class="detail-label"> Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
     <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>
@@ -771,27 +909,53 @@ function viewService(id) {
   if (isPreviewType(s.type)) {
     const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
     const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+    const serviceDone = countDone(s.steps, STEPS);
+    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label">🎬 Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
-  }
-  html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
-  
-  // Sezione Anteprima
-  if (isPreviewType(s.type)) {
+    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    
     html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">🎬 ANTEPRIMA</h3>`;
     STEPS_PREVIEW.forEach(st => {
       const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} };
       html += renderStepDetail(st, d);
     });
+    
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+      html += renderStepDetail(st, d);
+    });
+  } else if (isComboType(s.type)) {
+    const sections = getComboSections(s.type);
+    sections.forEach(secName => {
+      const secSteps = s.sections?.[secName] || {};
+      const done = countDone(secSteps, STEPS);
+      const pct = Math.round((done / STEPS.length) * 100);
+      const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
+      html += `<div class="detail-row" style="background: ${secColor};"><div class="detail-label">${getSectionEmoji(secName)} Avanzamento ${secName}</div><div class="detail-value">${done}/${STEPS.length} completati (${pct}%)</div></div>`;
+    });
+    
+    sections.forEach(secName => {
+      const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
+      html += `<h3 style="margin:20px 0 10px; padding:10px; background: ${secColor}; color: white; border-radius: 10px;">${getSectionEmoji(secName)} ${secName.toUpperCase()}</h3>`;
+      const secSteps = s.sections?.[secName] || {};
+      STEPS.forEach(st => {
+        const d = secSteps[st.id] || { done: false, date: "", extra: {} };
+        html += renderStepDetail(st, d);
+      });
+    });
+  } else {
+    const serviceDone = countDone(s.steps, STEPS);
+    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
+    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+      html += renderStepDetail(st, d);
+    });
   }
   
-  // Sezione Servizio
-  html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
-  STEPS.forEach(st => {
-    const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-    html += renderStepDetail(st, d);
-  });
-  
-  document.getElementById("detailTitle").textContent = ` ${s.client} - ${s.type}`;
+  document.getElementById("detailTitle").textContent = `📋 ${s.client} - ${s.type}`;
   document.getElementById("detailBody").innerHTML = html;
   document.getElementById("detailModal").classList.add("active");
 }
@@ -830,13 +994,23 @@ function saveEdit() {
   s.date = document.getElementById("editDate").value;
   s.videographer = document.getElementById("editVideographer").value.trim();
   
-  // Gestione cambio tipo
   if (isPreviewType(s.type) && !s.previewSteps) {
     s.previewSteps = {};
     STEPS_PREVIEW.forEach(st => s.previewSteps[st.id] = { done: false, date: "", extra: {} });
   }
   if (!isPreviewType(s.type) && isPreviewType(oldType)) {
     delete s.previewSteps;
+  }
+  
+  if (isComboType(s.type) && !s.sections) {
+    s.sections = {};
+    COMBO_TYPES[s.type].forEach(secName => {
+      s.sections[secName] = {};
+      STEPS.forEach(st => s.sections[secName][st.id] = { done: false, date: "", extra: {} });
+    });
+  }
+  if (!isComboType(s.type) && isComboType(oldType)) {
+    delete s.sections;
   }
   
   save();
@@ -865,60 +1039,92 @@ async function generatePDF(id) {
   
   let y = 92;
   
-  // Sezione Anteprima
   if (isPreviewType(s.type)) {
     doc.setFillColor(255, 215, 0);
     doc.rect(15, y - 5, 180, 8, 'F');
     doc.setTextColor(0, 0, 0);
     doc.setFontSize(12);
-    doc.text(" ANTEPRIMA", 20, y);
+    doc.text("🎬 ANTEPRIMA", 20, y);
     y += 8;
     STEPS_PREVIEW.forEach(st => {
       const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} };
-      const status = d.done ? "[X]" : "[ ]";
-      const dateStr = d.date ? ` - ${d.date}` : '';
-      doc.text(`${status} ${st.label}${dateStr}`, 20, y);
-      y += 7;
-      const extra = getExtraText(st, d);
-      if (extra) {
-        doc.setTextColor(100, 100, 100);
-        doc.text(`    → ${extra}`, 20, y);
-        doc.setTextColor(0, 0, 0);
-        y += 7;
-      }
-      if (y > 270) { doc.addPage(); y = 20; }
+      y = renderPDFStep(doc, st, d, y);
     });
     y += 5;
-  }
-  
-  // Sezione Servizio
-  doc.setFillColor(102, 126, 234);
-  doc.rect(15, y - 5, 180, 8, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(12);
-  doc.text("💒 SERVIZIO", 20, y);
-  doc.setTextColor(0, 0, 0);
-  y += 8;
-  STEPS.forEach(st => {
-    const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-    const status = d.done ? "[X]" : "[ ]";
-    const dateStr = d.date ? ` - ${d.date}` : '';
-    doc.text(`${status} ${st.label}${dateStr}`, 20, y);
-    y += 7;
-    const extra = getExtraText(st, d);
-    if (extra) {
-      doc.setTextColor(100, 100, 100);
-      doc.text(`    → ${extra}`, 20, y);
+    
+    doc.setFillColor(102, 126, 234);
+    doc.rect(15, y - 5, 180, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(12);
+    doc.text("💒 SERVIZIO", 20, y);
+    doc.setTextColor(0, 0, 0);
+    y += 8;
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+      y = renderPDFStep(doc, st, d, y);
+    });
+  } else if (isComboType(s.type)) {
+    const sections = getComboSections(s.type);
+    sections.forEach(secName => {
+      const secColor = SECTION_COLORS[secName]?.hex || '#667eea';
+      const rgb = hexToRgb(secColor);
+      doc.setFillColor(rgb.r, rgb.g, rgb.b);
+      doc.rect(15, y - 5, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.text(`${getSectionEmoji(secName)} ${secName.toUpperCase()}`, 20, y);
       doc.setTextColor(0, 0, 0);
-      y += 7;
-    }
-    if (y > 270) { doc.addPage(); y = 20; }
-  });
+      y += 8;
+      const secSteps = s.sections?.[secName] || {};
+      STEPS.forEach(st => {
+        const d = secSteps[st.id] || { done: false, date: "", extra: {} };
+        y = renderPDFStep(doc, st, d, y);
+      });
+      y += 5;
+    });
+  } else {
+    doc.setFillColor(102, 126, 234);
+    doc.rect(15, y - 5, 180, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(12);
+    doc.text("💒 SERVIZIO", 20, y);
+    doc.setTextColor(0, 0, 0);
+    y += 8;
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+      y = renderPDFStep(doc, st, d, y);
+    });
+  }
   
   doc.setFontSize(10);
   doc.setTextColor(150, 150, 150);
   doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')}`, 15, 285);
   doc.save(`G&LStudio_${s.client.replace(/\s+/g, '_')}_${s.type.replace(/\s+/g, '_')}.pdf`);
+}
+
+function renderPDFStep(doc, st, d, y) {
+  const status = d.done ? "[X]" : "[ ]";
+  const dateStr = d.date ? ` - ${d.date}` : '';
+  doc.text(`${status} ${st.label}${dateStr}`, 20, y);
+  y += 7;
+  const extra = getExtraText(st, d);
+  if (extra) {
+    doc.setTextColor(100, 100, 100);
+    doc.text(`    → ${extra}`, 20, y);
+    doc.setTextColor(0, 0, 0);
+    y += 7;
+  }
+  if (y > 270) { doc.addPage(); y = 20; }
+  return y;
+}
+
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : { r: 102, g: 126, b: 234 };
 }
 
 function getExtraText(st, d) {
@@ -964,8 +1170,6 @@ function filterServices() {
     return;
   }
   list.innerHTML = filtered.map(s => {
-    const serviceDone = countDone(s.steps, STEPS);
-    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
     const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
     
@@ -973,6 +1177,8 @@ function filterServices() {
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
       const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+      const serviceDone = countDone(s.steps, STEPS);
+      const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `
         <div class="progress-row">
           <div>
@@ -981,12 +1187,30 @@ function filterServices() {
             <div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div>
           </div>
           <div>
-            <div class="progress-label"> SERVIZIO</div>
+            <div class="progress-label">💒 SERVIZIO</div>
             <div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
             <div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div>
           </div>
         </div>`;
+    } else if (isComboType(s.type)) {
+      const sections = getComboSections(s.type);
+      progressHtml = '<div class="progress-row">';
+      sections.forEach(secName => {
+        const secSteps = s.sections?.[secName] || {};
+        const done = countDone(secSteps, STEPS);
+        const pct = Math.round((done / STEPS.length) * 100);
+        const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
+        progressHtml += `
+          <div>
+            <div class="progress-label">${getSectionEmoji(secName)} ${secName}</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div>
+            <div class="progress-text">${done}/${STEPS.length} (${pct}%)</div>
+          </div>`;
+      });
+      progressHtml += '</div>';
     } else {
+      const serviceDone = countDone(s.steps, STEPS);
+      const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
         <div class="progress-text">Completamento: ${servicePct}%</div>`;
     }
@@ -1005,7 +1229,7 @@ function filterServices() {
         <div class="card-footer">
           <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
           <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
-          <button class="btn-pdf" onclick="generatePDF(${s.id})"> PDF</button>
+          <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
         </div>
       </div>`;
   }).join("");
@@ -1022,10 +1246,20 @@ function renderTable() {
     table.innerHTML = '<tr><td colspan="100%" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
     return;
   }
+  
+  const hasPreview = filtered.some(s => isPreviewType(s.type));
+  const hasCombo = filtered.some(s => isComboType(s.type));
+  
   let thead = '<thead><tr>';
   thead += '<th>Cliente</th><th>Tipo</th><th>Data</th><th>Videografo</th>';
-  if (filtered.some(s => isPreviewType(s.type))) {
-    thead += '<th style="background: linear-gradient(45deg, #ffd700, #ffb347);">🎬 Anteprima</th>';
+  if (hasPreview) thead += '<th style="background: linear-gradient(45deg, #ffd700, #ffb347);">🎬 Anteprima</th>';
+  if (hasCombo) {
+    const allSections = new Set();
+    filtered.forEach(s => { if (isComboType(s.type)) getComboSections(s.type).forEach(sec => allSections.add(sec)); });
+    allSections.forEach(sec => {
+      const secColor = SECTION_COLORS[sec]?.bg || '#667eea';
+      thead += `<th style="background: ${secColor};">${getSectionEmoji(sec)} ${sec}</th>`;
+    });
   }
   thead += '<th>💒 Servizio</th>';
   thead += '<th>Azioni</th></tr></thead>';
@@ -1047,12 +1281,28 @@ function renderTable() {
       tbody += `<td><span class="summary-badge" style="background: linear-gradient(45deg, #ffd700, #ffb347);">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</span></td>`;
     }
     
+    if (isComboType(s.type)) {
+      const allSections = new Set();
+      filtered.forEach(x => { if (isComboType(x.type)) getComboSections(x.type).forEach(sec => allSections.add(sec)); });
+      allSections.forEach(sec => {
+        if (getComboSections(s.type).includes(sec)) {
+          const secSteps = s.sections?.[sec] || {};
+          const done = countDone(secSteps, STEPS);
+          const pct = Math.round((done / STEPS.length) * 100);
+          const secColor = SECTION_COLORS[sec]?.bg || '#667eea';
+          tbody += `<td><span class="summary-badge" style="background: ${secColor};">${done}/${STEPS.length} (${pct}%)</span></td>`;
+        } else {
+          tbody += `<td>-</td>`;
+        }
+      });
+    }
+    
     tbody += `<td><span class="summary-badge" style="background: linear-gradient(45deg, #667eea, #764ba2);">${serviceDone}/${STEPS.length} (${servicePct}%)</span></td>`;
     tbody += `<td>
       <div class="cell-actions">
         <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
         <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
-        <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF"></button>
+        <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
         <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
       </div>
     </td>`;
@@ -1072,8 +1322,15 @@ function generateTablePDF() {
   doc.text("G&LStudio - Tabella Workflow Clienti", 14, 16);
   
   const hasPreview = services.some(s => isPreviewType(s.type));
+  const hasCombo = services.some(s => isComboType(s.type));
+  
   const head = [['Cliente', 'Tipo', 'Data', 'Videografo']];
-  if (hasPreview) head[0].push('🎬 Anteprima');
+  if (hasPreview) head[0].push(' Anteprima');
+  if (hasCombo) {
+    const allSections = new Set();
+    services.forEach(s => { if (isComboType(s.type)) getComboSections(s.type).forEach(sec => allSections.add(sec)); });
+    allSections.forEach(sec => head[0].push(`${getSectionEmoji(sec)} ${sec}`));
+  }
   head[0].push('💒 Servizio');
   
   const body = services.map(s => {
@@ -1085,6 +1342,20 @@ function generateTablePDF() {
       const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
       row.push(`${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)`);
     }
+    if (isComboType(s.type)) {
+      const allSections = new Set();
+      services.forEach(x => { if (isComboType(x.type)) getComboSections(x.type).forEach(sec => allSections.add(sec)); });
+      allSections.forEach(sec => {
+        if (getComboSections(s.type).includes(sec)) {
+          const secSteps = s.sections?.[sec] || {};
+          const done = countDone(secSteps, STEPS);
+          const pct = Math.round((done / STEPS.length) * 100);
+          row.push(`${done}/${STEPS.length} (${pct}%)`);
+        } else {
+          row.push('-');
+        }
+      });
+    }
     row.push(`${serviceDone}/${STEPS.length} (${servicePct}%)`);
     return row;
   });
@@ -1094,13 +1365,13 @@ function generateTablePDF() {
     head: head,
     body: body,
     theme: 'grid',
-    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 8, halign: 'center' },
-    bodyStyles: { fontSize: 8, cellPadding: 3 },
+    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 7, halign: 'center' },
+    bodyStyles: { fontSize: 7, cellPadding: 2 },
     columnStyles: {
-      0: { cellWidth: 40 },
-      1: { cellWidth: 35, halign: 'center' },
-      2: { cellWidth: 25, halign: 'center' },
-      3: { cellWidth: 30 },
+      0: { cellWidth: 35 },
+      1: { cellWidth: 30, halign: 'center' },
+      2: { cellWidth: 22, halign: 'center' },
+      3: { cellWidth: 25 },
     },
     alternateRowStyles: { fillColor: [240, 245, 255] }
   });
@@ -1116,7 +1387,7 @@ function generateTablePDF() {
 }
 
 function doBackup() {
-  const data = { version: 6, exportedAt: new Date().toISOString(), services };
+  const data = { version: 8, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
