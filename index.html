@@ -305,27 +305,27 @@
           </optgroup>
           <optgroup label="👶 Famiglia & Neonati">
             <option value="Maternity + New Born + Family">🤰🍼👨‍‍👧 Maternity + New Born + Family</option>
-            <option value="Maternity + New Born">🤰 Maternity + New Born</option>
-            <option value="Maternity + Family">🤰‍👩‍👧 Maternity + Family</option>
-            <option value="New Born + Family">🍼👨👩‍👧 New Born + Family</option>
-            <option value="Maternity">🤰 Maternity</option>
+            <option value="Maternity + New Born">🤰🍼 Maternity + New Born</option>
+            <option value="Maternity + Family">🤰👨‍👩‍👧 Maternity + Family</option>
+            <option value="New Born + Family">🍼👨‍‍👧 New Born + Family</option>
+            <option value="Maternity"> Maternity</option>
             <option value="New Born">🍼 New Born</option>
-            <option value="Family">‍👩‍👧 Family</option>
+            <option value="Family">👨‍👩‍👧 Family</option>
           </optgroup>
-          <optgroup label="💒 Cerimonie">
+          <optgroup label=" Cerimonie">
             <option value="Matrimonio">💒 Matrimonio</option>
-            <option value="Battesimo"> Battesimo</option>
+            <option value="Battesimo">👶 Battesimo</option>
             <option value="Comunione">⛪ Comunione</option>
-            <option value="Cresima">️ Cresima</option>
+            <option value="Cresima">✝️ Cresima</option>
           </optgroup>
           <optgroup label="🎉 Feste & Celebrazioni">
             <option value="1° Compleanno">🎈 1° Compleanno</option>
-            <option value="18° Compleanno">🎉 18° Compleanno</option>
+            <option value="18° Compleanno"> 18° Compleanno</option>
             <option value="Compleanno">🎂 Compleanno</option>
             <option value="Anniversario">💍 Anniversario</option>
           </optgroup>
-          <optgroup label="🎊 Altro">
-            <option value="Evento">🎊 Evento</option>
+          <optgroup label=" Altro">
+            <option value="Evento"> Evento</option>
           </optgroup>
         </select>
       </div>
@@ -341,7 +341,7 @@
 
     <div id="archiveView" style="display:none;">
       <div class="archive-header">
-        <h2>📁 Archivio Servizi</h2>
+        <h2> Archivio Servizi</h2>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <input type="text" class="search-box" id="searchBox" placeholder="🔍 Cerca cliente..." oninput="filterServices()">
           <select class="filter-select" id="filterType" onchange="filterServices()">
@@ -456,11 +456,11 @@
       </div>
       <div class="form-row">
         <input type="date" id="editDate">
-        <input type="text" id="editVideographer" placeholder=" Videografo/Collega">
+        <input type="text" id="editVideographer" placeholder="🎥 Videografo/Collega">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
-        <button class="btn-save" onclick="saveEdit()"> Salva Modifiche</button>
+        <button class="btn-save" onclick="saveEdit()">💾 Salva Modifiche</button>
       </div>
     </div>
   </div>
@@ -479,18 +479,20 @@ const TYPE_ORDER = [
   "Evento"
 ];
 
+// 13 step: "File e video" diviso in "Consegna file" + "Video Pronto"
 const STEPS = [
-  { id: "download",    label: " Download schede", short: "📥" },
+  { id: "download",    label: "📥 Download schede", short: "📥" },
   { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
   { id: "archiveVideo",label: "🎬 Archiviazione Video", short: "🎬", extra: true, extraType: "archivedBy" },
-  { id: "backupAltro", label: " Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove" },
+  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "", extra: true, extraLabel: "Dove" },
   { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
   { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraType: "cover" },
   { id: "albumEdit",   label: " Lavorazione album", short: "🎨" },
   { id: "sendLab",     label: "📤 Invio laboratorio", short: "📤" },
   { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
-  { id: "albumClient", label: "🎁 Album al cliente", short: "🎁" },
-  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
+  { id: "albumClient", label: " Album al cliente", short: "🎁" },
+  { id: "filesClient", label: "📁 Consegna file cliente", short: "📁" },
+  { id: "videoClient", label: "🎬 Video Pronto cliente", short: "🎬" },
   { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
@@ -500,7 +502,7 @@ const STEPS_PREVIEW = [
   { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "P🎬", extra: true, extraType: "archivedBy" },
   { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "P💿", extra: true, extraLabel: "Dove" },
   { id: "p_rawToJpg",    label: "🔄 RAW → JPEG", short: "P🔄" },
-  { id: "p_deliverPreview", label: " Consegna Anteprima al cliente", short: "P📤" }
+  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "P📤" }
 ];
 
 const COMBO_TYPES = {
@@ -544,14 +546,15 @@ const STEP_LABEL_CLEAN = {
   "🎬 Archiviazione Video": "Archiviazione Video",
   "💿 Archiviazione su altro": "Archiviazione su altro",
   "🔄 RAW → JPEG": "RAW -> JPEG",
-  "👀 Selezione + Copertina": "Selezione + Copertina",
+  " Selezione + Copertina": "Selezione + Copertina",
   "🎨 Lavorazione album": "Lavorazione album",
-  "📤 Invio laboratorio": "Invio laboratorio",
-  " Lab → Studio": "Lab -> Studio",
+  " Invio laboratorio": "Invio laboratorio",
+  "📦 Lab → Studio": "Lab -> Studio",
   "🎁 Album al cliente": "Album al cliente",
-  "📁 File e video al cliente": "File e video al cliente",
+  "📁 Consegna file cliente": "Consegna file cliente",
+  "🎬 Video Pronto cliente": "Video Pronto cliente",
   "✅ Conferma cancellazione": "Conferma cancellazione",
-  "📤 Consegna Anteprima al cliente": "Consegna Anteprima al cliente"
+  " Consegna Anteprima al cliente": "Consegna Anteprima al cliente"
 };
 
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
@@ -673,6 +676,22 @@ function getLastMainStepInfo(s) {
   return completed[completed.length - 1];
 }
 
+// Nuova funzione: ottiene la data del "Video Pronto cliente"
+function getVideoReadyDate(s) {
+  const mainSteps = s.steps || {};
+  const videoStep = mainSteps["videoClient"];
+  if (videoStep && videoStep.done && videoStep.date) return videoStep.date;
+  
+  if (isComboType(s.type) && s.sections) {
+    for (let secName of Object.keys(s.sections)) {
+      const secSteps = s.sections[secName];
+      const secVideoStep = secSteps["videoClient"];
+      if (secVideoStep && secVideoStep.done && secVideoStep.date) return secVideoStep.date;
+    }
+  }
+  return null;
+}
+
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
@@ -689,7 +708,7 @@ function renderServices(data = services) {
       const serviceDone = countDone(s.steps, STEPS);
       const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `<div class="progress-row">
-        <div><div class="progress-label"> ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div>
+        <div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div>
         <div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
       </div>`;
     } else if (isComboType(s.type)) {
@@ -710,7 +729,7 @@ function renderServices(data = services) {
     }
     return `<div class="card">
       <div class="card-header" onclick="toggleSteps(${s.id})">
-        <div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>${videoInfo}</div>
+        <div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? ' ' + s.date : ''}</div>${videoInfo}</div>
         <div class="service-badge" style="background:${color}">${s.type}</div>
       </div>
       ${progressHtml}
@@ -718,22 +737,22 @@ function renderServices(data = services) {
       <div class="card-footer">
         <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
         <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
-        <button class="btn-pdf" onclick="generatePDF(${s.id})"> PDF</button>
-        <button class="btn-del" onclick="deleteService(${s.id})">️ Elimina</button>
+        <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
+        <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
       </div>
     </div>`;
   }).join("");
 }
 
 function getSectionEmoji(name) {
-  const map = { "Maternity": "", "New Born": "🍼", "Family": "👨‍👩‍👧" };
+  const map = { "Maternity": "🤰", "New Born": "🍼", "Family": "👨‍👩‍👧" };
   return map[name] || "";
 }
 
 function renderSteps(s) {
   let html = '';
   if (isPreviewType(s.type)) {
-    html += `<div class="section-title preview">🎬 ANTEPRIMA</div>`;
+    html += `<div class="section-title preview"> ANTEPRIMA</div>`;
     html += STEPS_PREVIEW.map(st => renderStepRow(s, st, 'preview')).join('');
   }
   if (isComboType(s.type)) {
@@ -744,7 +763,7 @@ function renderSteps(s) {
     });
     return html;
   }
-  const serviceTitle = isPreviewType(s.type) ? '💒 SERVIZIO (' + s.type.replace("Anteprima + ", "") + ')' : '📋 WORKFLOW SERVIZIO';
+  const serviceTitle = isPreviewType(s.type) ? '💒 SERVIZIO (' + s.type.replace("Anteprima + ", "") + ')' : ' WORKFLOW SERVIZIO';
   html += `<div class="section-title service">${serviceTitle}</div>`;
   html += STEPS.map(st => renderStepRow(s, st, 'service')).join('');
   return html;
@@ -864,8 +883,8 @@ function save() { localStorage.setItem("gl_services", JSON.stringify(services));
 function viewService(id) {
   const s = services.find(x => x.id === id);
   let html = `<div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
-    <div class="detail-row"><div class="detail-label"> Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
-    <div class="detail-row"><div class="detail-label"> Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
+    <div class="detail-row"><div class="detail-label">📋 Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
+    <div class="detail-row"><div class="detail-label">📅 Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
     <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>`;
   if (isPreviewType(s.type)) {
     const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
@@ -873,10 +892,10 @@ function viewService(id) {
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label">🎬 Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
-    html += `<div class="detail-row"><div class="detail-label"> Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
     html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">🎬 ANTEPRIMA</h3>`;
     STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;"> SERVIZIO</h3>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   } else if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
@@ -906,7 +925,7 @@ function viewService(id) {
 }
 
 function renderStepDetail(st, d) {
-  const status = d.done ? '✅' : '';
+  const status = d.done ? '✅' : '⏳';
   const dateStr = d.date ? ` - ${d.date}` : '';
   const extraInfo = [];
   if (st.extraType === "archivedBy" && d.extra?.archivedBy) extraInfo.push(`Archiviato da: ${d.extra.archivedBy}`);
@@ -1030,7 +1049,7 @@ function filterServices() {
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW); const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
       const serviceDone = countDone(s.steps, STEPS); const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-      progressHtml = `<div class="progress-row"><div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div><div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div></div>`;
+      progressHtml = `<div class="progress-row"><div><div class="progress-label"> ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div><div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div></div>`;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type); progressHtml = '<div class="progress-row">';
       sections.forEach(secName => { const secSteps = s.sections?.[secName] || {}; const done = countDone(secSteps, STEPS); const pct = Math.round((done / STEPS.length) * 100); const secColor = SECTION_COLORS[secName]?.bg || '#667eea'; progressHtml += `<div><div class="progress-label">${getSectionEmoji(secName)} ${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`; });
@@ -1054,16 +1073,17 @@ function renderTable() {
   });
   const table = document.getElementById("workflowTable");
   if (filtered.length === 0) {
-    table.innerHTML = '<tr><td colspan="9" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
+    table.innerHTML = '<tr><td colspan="10" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
     return;
   }
   let thead = '<thead><tr>';
-  thead += '<th>#</th><th>Cliente</th><th class="center">Tipo Servizio</th><th class="center">Data Evento</th><th>Videografo</th><th>Ultimo Step (Servizio)</th><th class="center">Data Step</th><th class="center">Stato</th><th class="center">Azioni</th>';
+  thead += '<th>#</th><th>Cliente</th><th class="center">Tipo Servizio</th><th class="center">Data Evento</th><th>Videografo</th><th class="center">Video Pronto</th><th class="center">Data Video</th><th>Ultimo Step (Servizio)</th><th class="center">Data Step</th><th class="center">Stato</th><th class="center">Azioni</th>';
   thead += '</tr></thead>';
   let tbody = '<tbody>';
   filtered.forEach((s, idx) => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
     const lastStep = getLastMainStepInfo(s);
+    const videoDate = getVideoReadyDate(s);
     let totalDone = 0, totalSteps = 0;
     if (isPreviewType(s.type)) {
       totalDone = countDone(s.previewSteps || {}, STEPS_PREVIEW) + countDone(s.steps, STEPS);
@@ -1085,17 +1105,21 @@ function renderTable() {
       lastStepHtml = `<span class="td-laststep empty">Nessuno step completato</span>`;
     }
     const dateDisplay = lastStep?.date ? formatDate(lastStep.date) : '-';
+    const videoDisplay = videoDate ? formatDate(videoDate) : '-';
+    const videoDone = videoDate ? '✅' : '⏳';
     tbody += '<tr>';
     tbody += `<td style="color:#888;font-size:0.85em;">${idx + 1}</td>`;
     tbody += `<td class="td-client">${s.client}</td>`;
     tbody += `<td class="td-type"><span class="badge-cell" style="background:${color}">${s.type}</span></td>`;
     tbody += `<td class="td-center">${s.date ? formatDate(s.date) : '-'}</td>`;
     tbody += `<td>${s.videographer || '-'}</td>`;
+    tbody += `<td class="td-center">${videoDone}</td>`;
+    tbody += `<td class="td-center" style="font-weight:600;color:#667eea;">${videoDisplay}</td>`;
     tbody += `<td>${lastStepHtml}</td>`;
     tbody += `<td class="td-center" style="font-weight:600;color:#667eea;">${dateDisplay}</td>`;
     tbody += `<td class="td-center"><span class="pct-badge ${pctClass}">${pct}%</span></td>`;
     tbody += `<td><div class="cell-actions">
-      <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">️</button>
+      <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
       <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
       <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
       <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
@@ -1113,7 +1137,7 @@ function formatDate(dateStr) {
   return dateStr;
 }
 
-// ===== PDF TABELLA - COLONNA TIPO ALLARGATA =====
+// ===== PDF TABELLA =====
 function generateTablePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -1128,9 +1152,10 @@ function generateTablePDF() {
     if (orderA !== orderB) return orderA - orderB;
     return a.client.localeCompare(b.client, 'it');
   });
-  const head = [['#', 'Cliente', 'Tipo', 'Data Evento', 'Videografo', 'Ultimo Step', 'Data Step', 'Stato']];
+  const head = [['#', 'Cliente', 'Tipo', 'Data Evento', 'Videografo', 'Video Pronto', 'Data Video', 'Ultimo Step', 'Data Step', 'Stato']];
   const body = sorted.map((s, idx) => {
     const lastStep = getLastMainStepInfo(s);
+    const videoDate = getVideoReadyDate(s);
     let totalDone = 0, totalSteps = 0;
     if (isPreviewType(s.type)) {
       totalDone = countDone(s.previewSteps || {}, STEPS_PREVIEW) + countDone(s.steps, STEPS);
@@ -1148,6 +1173,8 @@ function generateTablePDF() {
       idx + 1, s.client, s.type,
       s.date ? formatDate(s.date) : '-',
       s.videographer || '-',
+      videoDate ? '✅' : '-',
+      videoDate ? formatDate(videoDate) : '-',
       cleanLabel,
       lastStep?.date ? formatDate(lastStep.date) : '-',
       `${pct}%`
@@ -1159,17 +1186,19 @@ function generateTablePDF() {
     head: head,
     body: body,
     theme: 'grid',
-    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 8, halign: 'center' },
-    bodyStyles: { fontSize: 7.5, cellPadding: 3 },
+    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 7, halign: 'center' },
+    bodyStyles: { fontSize: 6.5, cellPadding: 2 },
     columnStyles: {
-      0: { cellWidth: 10, halign: 'center' },
-      1: { cellWidth: 65 },
-      2: { cellWidth: 50, halign: 'center' },
-      3: { cellWidth: 22, halign: 'center' },
-      4: { cellWidth: 55 },
-      5: { cellWidth: 40 },
-      6: { cellWidth: 22, halign: 'center' },
-      7: { cellWidth: 15, halign: 'center', fontStyle: 'bold' }
+      0: { cellWidth: 8, halign: 'center' },
+      1: { cellWidth: 50 },
+      2: { cellWidth: 38, halign: 'center' },
+      3: { cellWidth: 18, halign: 'center' },
+      4: { cellWidth: 38 },
+      5: { cellWidth: 18, halign: 'center' },
+      6: { cellWidth: 18, halign: 'center' },
+      7: { cellWidth: 35 },
+      8: { cellWidth: 18, halign: 'center' },
+      9: { cellWidth: 13, halign: 'center', fontStyle: 'bold' }
     },
     alternateRowStyles: { fillColor: [240, 245, 255] }
   });
@@ -1183,7 +1212,7 @@ function generateTablePDF() {
   doc.save(`G&LStudio_Stato_Lavori_${new Date().toISOString().slice(0,10)}.pdf`);
 }
 
-// ===== PDF ARCHIVIO - COLONNA TIPO ALLARGATA =====
+// ===== PDF ARCHIVIO CON VIDEO PRONTO =====
 function generateArchivePDF() {
   const search = (document.getElementById("searchBox")?.value || "").toLowerCase();
   const type = document.getElementById("filterType")?.value || "";
@@ -1215,9 +1244,10 @@ function generateArchivePDF() {
   doc.setFontSize(11);
   doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')} - ${filtered.length} servizi`, 14, 23);
   
-  const head = [['#', 'Cliente', 'Tipo Servizio', 'Data Evento', 'Videografo', 'Ultimo Step', 'Data Step', 'Stato']];
+  const head = [['#', 'Cliente', 'Tipo Servizio', 'Data Evento', 'Videografo', 'Video Pronto', 'Data Video', 'Ultimo Step', 'Data Step', 'Stato']];
   const body = filtered.map((s, idx) => {
     const lastStep = getLastMainStepInfo(s);
+    const videoDate = getVideoReadyDate(s);
     let totalDone = 0, totalSteps = 0;
     if (isPreviewType(s.type)) {
       totalDone = countDone(s.previewSteps || {}, STEPS_PREVIEW) + countDone(s.steps, STEPS);
@@ -1237,6 +1267,8 @@ function generateArchivePDF() {
       s.type,
       s.date ? formatDate(s.date) : '-',
       s.videographer || '-',
+      videoDate ? '✅' : '-',
+      videoDate ? formatDate(videoDate) : '-',
       cleanLabel,
       lastStep?.date ? formatDate(lastStep.date) : '-',
       `${pct}%`
@@ -1252,27 +1284,34 @@ function generateArchivePDF() {
     headStyles: { 
       fillColor: [102, 126, 234], 
       textColor: 255, 
-      fontSize: 8, 
+      fontSize: 7, 
       halign: 'center',
       fontStyle: 'bold'
     },
-    bodyStyles: { fontSize: 7.5, cellPadding: 3 },
+    bodyStyles: { fontSize: 6.5, cellPadding: 2 },
     columnStyles: {
-      0: { cellWidth: 10, halign: 'center' },
-      1: { cellWidth: 65 },
-      2: { cellWidth: 50, halign: 'center' },
-      3: { cellWidth: 22, halign: 'center' },
-      4: { cellWidth: 55 },
-      5: { cellWidth: 40 },
-      6: { cellWidth: 22, halign: 'center' },
-      7: { cellWidth: 15, halign: 'center', fontStyle: 'bold' }
+      0: { cellWidth: 8, halign: 'center' },
+      1: { cellWidth: 50 },
+      2: { cellWidth: 38, halign: 'center' },
+      3: { cellWidth: 18, halign: 'center' },
+      4: { cellWidth: 38 },
+      5: { cellWidth: 18, halign: 'center' },
+      6: { cellWidth: 18, halign: 'center' },
+      7: { cellWidth: 35 },
+      8: { cellWidth: 18, halign: 'center' },
+      9: { cellWidth: 13, halign: 'center', fontStyle: 'bold' }
     },
     alternateRowStyles: { fillColor: [240, 245, 255] },
     didParseCell: function(data) {
-      if (data.section === 'body' && data.column.index === 7) {
+      if (data.section === 'body' && data.column.index === 9) {
         if (data.cell.raw === '100%') {
           data.cell.styles.fillColor = [67, 233, 123];
           data.cell.styles.textColor = [255, 255, 255];
+        }
+      }
+      if (data.section === 'body' && data.column.index === 5) {
+        if (data.cell.raw === '✅') {
+          data.cell.styles.fillColor = [220, 255, 220];
         }
       }
     }
@@ -1291,7 +1330,7 @@ function generateArchivePDF() {
 }
 
 function doBackup() {
-  const data = { version: 15, exportedAt: new Date().toISOString(), services };
+  const data = { version: 16, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -1310,7 +1349,7 @@ function doRestore(e) {
       services = data.services.map(migrateService);
       save(); renderServices(); renderTable();
       alert("✅ Ripristino completato!");
-    } catch { alert(" File di backup non valido"); }
+    } catch { alert("❌ File di backup non valido"); }
   };
   reader.readAsText(file);
   e.target.value = "";
