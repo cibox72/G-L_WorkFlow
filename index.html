@@ -103,8 +103,17 @@
     transition: width 0.4s;
   }
   .progress-text { font-size: 0.85em; color: #666; margin-top: 5px; }
-  .steps { margin-top: 18px; display: none; padding-top: 15px; border-top: 1px dashed #ddd; }
+  .progress-row { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 8px; }
+  .progress-row > div { flex: 1; min-width: 200px; }
+  .progress-label { font-size: 0.75em; color: #888; margin-bottom: 3px; font-weight: 600; }
+  .steps { margin-top: 18px; display: none; padding-top: 15px; }
   .steps.open { display: block; }
+  .section-title {
+    font-size: 1.1em; font-weight: 700; padding: 10px 15px; margin: 10px 0;
+    border-radius: 10px; color: white;
+  }
+  .section-title.preview { background: linear-gradient(45deg, #ffd700, #ffb347); }
+  .section-title.service { background: linear-gradient(45deg, #667eea, #764ba2); }
   .step {
     display: flex; align-items: center; padding: 10px; margin: 6px 0;
     background: #f8f9ff; border-radius: 10px; gap: 12px; flex-wrap: wrap;
@@ -265,6 +274,10 @@
     display: inline-block; padding: 3px 10px; border-radius: 12px;
     color: white; font-size: 0.8em; font-weight: 600;
   }
+  .summary-badge {
+    display: inline-block; padding: 4px 10px; border-radius: 12px;
+    font-size: 0.8em; font-weight: 600; color: white;
+  }
   @media (max-width: 600px) {
     .logo { font-size: 1.5em; }
     .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
@@ -275,7 +288,7 @@
 <body>
 
 <div id="loginScreen" class="login-box">
-  <h1>📸 G&LStudio</h1>
+  <h1> G&LStudio</h1>
   <p>Foto & Video — Workflow Manager</p>
   <input type="text" id="loginUser" placeholder="Utente" autocomplete="username">
   <input type="password" id="loginPass" placeholder="Password" autocomplete="current-password">
@@ -286,11 +299,11 @@
 <div id="app" class="app">
   <div class="container">
     <header>
-      <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
+      <div class="logo"> G&LStudio<span>Workflow Foto & Video</span></div>
       <div class="actions">
         <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
         <button class="btn-archive" onclick="showArchive()">📁 Archivio</button>
-        <button class="btn-table" onclick="showTable()">📊 Tabella Clienti</button>
+        <button class="btn-table" onclick="showTable()"> Tabella Clienti</button>
         <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
         <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
         <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
@@ -303,14 +316,15 @@
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <option value="Matrimonio"> Matrimonio</option>
+          <option value="Anteprima + Matrimonio">🎬💒 Anteprima + Matrimonio</option>
+          <option value="Matrimonio">💒 Matrimonio</option>
           <option value="Battesimo">👶 Battesimo</option>
           <option value="New Born">🍼 New Born</option>
           <option value="1° Compleanno">🎈 1° Compleanno</option>
-          <option value="18° Compleanno">🎉 18° Compleanno</option>
-          <option value="Compleanno"> Compleanno</option>
+          <option value="18° Compleanno"> 18° Compleanno</option>
+          <option value="Compleanno">🎂 Compleanno</option>
           <option value="Anniversario">💍 Anniversario</option>
-          <option value="Comunione"> Comunione</option>
+          <option value="Comunione">⛪ Comunione</option>
           <option value="Cresima">✝️ Cresima</option>
           <option value="Evento">🎊 Evento</option>
         </select>
@@ -332,6 +346,7 @@
           <input type="text" class="search-box" id="searchBox" placeholder="🔍 Cerca cliente..." oninput="filterServices()">
           <select class="filter-select" id="filterType" onchange="filterServices()">
             <option value="">Tutti i tipi</option>
+            <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
             <option value="Matrimonio">Matrimonio</option>
             <option value="Battesimo">Battesimo</option>
             <option value="New Born">New Born</option>
@@ -354,8 +369,8 @@
         <div class="table-header">
           <h2>📊 Tabella Clienti — Workflow Completo</h2>
           <div class="table-toolbar">
-            <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca..." oninput="renderTable()" style="min-width:200px;">
-            <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
+            <input type="text" class="search-box" id="tableSearch" placeholder=" Cerca..." oninput="renderTable()" style="min-width:200px;">
+            <button class="btn-pdf" onclick="generateTablePDF()"> PDF Tabella</button>
             <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
           </div>
         </div>
@@ -389,6 +404,7 @@
       <div class="form-row">
         <input type="text" id="editClient" placeholder="Nome cliente">
         <select id="editType">
+          <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
           <option value="Matrimonio">Matrimonio</option>
           <option value="Battesimo">Battesimo</option>
           <option value="New Born">New Born</option>
@@ -403,7 +419,7 @@
       </div>
       <div class="form-row">
         <input type="date" id="editDate">
-        <input type="text" id="editVideographer" placeholder=" Videografo/Collega">
+        <input type="text" id="editVideographer" placeholder="🎥 Videografo/Collega">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
@@ -417,22 +433,34 @@
 const USER = "G&LStudio";
 const PASS = "12763Mlg";
 
+// STEP DEL SERVIZIO (completo)
 const STEPS = [
   { id: "download",    label: "📥 Download schede", short: "📥" },
   { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
   { id: "archiveVideo",label: "🎬 Archiviazione Video", short: "🎬", extra: true, extraType: "archivedBy" },
-  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
+  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
   { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
-  { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraType: "cover" },
+  { id: "selection",   label: "👀 Selezione + Copertina", short: "", extra: true, extraType: "cover" },
   { id: "albumEdit",   label: "🎨 Lavorazione album", short: "🎨" },
-  { id: "sendLab",     label: "📤 Invio laboratorio", short: "" },
-  { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
-  { id: "albumClient", label: "🎁 Album al cliente", short: "🎁" },
-  { id: "filesClient", label: " File e video al cliente", short: "" },
+  { id: "sendLab",     label: "📤 Invio laboratorio", short: "📤" },
+  { id: "labToStudio", label: " Lab → Studio", short: "📦" },
+  { id: "albumClient", label: "🎁 Album al cliente", short: "" },
+  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
   { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
+// STEP DELL'ANTEPRIMA (ridotti)
+const STEPS_PREVIEW = [
+  { id: "p_download",    label: "📥 Download schede", short: "P" },
+  { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "💾P" },
+  { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "🎬P", extra: true, extraType: "archivedBy" },
+  { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "💿P", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
+  { id: "p_rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄P" },
+  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "📤P" }
+];
+
 const TYPE_COLORS = {
+  "Anteprima + Matrimonio": "#ff8c42",
   "Matrimonio":     "#f5576c",
   "Battesimo":      "#4facfe",
   "New Born":       "#a1c4fd",
@@ -448,17 +476,30 @@ const TYPE_COLORS = {
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
 let editingId = null;
 
+// ===== MIGRAZIONE =====
 function migrateService(s) {
+  // Inizializza step servizio se mancano
   STEPS.forEach(st => {
-    if (!s.steps[st.id]) {
-      s.steps[st.id] = { done: false, date: "", extra: {} };
-    }
+    if (!s.steps) s.steps = {};
+    if (!s.steps[st.id]) s.steps[st.id] = { done: false, date: "", extra: {} };
     if (!s.steps[st.id].extra) s.steps[st.id].extra = {};
   });
+  // Inizializza step anteprima se il tipo è "Anteprima + Matrimonio"
+  if (s.type === "Anteprima + Matrimonio") {
+    if (!s.previewSteps) s.previewSteps = {};
+    STEPS_PREVIEW.forEach(st => {
+      if (!s.previewSteps[st.id]) s.previewSteps[st.id] = { done: false, date: "", extra: {} };
+      if (!s.previewSteps[st.id].extra) s.previewSteps[st.id].extra = {};
+    });
+  }
   if (s.videographer === undefined) s.videographer = "";
   return s;
 }
 services = services.map(migrateService);
+
+function isPreviewType(type) {
+  return type === "Anteprima + Matrimonio";
+}
 
 function doLogin() {
   const u = document.getElementById("loginUser").value.trim();
@@ -491,14 +532,24 @@ function saveService() {
   const date = document.getElementById("inputDate").value;
   const videographer = document.getElementById("inputVideographer").value.trim();
   if (!client || !type) { alert("Inserisci nome cliente e tipo di servizio"); return; }
+  
   const steps = {};
   STEPS.forEach(s => steps[s.id] = { done: false, date: "", extra: {} });
-  services.unshift({
+  
+  const newService = {
     id: Date.now(),
     client, type, date, videographer,
     steps,
     createdAt: new Date().toISOString()
-  });
+  };
+  
+  // Se è Anteprima + Matrimonio, aggiungi anche previewSteps
+  if (isPreviewType(type)) {
+    newService.previewSteps = {};
+    STEPS_PREVIEW.forEach(s => newService.previewSteps[s.id] = { done: false, date: "", extra: {} });
+  }
+  
+  services.unshift(newService);
   save();
   document.getElementById("inputClient").value = "";
   document.getElementById("inputType").value = "";
@@ -517,17 +568,44 @@ function getArchiveByOptions(s) {
   return options.join("");
 }
 
+function countDone(stepsObj, stepsList) {
+  return stepsList.filter(st => stepsObj[st.id]?.done).length;
+}
+
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
-    list.innerHTML = '<div class="empty">📭 Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
+    list.innerHTML = '<div class="empty">📭 Nessun servizio. Clicca su " Nuovo Servizio" per iniziare!</div>';
     return;
   }
   list.innerHTML = data.map(s => {
-    const doneCount = Object.values(s.steps).filter(x => x.done).length;
-    const pct = Math.round((doneCount / STEPS.length) * 100);
+    const serviceDone = countDone(s.steps, STEPS);
+    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
     const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
+    
+    let progressHtml = '';
+    if (isPreviewType(s.type)) {
+      const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
+      const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+      progressHtml = `
+        <div class="progress-row">
+          <div>
+            <div class="progress-label">🎬 ANTEPRIMA</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div>
+            <div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div>
+          </div>
+          <div>
+            <div class="progress-label">💒 SERVIZIO</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
+            <div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div>
+          </div>
+        </div>`;
+    } else {
+      progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
+        <div class="progress-text">Avanzamento: ${serviceDone}/${STEPS.length} (${servicePct}%)</div>`;
+    }
+    
     return `
       <div class="card">
         <div class="card-header" onclick="toggleSteps(${s.id})">
@@ -538,63 +616,82 @@ function renderServices(data = services) {
           </div>
           <div class="service-badge" style="background:${color}">${s.type}</div>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-        <div class="progress-text">Avanzamento: ${doneCount}/${STEPS.length} (${pct}%)</div>
+        ${progressHtml}
         <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
         <div class="card-footer">
-          <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
+          <button class="btn-view" onclick="viewService(${s.id})">️ Visualizza</button>
           <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
           <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
-          <button class="btn-del" onclick="deleteService(${s.id})">️ Elimina</button>
+          <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
         </div>
       </div>`;
   }).join("");
 }
 
 function renderSteps(s) {
-  return STEPS.map(st => {
-    const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-    let extraHtml = "";
-    if (st.extra) {
-      if (st.extraType === "archivedBy") {
-        const currentVal = d.extra?.archivedBy || "G&LStudio";
-        const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
-        const displayVal = isAltro ? currentVal : "";
-        extraHtml = `
-        <div class="step-extra">
-          <select onchange="handleArchiveByChange(${s.id}, '${st.id}', this.value)">
-            ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
-          </select>
-          ${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value)">` : ''}
-        </div>`;
-      } else if (st.extraType === "cover") {
-        extraHtml = `
-        <div class="step-extra">
-          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value)">
-          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value)">
-        </div>`;
-      } else if (st.extraLabel) {
-        extraHtml = `
-        <div class="step-extra">
-          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value)" style="flex:2;">
-        </div>`;
-      }
-    }
-    return `
-      <div class="step ${d.done ? 'done' : ''}">
-        <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked)">
-        <div class="step-label">${st.label}</div>
-        <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value)">
-        ${extraHtml}
-      </div>`;
-  }).join("");
+  let html = '';
+  
+  // Sezione ANTEPRIMA (solo per Anteprima + Matrimonio)
+  if (isPreviewType(s.type)) {
+    html += `<div class="section-title preview">🎬 ANTEPRIMA</div>`;
+    html += STEPS_PREVIEW.map(st => renderStepRow(s, st, 'preview')).join('');
+  }
+  
+  // Sezione SERVIZIO
+  const serviceTitle = isPreviewType(s.type) ? '💒 SERVIZIO (MATRIMONIO)' : '📋 WORKFLOW SERVIZIO';
+  html += `<div class="section-title service">${serviceTitle}</div>`;
+  html += STEPS.map(st => renderStepRow(s, st, 'service')).join('');
+  
+  return html;
 }
 
-function handleArchiveByChange(serviceId, stepId, value) {
+function renderStepRow(s, st, section) {
+  const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
+  const d = stepsObj[st.id] || { done: false, date: "", extra: {} };
+  const prefix = section === 'preview' ? 'p_' : 's_';
+  
+  let extraHtml = "";
+  if (st.extra) {
+    if (st.extraType === "archivedBy") {
+      const currentVal = d.extra?.archivedBy || "G&LStudio";
+      const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
+      const displayVal = isAltro ? currentVal : "";
+      extraHtml = `
+        <div class="step-extra">
+          <select onchange="handleArchiveByChange(${s.id}, '${st.id}', this.value, '${section}')">
+            ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
+          </select>
+          ${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value,'${section}')">` : ''}
+        </div>`;
+    } else if (st.extraType === "cover") {
+      extraHtml = `
+        <div class="step-extra">
+          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value,'${section}')">
+          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value,'${section}')">
+        </div>`;
+    } else if (st.extraLabel) {
+      extraHtml = `
+        <div class="step-extra">
+          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value,'${section}')" style="flex:2;">
+        </div>`;
+    }
+  }
+  
+  return `
+    <div class="step ${d.done ? 'done' : ''}">
+      <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked,'${section}')">
+      <div class="step-label">${st.label}</div>
+      <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value,'${section}')">
+      ${extraHtml}
+    </div>`;
+}
+
+function handleArchiveByChange(serviceId, stepId, value, section) {
   const s = services.find(x => x.id === serviceId);
   if (value === "__altro__") return;
-  s.steps[stepId].extra = s.steps[stepId].extra || {};
-  s.steps[stepId].extra.archivedBy = value;
+  const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
+  stepsObj[stepId].extra = stepsObj[stepId].extra || {};
+  stepsObj[stepId].extra.archivedBy = value;
   save();
   renderServices();
   document.getElementById("steps-" + serviceId).classList.add("open");
@@ -603,28 +700,32 @@ function handleArchiveByChange(serviceId, stepId, value) {
 function toggleSteps(id) {
   document.getElementById("steps-" + id).classList.toggle("open");
 }
-function toggleStep(id, stepId, checked) {
+function toggleStep(id, stepId, checked, section) {
   const s = services.find(x => x.id === id);
-  s.steps[stepId].done = checked;
-  if (checked && !s.steps[stepId].date) s.steps[stepId].date = new Date().toISOString().slice(0,10);
-  if (stepId === "archiveVideo" && checked) {
-    if (!s.steps[stepId].extra.archivedBy) {
-      s.steps[stepId].extra.archivedBy = "G&LStudio";
-    }
+  const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
+  stepsObj[stepId].done = checked;
+  if (checked && !stepsObj[stepId].date) stepsObj[stepId].date = new Date().toISOString().slice(0,10);
+  if (stepId === "archiveVideo" && checked && section === 'service') {
+    if (!stepsObj[stepId].extra.archivedBy) stepsObj[stepId].extra.archivedBy = "G&LStudio";
+  }
+  if (stepId === "p_archiveVideo" && checked && section === 'preview') {
+    if (!stepsObj[stepId].extra.archivedBy) stepsObj[stepId].extra.archivedBy = "G&LStudio";
   }
   save(); renderServices();
   document.getElementById("steps-" + id).classList.add("open");
   renderTable();
 }
-function updateDate(id, stepId, val) {
+function updateDate(id, stepId, val, section) {
   const s = services.find(x => x.id === id);
-  s.steps[stepId].date = val;
+  const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
+  stepsObj[stepId].date = val;
   save();
 }
-function updateExtra(id, stepId, field, val) {
+function updateExtra(id, stepId, field, val, section) {
   const s = services.find(x => x.id === id);
-  if (!s.steps[stepId].extra) s.steps[stepId].extra = {};
-  s.steps[stepId].extra[field] = val;
+  const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
+  if (!stepsObj[stepId].extra) stepsObj[stepId].extra = {};
+  stepsObj[stepId].extra[field] = val;
   save();
 }
 function deleteService(id) {
@@ -639,37 +740,58 @@ function save() {
 
 function viewService(id) {
   const s = services.find(x => x.id === id);
-  const doneCount = Object.values(s.steps).filter(x => x.done).length;
-  const pct = Math.round((doneCount / STEPS.length) * 100);
+  const serviceDone = countDone(s.steps, STEPS);
+  const servicePct = Math.round((serviceDone / STEPS.length) * 100);
+  
   let html = `
     <div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
-    <div class="detail-row"><div class="detail-label">📋 Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
-    <div class="detail-row"><div class="detail-label">📅 Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
+    <div class="detail-row"><div class="detail-label"> Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
+    <div class="detail-row"><div class="detail-label"> Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
     <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>
-    <div class="detail-row"><div class="detail-label">📊 Avanzamento</div><div class="detail-value">${doneCount}/${STEPS.length} completati (${pct}%)</div></div>
-    <h3 style="margin:20px 0 10px; color:#4a3f8c;">📝 Workflow Steps</h3>
   `;
+  
+  if (isPreviewType(s.type)) {
+    const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
+    const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+    html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label"> Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
+  }
+  html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+  
+  // Sezione Anteprima
+  if (isPreviewType(s.type)) {
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">🎬 ANTEPRIMA</h3>`;
+    STEPS_PREVIEW.forEach(st => {
+      const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} };
+      html += renderStepDetail(st, d);
+    });
+  }
+  
+  // Sezione Servizio
+  html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
   STEPS.forEach(st => {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-    const status = d.done ? '✅' : '⏳';
-    const dateStr = d.date ? ` - ${d.date}` : '';
-    const extraInfo = [];
-    if (st.extraType === "archivedBy" && d.extra?.archivedBy) {
-      extraInfo.push(`Archiviato da: ${d.extra.archivedBy}`);
-    }
-    if (st.extraType === "cover") {
-      if (d.extra?.supplier) extraInfo.push(`Fornitore: ${d.extra.supplier}`);
-      if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
-    }
-    if (st.extraLabel && d.extra?.luogo) extraInfo.push(`Luogo: ${d.extra.luogo}`);
-    html += `<div class="step-detail ${d.done ? 'completed' : ''}">
-      <div class="step-name">${status} ${st.label}${dateStr}</div>
-      ${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}
-    </div>`;
+    html += renderStepDetail(st, d);
   });
+  
   document.getElementById("detailTitle").textContent = `📋 ${s.client} - ${s.type}`;
   document.getElementById("detailBody").innerHTML = html;
   document.getElementById("detailModal").classList.add("active");
+}
+
+function renderStepDetail(st, d) {
+  const status = d.done ? '✅' : '';
+  const dateStr = d.date ? ` - ${d.date}` : '';
+  const extraInfo = [];
+  if (st.extraType === "archivedBy" && d.extra?.archivedBy) extraInfo.push(`Archiviato da: ${d.extra.archivedBy}`);
+  if (st.extraType === "cover") {
+    if (d.extra?.supplier) extraInfo.push(`Fornitore: ${d.extra.supplier}`);
+    if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
+  }
+  if (st.extraLabel && d.extra?.luogo) extraInfo.push(`Luogo: ${d.extra.luogo}`);
+  return `<div class="step-detail ${d.done ? 'completed' : ''}">
+    <div class="step-name">${status} ${st.label}${dateStr}</div>
+    ${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}
+  </div>`;
 }
 
 function editService(id) {
@@ -684,10 +806,22 @@ function editService(id) {
 function saveEdit() {
   if (!editingId) return;
   const s = services.find(x => x.id === editingId);
+  const oldType = s.type;
   s.client = document.getElementById("editClient").value.trim();
   s.type = document.getElementById("editType").value;
   s.date = document.getElementById("editDate").value;
   s.videographer = document.getElementById("editVideographer").value.trim();
+  
+  // Se cambia tipo in "Anteprima + Matrimonio", aggiungi previewSteps
+  if (isPreviewType(s.type) && !s.previewSteps) {
+    s.previewSteps = {};
+    STEPS_PREVIEW.forEach(st => s.previewSteps[st.id] = { done: false, date: "", extra: {} });
+  }
+  // Se cambia tipo da "Anteprima + Matrimonio" ad altro, rimuovi previewSteps
+  if (!isPreviewType(s.type) && oldType === "Anteprima + Matrimonio") {
+    delete s.previewSteps;
+  }
+  
   save();
   closeModal('editModal');
   renderServices();
@@ -711,34 +845,74 @@ async function generatePDF(id) {
   doc.text(`Tipo: ${s.type}`, 15, 63);
   doc.text(`Data Evento: ${s.date || 'N/D'}`, 15, 71);
   doc.text(`Videografo: ${s.videographer || 'N/D'}`, 15, 79);
+  
+  let y = 92;
+  
+  // Sezione Anteprima
+  if (isPreviewType(s.type)) {
+    doc.setFillColor(255, 215, 0);
+    doc.rect(15, y - 5, 180, 8, 'F');
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.text("🎬 ANTEPRIMA", 20, y);
+    y += 8;
+    STEPS_PREVIEW.forEach(st => {
+      const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} };
+      const status = d.done ? "[X]" : "[ ]";
+      const dateStr = d.date ? ` - ${d.date}` : '';
+      doc.text(`${status} ${st.label}${dateStr}`, 20, y);
+      y += 7;
+      const extra = getExtraText(st, d);
+      if (extra) {
+        doc.setTextColor(100, 100, 100);
+        doc.text(`    → ${extra}`, 20, y);
+        doc.setTextColor(0, 0, 0);
+        y += 7;
+      }
+      if (y > 270) { doc.addPage(); y = 20; }
+    });
+    y += 5;
+  }
+  
+  // Sezione Servizio
+  doc.setFillColor(102, 126, 234);
+  doc.rect(15, y - 5, 180, 8, 'F');
+  doc.setTextColor(255, 255, 255);
   doc.setFontSize(12);
-  doc.text("WORKFLOW COMPLETAMENTO:", 15, 92);
-  let y = 102;
-  STEPS.forEach((st) => {
+  doc.text("💒 SERVIZIO", 20, y);
+  doc.setTextColor(0, 0, 0);
+  y += 8;
+  STEPS.forEach(st => {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
     const status = d.done ? "[X]" : "[ ]";
     const dateStr = d.date ? ` - ${d.date}` : '';
     doc.text(`${status} ${st.label}${dateStr}`, 20, y);
-    y += 8;
-    const extra = [];
-    if (st.extraType === "archivedBy" && d.extra?.archivedBy) extra.push(`Archiviato da: ${d.extra.archivedBy}`);
-    if (st.extraType === "cover") {
-      if (d.extra?.supplier) extra.push(`Fornitore: ${d.extra.supplier}`);
-      if (d.extra?.article) extra.push(`Articolo: ${d.extra.article}`);
-    }
-    if (st.extraLabel && d.extra?.luogo) extra.push(`Luogo: ${d.extra.luogo}`);
-    if (extra.length) {
+    y += 7;
+    const extra = getExtraText(st, d);
+    if (extra) {
       doc.setTextColor(100, 100, 100);
-      doc.text(`    → ${extra.join(' | ')}`, 20, y);
+      doc.text(`    → ${extra}`, 20, y);
       doc.setTextColor(0, 0, 0);
-      y += 8;
+      y += 7;
     }
     if (y > 270) { doc.addPage(); y = 20; }
   });
+  
   doc.setFontSize(10);
   doc.setTextColor(150, 150, 150);
   doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')}`, 15, 285);
-  doc.save(`G&LStudio_${s.client.replace(/\s+/g, '_')}_${s.type}.pdf`);
+  doc.save(`G&LStudio_${s.client.replace(/\s+/g, '_')}_${s.type.replace(/\s+/g, '_')}.pdf`);
+}
+
+function getExtraText(st, d) {
+  const extra = [];
+  if (st.extraType === "archivedBy" && d.extra?.archivedBy) extra.push(`Archiviato da: ${d.extra.archivedBy}`);
+  if (st.extraType === "cover") {
+    if (d.extra?.supplier) extra.push(`Fornitore: ${d.extra.supplier}`);
+    if (d.extra?.article) extra.push(`Articolo: ${d.extra.article}`);
+  }
+  if (st.extraLabel && d.extra?.luogo) extra.push(`Luogo: ${d.extra.luogo}`);
+  return extra.join(' | ');
 }
 
 function showArchive() {
@@ -773,10 +947,33 @@ function filterServices() {
     return;
   }
   list.innerHTML = filtered.map(s => {
-    const doneCount = Object.values(s.steps).filter(x => x.done).length;
-    const pct = Math.round((doneCount / STEPS.length) * 100);
+    const serviceDone = countDone(s.steps, STEPS);
+    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
     const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
+    
+    let progressHtml = '';
+    if (isPreviewType(s.type)) {
+      const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
+      const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+      progressHtml = `
+        <div class="progress-row">
+          <div>
+            <div class="progress-label">🎬 ANTEPRIMA</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div>
+            <div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div>
+          </div>
+          <div>
+            <div class="progress-label">💒 SERVIZIO</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
+            <div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div>
+          </div>
+        </div>`;
+    } else {
+      progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
+        <div class="progress-text">Completamento: ${servicePct}%</div>`;
+    }
+    
     return `
       <div class="card">
         <div class="card-header">
@@ -787,11 +984,10 @@ function filterServices() {
           </div>
           <div class="service-badge" style="background:${color}">${s.type}</div>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-        <div class="progress-text">Completamento: ${pct}%</div>
+        ${progressHtml}
         <div class="card-footer">
           <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
-          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
+          <button class="btn-edit" onclick="editService(${s.id})">️ Modifica</button>
           <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
         </div>
       </div>`;
@@ -811,49 +1007,34 @@ function renderTable() {
   }
   let thead = '<thead><tr>';
   thead += '<th>Cliente</th><th>Tipo</th><th>Data</th><th>Videografo</th>';
-  STEPS.forEach(st => { thead += `<th title="${st.label}">${st.short}</th>`; });
+  if (filtered.some(s => isPreviewType(s.type))) {
+    thead += '<th style="background: linear-gradient(45deg, #ffd700, #ffb347);">🎬 Anteprima</th>';
+  }
+  thead += '<th>💒 Servizio</th>';
   thead += '<th>Azioni</th></tr></thead>';
+  
   let tbody = '<tbody>';
   filtered.forEach(s => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
+    const serviceDone = countDone(s.steps, STEPS);
+    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     tbody += '<tr>';
     tbody += `<td>${s.client}</td>`;
     tbody += `<td><span class="badge-cell" style="background:${color}">${s.type}</span></td>`;
     tbody += `<td>${s.date || '-'}</td>`;
     tbody += `<td>${s.videographer || '-'}</td>`;
-    STEPS.forEach(st => {
-      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-      const cellClass = d.done ? 'cell-done' : '';
-      let extraInput = "";
-      if (st.extra) {
-        if (st.extraType === "archivedBy") {
-          const currentVal = d.extra?.archivedBy || "G&LStudio";
-          const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
-          const displayVal = isAltro ? currentVal : "";
-          extraInput = `
-            <select onchange="handleArchiveByChange(${s.id},'${st.id}',this.value); renderTable();">
-              ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
-            </select>
-            ${isAltro ? `<input type="text" placeholder="Nome..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value); renderTable();" style="width:80px;">` : ''}
-          `;
-        } else if (st.extraType === "cover") {
-          extraInput = `<input type="text" placeholder="Fornitore" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value); renderTable();" style="width:80px;">`;
-        } else if (st.extraLabel) {
-          extraInput = `<input type="text" placeholder="Dove..." value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value); renderTable();">`;
-        }
-      }
-      tbody += `<td class="${cellClass}">
-        <div class="cell-step">
-          <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked); renderTable();">
-          <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value); renderTable();">
-          ${extraInput}
-        </div>
-      </td>`;
-    });
+    
+    if (isPreviewType(s.type)) {
+      const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
+      const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+      tbody += `<td><span class="summary-badge" style="background: linear-gradient(45deg, #ffd700, #ffb347);">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</span></td>`;
+    }
+    
+    tbody += `<td><span class="summary-badge" style="background: linear-gradient(45deg, #667eea, #764ba2);">${serviceDone}/${STEPS.length} (${servicePct}%)</span></td>`;
     tbody += `<td>
       <div class="cell-actions">
         <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
-        <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
+        <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">️</button>
         <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
         <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
       </div>
@@ -872,48 +1053,41 @@ function generateTablePDF() {
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(20);
   doc.text("G&LStudio - Tabella Workflow Clienti", 14, 16);
+  
+  const hasPreview = services.some(s => isPreviewType(s.type));
   const head = [['Cliente', 'Tipo', 'Data', 'Videografo']];
-  STEPS.forEach(st => head[0].push(st.short));
-  head[0].push('Stato');
+  if (hasPreview) head[0].push('🎬 Anteprima');
+  head[0].push('💒 Servizio');
+  
   const body = services.map(s => {
-    const doneCount = Object.values(s.steps).filter(x => x.done).length;
-    const pct = Math.round((doneCount / STEPS.length) * 100);
+    const serviceDone = countDone(s.steps, STEPS);
+    const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     const row = [s.client, s.type, s.date || '-', s.videographer || '-'];
-    STEPS.forEach(st => {
-      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-      let cell = d.done ? (d.date || '✓') : '-';
-      if (st.extraType === "archivedBy" && d.extra?.archivedBy) cell += ` (${d.extra.archivedBy})`;
-      if (st.extraLabel && d.extra?.luogo) cell += ` (${d.extra.luogo})`;
-      row.push(cell);
-    });
-    row.push(`${pct}%`);
+    if (isPreviewType(s.type)) {
+      const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
+      const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+      row.push(`${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)`);
+    }
+    row.push(`${serviceDone}/${STEPS.length} (${servicePct}%)`);
     return row;
   });
+  
   doc.autoTable({
     startY: 30,
     head: head,
     body: body,
     theme: 'grid',
-    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 7, halign: 'center' },
-    bodyStyles: { fontSize: 6.5, cellPadding: 2 },
+    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 8, halign: 'center' },
+    bodyStyles: { fontSize: 8, cellPadding: 3 },
     columnStyles: {
-      0: { cellWidth: 30 },
-      1: { cellWidth: 22, halign: 'center' },
-      2: { cellWidth: 20, halign: 'center' },
-      3: { cellWidth: 25 },
-      [head[0].length - 1]: { cellWidth: 13, halign: 'center', fontStyle: 'bold' }
+      0: { cellWidth: 40 },
+      1: { cellWidth: 35, halign: 'center' },
+      2: { cellWidth: 25, halign: 'center' },
+      3: { cellWidth: 30 },
     },
-    alternateRowStyles: { fillColor: [240, 245, 255] },
-    didParseCell: function(data) {
-      if (data.section === 'body' && data.column.index >= 4 && data.column.index < head[0].length - 1) {
-        const val = data.cell.raw;
-        if (val && val !== '-' && !val.startsWith('-')) {
-          data.cell.styles.fillColor = [220, 255, 220];
-          data.cell.styles.textColor = [0, 100, 0];
-        }
-      }
-    }
+    alternateRowStyles: { fillColor: [240, 245, 255] }
   });
+  
   const pageCount = doc.internal.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
@@ -925,7 +1099,7 @@ function generateTablePDF() {
 }
 
 function doBackup() {
-  const data = { version: 4, exportedAt: new Date().toISOString(), services };
+  const data = { version: 5, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
