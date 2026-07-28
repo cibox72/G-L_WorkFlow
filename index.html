@@ -299,18 +299,18 @@
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
           <optgroup label="🎬 Anteprima">
-            <option value="Anteprima + Matrimonio"> Anteprima + Matrimonio</option>
-            <option value="Anteprima + Battesimo"> Anteprima + Battesimo</option>
+            <option value="Anteprima + Matrimonio">💒 Anteprima + Matrimonio</option>
+            <option value="Anteprima + Battesimo">👶 Anteprima + Battesimo</option>
             <option value="Anteprima + 18° Compleanno">🎉 Anteprima + 18° Compleanno</option>
           </optgroup>
           <optgroup label="👶 Famiglia & Neonati">
-            <option value="Maternity + New Born + Family">🤰🍼👨‍👩‍👧 Maternity + New Born + Family</option>
-            <option value="Maternity + New Born">🤰 Maternity + New Born</option>
-            <option value="Maternity + Family">🤰‍👩‍👧 Maternity + Family</option>
-            <option value="New Born + Family">🍼👨👩‍👧 New Born + Family</option>
+            <option value="Maternity + New Born + Family">🤰🍼‍👩‍👧 Maternity + New Born + Family</option>
+            <option value="Maternity + New Born">🍼 Maternity + New Born</option>
+            <option value="Maternity + Family">🤰👨‍👩👧 Maternity + Family</option>
+            <option value="New Born + Family">🍼👨‍👩‍ New Born + Family</option>
             <option value="Maternity">🤰 Maternity</option>
             <option value="New Born">🍼 New Born</option>
-            <option value="Family">👨‍👩‍👧 Family</option>
+            <option value="Family">👨‍👩‍ Family</option>
           </optgroup>
           <optgroup label="💒 Cerimonie">
             <option value="Matrimonio">💒 Matrimonio</option>
@@ -321,7 +321,7 @@
           <optgroup label="🎉 Feste & Celebrazioni">
             <option value="1° Compleanno">🎈 1° Compleanno</option>
             <option value="18° Compleanno">🎉 18° Compleanno</option>
-            <option value="Compleanno"> Compleanno</option>
+            <option value="Compleanno">🎂 Compleanno</option>
             <option value="Anniversario">💍 Anniversario</option>
           </optgroup>
           <optgroup label="🎊 Altro">
@@ -346,7 +346,7 @@
           <input type="text" class="search-box" id="searchBox" placeholder="🔍 Cerca cliente..." oninput="filterServices()">
           <select class="filter-select" id="filterType" onchange="filterServices()">
             <option value="">Tutti i tipi</option>
-            <optgroup label="🎬 Anteprima">
+            <optgroup label=" Anteprima">
               <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
               <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
               <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
@@ -372,7 +372,7 @@
               <option value="Compleanno">Compleanno</option>
               <option value="Anniversario">Anniversario</option>
             </optgroup>
-            <optgroup label=" Altro">
+            <optgroup label="🎊 Altro">
               <option value="Evento">Evento</option>
             </optgroup>
           </select>
@@ -388,7 +388,7 @@
         <div class="table-header">
           <h2>📊 Tabella Clienti — Stato Lavori</h2>
           <div class="table-toolbar">
-            <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca cliente..." oninput="renderTable()" style="min-width:200px;">
+            <input type="text" class="search-box" id="tableSearch" placeholder=" Cerca cliente..." oninput="renderTable()" style="min-width:200px;">
             <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
             <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
           </div>
@@ -495,7 +495,7 @@ const STEPS = [
 ];
 
 const STEPS_PREVIEW = [
-  { id: "p_download",    label: "📥 Download schede", short: "P📥" },
+  { id: "p_download",    label: "📥 Download schede", short: "P" },
   { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "P💾" },
   { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "P🎬", extra: true, extraType: "archivedBy" },
   { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "P💿", extra: true, extraLabel: "Dove" },
@@ -538,21 +538,21 @@ const TYPE_COLORS = {
   "Evento":         "#667eea"
 };
 
-// Mappa emoji -> testo pulito per i PDF
+// Mappa emoji -> testo pulito per i PDF (con freccia -> per RAW -> JPEG)
 const STEP_LABEL_CLEAN = {
   "📥 Download schede": "Download schede",
   "💾 Archiviazione HD A/B": "Archiviazione HD A/B",
   "🎬 Archiviazione Video": "Archiviazione Video",
   "💿 Archiviazione su altro": "Archiviazione su altro",
-  "🔄 RAW → JPEG": "RAW → JPEG",
-  " Selezione + Copertina": "Selezione + Copertina",
-  "🎨 Lavorazione album": "Lavorazione album",
-  " Invio laboratorio": "Invio laboratorio",
-  "📦 Lab → Studio": "Lab → Studio",
+  " RAW → JPEG": "RAW -> JPEG",
+  "👀 Selezione + Copertina": "Selezione + Copertina",
+  " Lavorazione album": "Lavorazione album",
+  "📤 Invio laboratorio": "Invio laboratorio",
+  "📦 Lab → Studio": "Lab -> Studio",
   "🎁 Album al cliente": "Album al cliente",
-  " File e video al cliente": "File e video al cliente",
+  "📁 File e video al cliente": "File e video al cliente",
   "✅ Conferma cancellazione": "Conferma cancellazione",
-  " Consegna Anteprima al cliente": "Consegna Anteprima al cliente"
+  "📤 Consegna Anteprima al cliente": "Consegna Anteprima al cliente"
 };
 
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
@@ -654,7 +654,6 @@ function countDone(stepsObj, stepsList) {
   return stepsList.filter(st => stepsObj[st.id]?.done).length;
 }
 
-// ===== REGOLA: ULTIMO STEP DEL SERVIZIO PRINCIPALE (MAI ANTEPRIMA) =====
 function getLastMainStepInfo(s) {
   const completed = [];
   const mainSteps = s.steps || {};
@@ -686,7 +685,7 @@ function getLastMainStepInfo(s) {
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
-    list.innerHTML = '<div class="empty">📭 Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
+    list.innerHTML = '<div class="empty"> Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
     return;
   }
   list.innerHTML = data.map(s => {
@@ -700,7 +699,7 @@ function renderServices(data = services) {
       const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `<div class="progress-row">
         <div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div>
-        <div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
+        <div><div class="progress-label"> SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
       </div>`;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type);
@@ -729,14 +728,14 @@ function renderServices(data = services) {
         <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
         <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
         <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
-        <button class="btn-del" onclick="deleteService(${s.id})">️ Elimina</button>
+        <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
       </div>
     </div>`;
   }).join("");
 }
 
 function getSectionEmoji(name) {
-  const map = { "Maternity": "🤰", "New Born": "🍼", "Family": "👨‍👩‍" };
+  const map = { "Maternity": "🤰", "New Born": "🍼", "Family": "👨‍‍👧" };
   return map[name] || "";
 }
 
@@ -754,7 +753,7 @@ function renderSteps(s) {
     });
     return html;
   }
-  const serviceTitle = isPreviewType(s.type) ? ' SERVIZIO (' + s.type.replace("Anteprima + ", "") + ')' : '📋 WORKFLOW SERVIZIO';
+  const serviceTitle = isPreviewType(s.type) ? '💒 SERVIZIO (' + s.type.replace("Anteprima + ", "") + ')' : ' WORKFLOW SERVIZIO';
   html += `<div class="section-title service">${serviceTitle}</div>`;
   html += STEPS.map(st => renderStepRow(s, st, 'service')).join('');
   return html;
@@ -883,10 +882,10 @@ function viewService(id) {
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label">🎬 Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
-    html += `<div class="detail-row"><div class="detail-label"> Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
     html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">🎬 ANTEPRIMA</h3>`;
     STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;"> SERVIZIO</h3>`;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   } else if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
@@ -907,7 +906,7 @@ function viewService(id) {
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;"> SERVIZIO</h3>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   }
   document.getElementById("detailTitle").textContent = `📋 ${s.client} - ${s.type}`;
@@ -916,7 +915,7 @@ function viewService(id) {
 }
 
 function renderStepDetail(st, d) {
-  const status = d.done ? '✅' : '⏳';
+  const status = d.done ? '✅' : '';
   const dateStr = d.date ? ` - ${d.date}` : '';
   const extraInfo = [];
   if (st.extraType === "archivedBy" && d.extra?.archivedBy) extraInfo.push(`Archiviato da: ${d.extra.archivedBy}`);
@@ -969,7 +968,7 @@ async function generatePDF(id) {
   let y = 92;
   if (isPreviewType(s.type)) {
     doc.setFillColor(255, 215, 0); doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(0, 0, 0); doc.setFontSize(12); doc.text("🎬 ANTEPRIMA", 20, y); y += 8;
+    doc.setTextColor(0, 0, 0); doc.setFontSize(12); doc.text(" ANTEPRIMA", 20, y); y += 8;
     STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
     y += 5;
     doc.setFillColor(102, 126, 234); doc.rect(15, y - 5, 180, 8, 'F');
@@ -990,7 +989,7 @@ async function generatePDF(id) {
     });
   } else {
     doc.setFillColor(102, 126, 234); doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text("💒 SERVIZIO", 20, y);
+    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text(" SERVIZIO", 20, y);
     doc.setTextColor(0, 0, 0); y += 8;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
   }
@@ -1002,7 +1001,8 @@ async function generatePDF(id) {
 function renderPDFStep(doc, st, d, y) {
   const status = d.done ? "[X]" : "[ ]";
   const dateStr = d.date ? ` - ${d.date}` : '';
-  doc.text(`${status} ${st.label}${dateStr}`, 20, y); y += 7;
+  const cleanLabel = STEP_LABEL_CLEAN[st.label] || st.label;
+  doc.text(`${status} ${cleanLabel}${dateStr}`, 20, y); y += 7;
   const extra = getExtraText(st, d);
   if (extra) { doc.setTextColor(100, 100, 100); doc.text(`    → ${extra}`, 20, y); doc.setTextColor(0, 0, 0); y += 7; }
   if (y > 270) { doc.addPage(); y = 20; }
@@ -1105,7 +1105,7 @@ function renderTable() {
     tbody += `<td class="td-center"><span class="pct-badge ${pctClass}">${pct}%</span></td>`;
     tbody += `<td><div class="cell-actions">
       <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
-      <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">️</button>
+      <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
       <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
       <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
     </div></td>`;
@@ -1122,7 +1122,7 @@ function formatDate(dateStr) {
   return dateStr;
 }
 
-// ===== PDF TABELLA CON EMOJI RIMOSSI E LARGHEZZE OTTIMIZZATE =====
+// ===== PDF TABELLA - TABELLA ALLARGATA AI MARGINI =====
 function generateTablePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -1152,7 +1152,6 @@ function generateTablePDF() {
       totalSteps = STEPS.length;
     }
     const pct = Math.round((totalDone / totalSteps) * 100);
-    // Label pulita senza emoji
     const cleanLabel = lastStep ? (STEP_LABEL_CLEAN[lastStep.label] || lastStep.label) : '-';
     return [
       idx + 1, s.client, s.type,
@@ -1165,6 +1164,7 @@ function generateTablePDF() {
   });
   doc.autoTable({
     startY: 30,
+    margin: { left: 8, right: 8, top: 30, bottom: 15 },
     head: head,
     body: body,
     theme: 'grid',
@@ -1172,12 +1172,12 @@ function generateTablePDF() {
     bodyStyles: { fontSize: 7.5, cellPadding: 3 },
     columnStyles: {
       0: { cellWidth: 10, halign: 'center' },
-      1: { cellWidth: 50 },
+      1: { cellWidth: 75 },
       2: { cellWidth: 35, halign: 'center' },
-      3: { cellWidth: 20, halign: 'center' },
-      4: { cellWidth: 40 },
-      5: { cellWidth: 35 },
-      6: { cellWidth: 20, halign: 'center' },
+      3: { cellWidth: 22, halign: 'center' },
+      4: { cellWidth: 60 },
+      5: { cellWidth: 40 },
+      6: { cellWidth: 22, halign: 'center' },
       7: { cellWidth: 15, halign: 'center', fontStyle: 'bold' }
     },
     alternateRowStyles: { fillColor: [240, 245, 255] }
@@ -1192,7 +1192,7 @@ function generateTablePDF() {
   doc.save(`G&LStudio_Stato_Lavori_${new Date().toISOString().slice(0,10)}.pdf`);
 }
 
-// ===== PDF ARCHIVIO CON EMOJI RIMOSSI E LARGHEZZE OTTIMIZZATE =====
+// ===== PDF ARCHIVIO - TABELLA ALLARGATA AI MARGINI =====
 function generateArchivePDF() {
   const search = (document.getElementById("searchBox")?.value || "").toLowerCase();
   const type = document.getElementById("filterType")?.value || "";
@@ -1239,7 +1239,6 @@ function generateArchivePDF() {
       totalSteps = STEPS.length;
     }
     const pct = Math.round((totalDone / totalSteps) * 100);
-    // Label pulita senza emoji
     const cleanLabel = lastStep ? (STEP_LABEL_CLEAN[lastStep.label] || lastStep.label) : 'Nessuno step';
     return [
       idx + 1,
@@ -1255,6 +1254,7 @@ function generateArchivePDF() {
   
   doc.autoTable({
     startY: 35,
+    margin: { left: 8, right: 8, top: 35, bottom: 15 },
     head: head,
     body: body,
     theme: 'grid',
@@ -1268,12 +1268,12 @@ function generateArchivePDF() {
     bodyStyles: { fontSize: 7.5, cellPadding: 3 },
     columnStyles: {
       0: { cellWidth: 10, halign: 'center' },
-      1: { cellWidth: 50 },
+      1: { cellWidth: 75 },
       2: { cellWidth: 40, halign: 'center' },
-      3: { cellWidth: 20, halign: 'center' },
-      4: { cellWidth: 40 },
-      5: { cellWidth: 35 },
-      6: { cellWidth: 20, halign: 'center' },
+      3: { cellWidth: 22, halign: 'center' },
+      4: { cellWidth: 60 },
+      5: { cellWidth: 40 },
+      6: { cellWidth: 22, halign: 'center' },
       7: { cellWidth: 15, halign: 'center', fontStyle: 'bold' }
     },
     alternateRowStyles: { fillColor: [240, 245, 255] },
@@ -1300,7 +1300,7 @@ function generateArchivePDF() {
 }
 
 function doBackup() {
-  const data = { version: 13, exportedAt: new Date().toISOString(), services };
+  const data = { version: 14, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
