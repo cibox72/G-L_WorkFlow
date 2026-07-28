@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>G&LStudio — Workflow Foto & Video</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
   body {
@@ -57,6 +58,7 @@
   }
   .actions button:hover { transform: translateY(-2px); }
   .btn-new { background: linear-gradient(45deg, #f093fb, #f5576c); color: white; }
+  .btn-archive { background: linear-gradient(45deg, #667eea, #764ba2); color: white; }
   .btn-backup { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; }
   .btn-restore { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
   .btn-logout { background: linear-gradient(45deg, #fa709a, #fee140); color: white; }
@@ -131,21 +133,68 @@
 
   .card-footer {
     margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px;
-    padding-top: 15px; border-top: 1px dashed #ddd;
+    padding-top: 15px; border-top: 1px dashed #ddd; flex-wrap: wrap;
   }
-  .btn-del {
-    padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer;
-    background: linear-gradient(45deg, #fa709a, #fee140); color: white; font-weight: 600;
-  }
+  .btn-view { background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+  .btn-edit { background: linear-gradient(45deg, #f093fb, #f5576c); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+  .btn-pdf { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+  .btn-del { background: linear-gradient(45deg, #fa709a, #fee140); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
   .empty {
     text-align: center; padding: 60px 20px; color: white; font-size: 1.2em;
     background: rgba(255,255,255,0.15); border-radius: 20px;
   }
 
+  /* MODAL */
+  .modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
+    padding: 20px;
+  }
+  .modal.active { display: flex; }
+  .modal-content {
+    background: white; border-radius: 20px; max-width: 800px; width: 100%;
+    max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .modal-header {
+    background: linear-gradient(45deg, #667eea, #f093fb); color: white;
+    padding: 25px; border-radius: 20px 20px 0 0; display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-header h2 { font-size: 1.5em; }
+  .modal-close {
+    background: rgba(255,255,255,0.2); border: none; color: white;
+    width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2em;
+  }
+  .modal-body { padding: 25px; }
+  .detail-row { margin-bottom: 15px; padding: 12px; background: #f8f9ff; border-radius: 10px; }
+  .detail-label { font-weight: 600; color: #4a3f8c; margin-bottom: 5px; font-size: 0.9em; }
+  .detail-value { color: #333; font-size: 1em; }
+  .step-detail {
+    padding: 10px; margin: 6px 0; background: white; border-radius: 8px;
+    border-left: 4px solid #ddd;
+  }
+  .step-detail.completed { border-left-color: #43e97b; background: #f0fff0; }
+  .step-detail .step-name { font-weight: 600; margin-bottom: 5px; }
+  .step-detail .step-date { color: #667eea; font-size: 0.9em; }
+  .step-detail .step-extra-info { color: #888; font-size: 0.85em; margin-top: 3px; }
+
+  /* ARCHIVIO */
+  .archive-header {
+    background: white; border-radius: 18px; padding: 20px; margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+  }
+  .search-box {
+    flex: 1; min-width: 200px; padding: 10px 15px; border: 2px solid #e0e0e0;
+    border-radius: 10px; font-size: 1em;
+  }
+  .filter-select {
+    padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1em;
+  }
+
   @media (max-width: 600px) {
     .logo { font-size: 1.5em; }
     .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
+    .modal-content { margin: 10px; }
   }
 </style>
 </head>
@@ -168,9 +217,9 @@
       <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
       <div class="actions">
         <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
+        <button class="btn-archive" onclick="showArchive()"> Archivio</button>
         <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
         <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
-        <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="doRestore(event)">
         <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
       </div>
     </header>
@@ -201,7 +250,73 @@
       </div>
     </div>
 
+    <!-- ARCHIVIO -->
+    <div id="archiveView" style="display:none;">
+      <div class="archive-header">
+        <h2>📁 Archivio Servizi</h2>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <input type="text" class="search-box" id="searchBox" placeholder="🔍 Cerca cliente..." oninput="filterServices()">
+          <select class="filter-select" id="filterType" onchange="filterServices()">
+            <option value="">Tutti i tipi</option>
+            <option value="Matrimonio">Matrimonio</option>
+            <option value="Battesimo">Battesimo</option>
+            <option value="18° Compleanno">18° Compleanno</option>
+            <option value="Compleanno">Compleanno</option>
+            <option value="Anniversario">Anniversario</option>
+            <option value="Comunione">Comunione</option>
+            <option value="Cresima">Cresima</option>
+            <option value="Evento">Evento</option>
+          </select>
+          <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
+        </div>
+      </div>
+      <div id="archiveList"></div>
+    </div>
+
     <div id="servicesList"></div>
+  </div>
+</div>
+
+<!-- MODAL DETTAGLI -->
+<div id="detailModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="detailTitle">📋 Dettagli Servizio</h2>
+      <button class="modal-close" onclick="closeModal('detailModal')">&times;</button>
+    </div>
+    <div class="modal-body" id="detailBody"></div>
+  </div>
+</div>
+
+<!-- MODAL MODIFICA -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>✏️ Modifica Servizio</h2>
+      <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <input type="text" id="editClient" placeholder="Nome cliente">
+        <select id="editType">
+          <option value="Matrimonio">Matrimonio</option>
+          <option value="Battesimo">Battesimo</option>
+          <option value="18° Compleanno">18° Compleanno</option>
+          <option value="Compleanno">Compleanno</option>
+          <option value="Anniversario">Anniversario</option>
+          <option value="Comunione">Comunione</option>
+          <option value="Cresima">Cresima</option>
+          <option value="Evento">Evento</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input type="date" id="editDate">
+      </div>
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
+        <button class="btn-save" onclick="saveEdit()">💾 Salva Modifiche</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -236,6 +351,7 @@ const TYPE_COLORS = {
 };
 
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
+let editingId = null;
 
 // ===== LOGIN =====
 function doLogin() {
@@ -286,31 +402,16 @@ function saveService() {
 }
 
 // ===== RENDER =====
-function renderServices() {
+function renderServices(data = services) {
   const list = document.getElementById("servicesList");
-  if (services.length === 0) {
+  if (data.length === 0) {
     list.innerHTML = '<div class="empty">📭 Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
     return;
   }
-  list.innerHTML = services.map(s => {
+  list.innerHTML = data.map(s => {
     const doneCount = Object.values(s.steps).filter(x => x.done).length;
     const pct = Math.round((doneCount / STEPS.length) * 100);
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
-    const stepsHtml = STEPS.map(st => {
-      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-      const extraHtml = st.extra ? `
-        <div class="step-extra">
-          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ""}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value)">
-          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ""}" onchange="updateExtra(${s.id},'${st.id}','article',this.value)">
-        </div>` : "";
-      return `
-        <div class="step ${d.done ? 'done' : ''}">
-          <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked)">
-          <div class="step-label">${st.label}</div>
-          <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value)">
-          ${extraHtml}
-        </div>`;
-    }).join("");
     return `
       <div class="card">
         <div class="card-header" onclick="toggleSteps(${s.id})">
@@ -322,10 +423,35 @@ function renderServices() {
         </div>
         <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
         <div class="progress-text">Avanzamento: ${doneCount}/${STEPS.length} (${pct}%)</div>
-        <div class="steps" id="steps-${s.id}">${stepsHtml}</div>
+        <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
         <div class="card-footer">
+          <button class="btn-view" onclick="viewService(${s.id})">️ Visualizza</button>
+          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
+          <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
           <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
         </div>
+      </div>`;
+  }).join("");
+}
+
+function renderSteps(s) {
+  return STEPS.map(st => {
+    const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+    const extraHtml = st.extra && (d.extra?.supplier || d.extra?.article) ? `
+      <div class="step-extra">
+        ${d.extra?.supplier ? `<span>🏭 ${d.extra.supplier}</span>` : ''}
+        ${d.extra?.article ? `<span>📦 ${d.extra.article}</span>` : ''}
+      </div>` : "";
+    return `
+      <div class="step ${d.done ? 'done' : ''}">
+        <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked)">
+        <div class="step-label">${st.label}</div>
+        <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value)">
+        ${st.extra ? `
+        <div class="step-extra">
+          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value)">
+          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value)">
+        </div>` : ""}
       </div>`;
   }).join("");
 }
@@ -360,6 +486,185 @@ function save() {
   localStorage.setItem("gl_services", JSON.stringify(services));
 }
 
+// ===== VISUALIZZA =====
+function viewService(id) {
+  const s = services.find(x => x.id === id);
+  const doneCount = Object.values(s.steps).filter(x => x.done).length;
+  const pct = Math.round((doneCount / STEPS.length) * 100);
+  
+  let html = `
+    <div class="detail-row">
+      <div class="detail-label">👤 Cliente</div>
+      <div class="detail-value">${s.client}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">📋 Tipo Servizio</div>
+      <div class="detail-value">${s.type}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">📅 Data Evento</div>
+      <div class="detail-value">${s.date || 'Non specificata'}</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">📊 Avanzamento</div>
+      <div class="detail-value">${doneCount}/${STEPS.length} completati (${pct}%)</div>
+    </div>
+    <h3 style="margin:20px 0 10px; color:#4a3f8c;">📝 Workflow Steps</h3>
+  `;
+  
+  STEPS.forEach(st => {
+    const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+    const status = d.done ? '✅' : '⏳';
+    const dateStr = d.date ? ` - ${d.date}` : '';
+    const extraInfo = [];
+    if (d.extra?.supplier) extraInfo.push(`Fornitore: ${d.extra.supplier}`);
+    if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
+    
+    html += `
+      <div class="step-detail ${d.done ? 'completed' : ''}">
+        <div class="step-name">${status} ${st.label}${dateStr}</div>
+        ${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}
+      </div>
+    `;
+  });
+  
+  document.getElementById("detailTitle").textContent = ` ${s.client} - ${s.type}`;
+  document.getElementById("detailBody").innerHTML = html;
+  document.getElementById("detailModal").classList.add("active");
+}
+
+// ===== MODIFICA =====
+function editService(id) {
+  const s = services.find(x => x.id === id);
+  editingId = id;
+  document.getElementById("editClient").value = s.client;
+  document.getElementById("editType").value = s.type;
+  document.getElementById("editDate").value = s.date || '';
+  document.getElementById("editModal").classList.add("active");
+}
+function saveEdit() {
+  if (!editingId) return;
+  const s = services.find(x => x.id === editingId);
+  s.client = document.getElementById("editClient").value.trim();
+  s.type = document.getElementById("editType").value;
+  s.date = document.getElementById("editDate").value;
+  save();
+  closeModal('editModal');
+  renderServices();
+}
+
+// ===== PDF =====
+async function generatePDF(id) {
+  const s = services.find(x => x.id === id);
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Header
+  doc.setFillColor(102, 126, 234);
+  doc.rect(0, 0, 210, 40, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(24);
+  doc.text("G&LStudio", 15, 20);
+  doc.setFontSize(12);
+  doc.text("Workflow Foto & Video", 15, 28);
+  
+  // Info cliente
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(14);
+  doc.text(`Cliente: ${s.client}`, 15, 55);
+  doc.text(`Tipo: ${s.type}`, 15, 63);
+  doc.text(`Data Evento: ${s.date || 'N/D'}`, 15, 71);
+  
+  // Steps
+  doc.setFontSize(12);
+  doc.text("WORKFLOW COMPLETAMENTO:", 15, 85);
+  
+  let y = 95;
+  STEPS.forEach((st, i) => {
+    const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+    const status = d.done ? "[X]" : "[ ]";
+    const dateStr = d.date ? ` - ${d.date}` : '';
+    doc.text(`${status} ${st.label}${dateStr}`, 20, y);
+    y += 8;
+    
+    if (d.extra?.supplier || d.extra?.article) {
+      const extra = [];
+      if (d.extra.supplier) extra.push(`Fornitore: ${d.extra.supplier}`);
+      if (d.extra.article) extra.push(`Articolo: ${d.extra.article}`);
+      doc.setTextColor(100, 100, 100);
+      doc.text(`    → ${extra.join(' | ')}`, 20, y);
+      doc.setTextColor(0, 0, 0);
+      y += 8;
+    }
+    
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+  });
+  
+  // Footer
+  doc.setFontSize(10);
+  doc.setTextColor(150, 150, 150);
+  doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')}`, 15, 285);
+  
+  doc.save(`G&LStudio_${s.client.replace(/\s+/g, '_')}_${s.type}.pdf`);
+}
+
+// ===== ARCHIVIO =====
+function showArchive() {
+  document.getElementById("servicesList").style.display = "none";
+  document.getElementById("newService").classList.remove("open");
+  document.getElementById("archiveView").style.display = "block";
+  filterServices();
+}
+function showMain() {
+  document.getElementById("archiveView").style.display = "none";
+  document.getElementById("servicesList").style.display = "block";
+  renderServices();
+}
+function filterServices() {
+  const search = document.getElementById("searchBox").value.toLowerCase();
+  const type = document.getElementById("filterType").value;
+  
+  let filtered = services;
+  if (search) {
+    filtered = filtered.filter(s => s.client.toLowerCase().includes(search));
+  }
+  if (type) {
+    filtered = filtered.filter(s => s.type === type);
+  }
+  
+  const list = document.getElementById("archiveList");
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty">Nessun servizio trovato</div>';
+    return;
+  }
+  
+  list.innerHTML = filtered.map(s => {
+    const doneCount = Object.values(s.steps).filter(x => x.done).length;
+    const pct = Math.round((doneCount / STEPS.length) * 100);
+    const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
+    return `
+      <div class="card">
+        <div class="card-header">
+          <div class="client-info">
+            <div class="client-name">${s.client}</div>
+            <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
+          </div>
+          <div class="service-badge" style="background:${color}">${s.type}</div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="progress-text">Completamento: ${pct}%</div>
+        <div class="card-footer">
+          <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
+          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
+          <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
+        </div>
+      </div>`;
+  }).join("");
+}
+
 // ===== BACKUP / RIPRISTINO =====
 function doBackup() {
   const data = { version: 1, exportedAt: new Date().toISOString(), services };
@@ -387,7 +692,11 @@ function doRestore(e) {
   e.target.value = "";
 }
 
-// Enter per login
+// ===== UTILS =====
+function closeModal(id) {
+  document.getElementById(id).classList.remove("active");
+  editingId = null;
+}
 document.getElementById("loginPass").addEventListener("keypress", e => { if (e.key === "Enter") doLogin(); });
 </script>
 </body>
