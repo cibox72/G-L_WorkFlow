@@ -193,8 +193,6 @@
   .filter-select {
     padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1em;
   }
-
-  /* ===== TABELLA SEMPLIFICATA STILE LISTA ===== */
   .table-container {
     background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); overflow-x: auto;
@@ -229,9 +227,7 @@
   .td-client { font-weight: 700; color: #2c3e6b; font-size: 1.05em; }
   .td-type { text-align: center; }
   .td-center { text-align: center; }
-  .td-laststep {
-    font-weight: 600; color: #43e97b;
-  }
+  .td-laststep { font-weight: 600; color: #43e97b; }
   .td-laststep.pending { color: #f5a623; }
   .td-laststep.empty { color: #999; font-weight: 400; font-style: italic; }
   .badge-cell {
@@ -265,7 +261,6 @@
     font-size: 0.7em; font-weight: 600; color: white; margin-left: 6px;
     vertical-align: middle;
   }
-
   @media (max-width: 600px) {
     .logo { font-size: 1.5em; }
     .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
@@ -290,7 +285,7 @@
       <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
       <div class="actions">
         <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
-        <button class="btn-archive" onclick="showArchive()"> Archivio</button>
+        <button class="btn-archive" onclick="showArchive()">📁 Archivio</button>
         <button class="btn-table" onclick="showTable()">📊 Tabella Clienti</button>
         <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
         <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
@@ -304,24 +299,35 @@
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <option value="Anteprima + Matrimonio">💒 Anteprima + Matrimonio</option>
-          <option value="Anteprima + Battesimo">👶 Anteprima + Battesimo</option>
-          <option value="Anteprima + 18° Compleanno"> Anteprima + 18° Compleanno</option>
-          <option value="Maternity + New Born">🤰🍼 Maternity + New Born</option>
-          <option value="Maternity + Family">🤰👨‍‍👧 Maternity + Family</option>
-          <option value="Maternity + New Born + Family">🤰🍼👨👩‍👧 Maternity + New Born + Family</option>
-          <option value="Matrimonio">💒 Matrimonio</option>
-          <option value="Battesimo">👶 Battesimo</option>
-          <option value="New Born">🍼 New Born</option>
-          <option value="Maternity">🤰 Maternity</option>
-          <option value="Family">‍👩‍👧 Family</option>
-          <option value="1° Compleanno">🎈 1° Compleanno</option>
-          <option value="18° Compleanno">🎉 18° Compleanno</option>
-          <option value="Compleanno"> Compleanno</option>
-          <option value="Anniversario">💍 Anniversario</option>
-          <option value="Comunione"> Comunione</option>
-          <option value="Cresima">✝️ Cresima</option>
-          <option value="Evento">🎊 Evento</option>
+          <optgroup label="🎬 Anteprima">
+            <option value="Anteprima + Matrimonio">💒 Anteprima + Matrimonio</option>
+            <option value="Anteprima + Battesimo">👶 Anteprima + Battesimo</option>
+            <option value="Anteprima + 18° Compleanno">🎉 Anteprima + 18° Compleanno</option>
+          </optgroup>
+          <optgroup label="👶 Famiglia & Neonati">
+            <option value="Maternity + New Born + Family">🤰🍼👨‍👩‍ Maternity + New Born + Family</option>
+            <option value="Maternity + New Born">🍼 Maternity + New Born</option>
+            <option value="Maternity + Family">👨‍👩‍👧 Maternity + Family</option>
+            <option value="New Born + Family">🍼‍👩‍👧 New Born + Family</option>
+            <option value="Maternity">🤰 Maternity</option>
+            <option value="New Born">🍼 New Born</option>
+            <option value="Family">👨‍👩‍ Family</option>
+          </optgroup>
+          <optgroup label="💒 Cerimonie">
+            <option value="Matrimonio">💒 Matrimonio</option>
+            <option value="Battesimo">👶 Battesimo</option>
+            <option value="Comunione">⛪ Comunione</option>
+            <option value="Cresima">✝️ Cresima</option>
+          </optgroup>
+          <optgroup label="🎉 Feste & Celebrazioni">
+            <option value="1° Compleanno">🎈 1° Compleanno</option>
+            <option value="18° Compleanno">🎉 18° Compleanno</option>
+            <option value="Compleanno">🎂 Compleanno</option>
+            <option value="Anniversario">💍 Anniversario</option>
+          </optgroup>
+          <optgroup label="🎊 Altro">
+            <option value="Evento">🎊 Evento</option>
+          </optgroup>
         </select>
       </div>
       <div class="form-row">
@@ -341,24 +347,35 @@
           <input type="text" class="search-box" id="searchBox" placeholder="🔍 Cerca cliente..." oninput="filterServices()">
           <select class="filter-select" id="filterType" onchange="filterServices()">
             <option value="">Tutti i tipi</option>
-            <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
-            <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
-            <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
-            <option value="Maternity + New Born">Maternity + New Born</option>
-            <option value="Maternity + Family">Maternity + Family</option>
-            <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
-            <option value="Matrimonio">Matrimonio</option>
-            <option value="Battesimo">Battesimo</option>
-            <option value="New Born">New Born</option>
-            <option value="Maternity">Maternity</option>
-            <option value="Family">Family</option>
-            <option value="1° Compleanno">1° Compleanno</option>
-            <option value="18° Compleanno">18° Compleanno</option>
-            <option value="Compleanno">Compleanno</option>
-            <option value="Anniversario">Anniversario</option>
-            <option value="Comunione">Comunione</option>
-            <option value="Cresima">Cresima</option>
-            <option value="Evento">Evento</option>
+            <optgroup label=" Anteprima">
+              <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
+              <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
+              <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
+            </optgroup>
+            <optgroup label="👶 Famiglia & Neonati">
+              <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
+              <option value="Maternity + New Born">Maternity + New Born</option>
+              <option value="Maternity + Family">Maternity + Family</option>
+              <option value="New Born + Family">New Born + Family</option>
+              <option value="Maternity">Maternity</option>
+              <option value="New Born">New Born</option>
+              <option value="Family">Family</option>
+            </optgroup>
+            <optgroup label="💒 Cerimonie">
+              <option value="Matrimonio">Matrimonio</option>
+              <option value="Battesimo">Battesimo</option>
+              <option value="Comunione">Comunione</option>
+              <option value="Cresima">Cresima</option>
+            </optgroup>
+            <optgroup label="🎉 Feste & Celebrazioni">
+              <option value="1° Compleanno">1° Compleanno</option>
+              <option value="18° Compleanno">18° Compleanno</option>
+              <option value="Compleanno">Compleanno</option>
+              <option value="Anniversario">Anniversario</option>
+            </optgroup>
+            <optgroup label="🎊 Altro">
+              <option value="Evento">Evento</option>
+            </optgroup>
           </select>
           <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
         </div>
@@ -371,8 +388,8 @@
         <div class="table-header">
           <h2>📊 Tabella Clienti — Stato Lavori</h2>
           <div class="table-toolbar">
-            <input type="text" class="search-box" id="tableSearch" placeholder=" Cerca cliente..." oninput="renderTable()" style="min-width:200px;">
-            <button class="btn-pdf" onclick="generateTablePDF()"> PDF Tabella</button>
+            <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca cliente..." oninput="renderTable()" style="min-width:200px;">
+            <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
             <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
           </div>
         </div>
@@ -406,24 +423,35 @@
       <div class="form-row">
         <input type="text" id="editClient" placeholder="Nome cliente">
         <select id="editType">
-          <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
-          <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
-          <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
-          <option value="Maternity + New Born">Maternity + New Born</option>
-          <option value="Maternity + Family">Maternity + Family</option>
-          <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
-          <option value="Matrimonio">Matrimonio</option>
-          <option value="Battesimo">Battesimo</option>
-          <option value="New Born">New Born</option>
-          <option value="Maternity">Maternity</option>
-          <option value="Family">Family</option>
-          <option value="1° Compleanno">1° Compleanno</option>
-          <option value="18° Compleanno">18° Compleanno</option>
-          <option value="Compleanno">Compleanno</option>
-          <option value="Anniversario">Anniversario</option>
-          <option value="Comunione">Comunione</option>
-          <option value="Cresima">Cresima</option>
-          <option value="Evento">Evento</option>
+          <optgroup label="🎬 Anteprima">
+            <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
+            <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
+            <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
+          </optgroup>
+          <optgroup label=" Famiglia & Neonati">
+            <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
+            <option value="Maternity + New Born">Maternity + New Born</option>
+            <option value="Maternity + Family">Maternity + Family</option>
+            <option value="New Born + Family">New Born + Family</option>
+            <option value="Maternity">Maternity</option>
+            <option value="New Born">New Born</option>
+            <option value="Family">Family</option>
+          </optgroup>
+          <optgroup label="💒 Cerimonie">
+            <option value="Matrimonio">Matrimonio</option>
+            <option value="Battesimo">Battesimo</option>
+            <option value="Comunione">Comunione</option>
+            <option value="Cresima">Cresima</option>
+          </optgroup>
+          <optgroup label="🎉 Feste & Celebrazioni">
+            <option value="1° Compleanno">1° Compleanno</option>
+            <option value="18° Compleanno">18° Compleanno</option>
+            <option value="Compleanno">Compleanno</option>
+            <option value="Anniversario">Anniversario</option>
+          </optgroup>
+          <optgroup label="🎊 Altro">
+            <option value="Evento">Evento</option>
+          </optgroup>
         </select>
       </div>
       <div class="form-row">
@@ -442,13 +470,13 @@
 const USER = "G&LStudio";
 const PASS = "12763Mlg";
 
-// ORDINE TIPI per ordinamento tabella
 const TYPE_ORDER = [
   "Anteprima + Matrimonio", "Anteprima + Battesimo", "Anteprima + 18° Compleanno",
-  "Maternity + New Born", "Maternity + Family", "Maternity + New Born + Family",
-  "Matrimonio", "Battesimo", "New Born", "Maternity", "Family",
+  "Maternity + New Born + Family", "Maternity + New Born", "Maternity + Family", "New Born + Family",
+  "Maternity", "New Born", "Family",
+  "Matrimonio", "Battesimo", "Comunione", "Cresima",
   "1° Compleanno", "18° Compleanno", "Compleanno", "Anniversario",
-  "Comunione", "Cresima", "Evento"
+  "Evento"
 ];
 
 const STEPS = [
@@ -467,18 +495,19 @@ const STEPS = [
 ];
 
 const STEPS_PREVIEW = [
-  { id: "p_download",    label: "📥 Download schede", short: "P📥" },
-  { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "P" },
-  { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "P🎬", extra: true, extraType: "archivedBy" },
-  { id: "p_backupAltro", label: " Archiviazione su altro", short: "P", extra: true, extraLabel: "Dove" },
+  { id: "p_download",    label: "📥 Download schede", short: "P" },
+  { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "P💾" },
+  { id: "p_archiveVideo",label: " Archiviazione Video", short: "P🎬", extra: true, extraType: "archivedBy" },
+  { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "P💿", extra: true, extraLabel: "Dove" },
   { id: "p_rawToJpg",    label: "🔄 RAW → JPEG", short: "P🔄" },
-  { id: "p_deliverPreview", label: " Consegna Anteprima al cliente", short: "P📤" }
+  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "P" }
 ];
 
 const COMBO_TYPES = {
   "Maternity + New Born": ["Maternity", "New Born"],
   "Maternity + Family": ["Maternity", "Family"],
-  "Maternity + New Born + Family": ["Maternity", "New Born", "Family"]
+  "Maternity + New Born + Family": ["Maternity", "New Born", "Family"],
+  "New Born + Family": ["New Born", "Family"]
 };
 
 const SECTION_COLORS = {
@@ -494,6 +523,7 @@ const TYPE_COLORS = {
   "Maternity + New Born": "#e8a0bf",
   "Maternity + Family": "#a0d8e8",
   "Maternity + New Born + Family": "#b8a0e8",
+  "New Born + Family": "#7ec8e3",
   "Matrimonio":     "#f5576c",
   "Battesimo":      "#4facfe",
   "New Born":       "#a1c4fd",
@@ -599,7 +629,7 @@ function getArchiveByOptions(s) {
   if (s.videographer && s.videographer.trim()) {
     options.push(`<option value="${s.videographer}">${s.videographer} (collega)</option>`);
   }
-  options.push(`<option value="__altro__">️ Altro...</option>`);
+  options.push(`<option value="__altro__">✏️ Altro...</option>`);
   return options.join("");
 }
 
@@ -607,67 +637,47 @@ function countDone(stepsObj, stepsList) {
   return stepsList.filter(st => stepsObj[st.id]?.done).length;
 }
 
-// ===== CALCOLO ULTIMO STEP RAGGIUNTO =====
 function getLastStepInfo(s) {
-  // Raccoglie tutti gli step completati con la loro data e posizione
   const completed = [];
-  
-  // Per servizi normali e combo: usa s.steps
   const mainSteps = s.steps || {};
   STEPS.forEach((st, idx) => {
     const d = mainSteps[st.id];
-    if (d && d.done) {
-      completed.push({ label: st.label, date: d.date, order: idx, section: null });
-    }
+    if (d && d.done) completed.push({ label: st.label, date: d.date, order: idx, section: null });
   });
-  
-  // Per anteprima
   if (isPreviewType(s.type) && s.previewSteps) {
     STEPS_PREVIEW.forEach((st, idx) => {
       const d = s.previewSteps[st.id];
-      if (d && d.done) {
-        completed.push({ label: st.label, date: d.date, order: idx, section: "Anteprima" });
-      }
+      if (d && d.done) completed.push({ label: st.label, date: d.date, order: idx, section: "Anteprima" });
     });
   }
-  
-  // Per combo
   if (isComboType(s.type) && s.sections) {
     Object.keys(s.sections).forEach(secName => {
       const secSteps = s.sections[secName];
       STEPS.forEach((st, idx) => {
         const d = secSteps[st.id];
-        if (d && d.done) {
-          completed.push({ label: st.label, date: d.date, order: idx, section: secName });
-        }
+        if (d && d.done) completed.push({ label: st.label, date: d.date, order: idx, section: secName });
       });
     });
   }
-  
   if (completed.length === 0) return null;
-  
-  // Trova l'ultimo per data, a parità di data per order
   completed.sort((a, b) => {
-    if (a.date && b.date) {
-      const cmp = a.date.localeCompare(b.date);
-      if (cmp !== 0) return cmp;
-    } else if (a.date && !b.date) return -1;
+    if (a.date && b.date) { const cmp = a.date.localeCompare(b.date); if (cmp !== 0) return cmp; }
+    else if (a.date && !b.date) return -1;
     else if (!a.date && b.date) return 1;
     return a.order - b.order;
   });
-  
   return completed[completed.length - 1];
 }
 
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
-    list.innerHTML = '<div class="empty"> Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
+    list.innerHTML = '<div class="empty">📭 Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
     return;
   }
   list.innerHTML = data.map(s => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
-    const videoInfo = s.videographer ? `<div class="videographer-info"> Videografo: ${s.videographer}</div>` : '';
+    const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
     let progressHtml = '';
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
@@ -676,7 +686,7 @@ function renderServices(data = services) {
       const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `<div class="progress-row">
         <div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div>
-        <div><div class="progress-label"> SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
+        <div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
       </div>`;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type);
@@ -702,7 +712,7 @@ function renderServices(data = services) {
       ${progressHtml}
       <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
       <div class="card-footer">
-        <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
+        <button class="btn-view" onclick="viewService(${s.id})">️ Visualizza</button>
         <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
         <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
         <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
@@ -712,7 +722,7 @@ function renderServices(data = services) {
 }
 
 function getSectionEmoji(name) {
-  const map = { "Maternity": "🤰", "New Born": "", "Family": "👨‍‍👧" };
+  const map = { "Maternity": "🤰", "New Born": "🍼", "Family": "👨‍👩‍👧" };
   return map[name] || "📋";
 }
 
@@ -850,19 +860,19 @@ function save() { localStorage.setItem("gl_services", JSON.stringify(services));
 function viewService(id) {
   const s = services.find(x => x.id === id);
   let html = `<div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
-    <div class="detail-row"><div class="detail-label"> Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
-    <div class="detail-row"><div class="detail-label"> Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
+    <div class="detail-row"><div class="detail-label">📋 Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
+    <div class="detail-row"><div class="detail-label">📅 Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
     <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>`;
   if (isPreviewType(s.type)) {
     const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
     const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-    html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label">🎬 Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
-    html += `<div class="detail-row"><div class="detail-label"> Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label"> Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
+    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
     html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">🎬 ANTEPRIMA</h3>`;
     STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;"> SERVIZIO</h3>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   } else if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
@@ -883,7 +893,7 @@ function viewService(id) {
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;"> SERVIZIO</h3>`;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   }
   document.getElementById("detailTitle").textContent = `📋 ${s.client} - ${s.type}`;
@@ -1015,74 +1025,53 @@ function filterServices() {
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW); const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
       const serviceDone = countDone(s.steps, STEPS); const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-      progressHtml = `<div class="progress-row"><div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div><div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div></div>`;
+      progressHtml = `<div class="progress-row"><div><div class="progress-label"> ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div><div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div></div>`;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type); progressHtml = '<div class="progress-row">';
       sections.forEach(secName => { const secSteps = s.sections?.[secName] || {}; const done = countDone(secSteps, STEPS); const pct = Math.round((done / STEPS.length) * 100); const secColor = SECTION_COLORS[secName]?.bg || '#667eea'; progressHtml += `<div><div class="progress-label">${getSectionEmoji(secName)} ${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`; });
       progressHtml += '</div>';
     } else { const serviceDone = countDone(s.steps, STEPS); const servicePct = Math.round((serviceDone / STEPS.length) * 100); progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">Completamento: ${servicePct}%</div>`; }
-    return `<div class="card"><div class="card-header"><div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>${videoInfo}</div><div class="service-badge" style="background:${color}">${s.type}</div></div>${progressHtml}<div class="card-footer"><button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button><button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button><button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button><button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button></div></div>`;
+    return `<div class="card"><div class="card-header"><div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? ' ' + s.date : ''}</div>${videoInfo}</div><div class="service-badge" style="background:${color}">${s.type}</div></div>${progressHtml}<div class="card-footer"><button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button><button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button><button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button><button class="btn-del" onclick="deleteService(${s.id})">️ Elimina</button></div></div>`;
   }).join("");
 }
 
-// ===== TABELLA SEMPLIFICATA: UNA RIGA PER CLIENTE =====
 function renderTable() {
   const search = (document.getElementById("tableSearch")?.value || "").toLowerCase();
   let filtered = services.slice();
   if (search) {
     filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || s.type.toLowerCase().includes(search) || (s.videographer || '').toLowerCase().includes(search));
   }
-  
-  // ORDINAMENTO: prima per tipo (ordine fisso), poi alfabetico per cliente
   filtered.sort((a, b) => {
     const orderA = TYPE_ORDER.indexOf(a.type);
     const orderB = TYPE_ORDER.indexOf(b.type);
     if (orderA !== orderB) return orderA - orderB;
     return a.client.localeCompare(b.client, 'it');
   });
-  
   const table = document.getElementById("workflowTable");
   if (filtered.length === 0) {
-    table.innerHTML = '<tr><td colspan="7" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
+    table.innerHTML = '<tr><td colspan="9" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
     return;
   }
-  
   let thead = '<thead><tr>';
-  thead += '<th>#</th>';
-  thead += '<th>Cliente</th>';
-  thead += '<th class="center">Tipo Servizio</th>';
-  thead += '<th class="center">Data Evento</th>';
-  thead += '<th>Videografo</th>';
-  thead += '<th>Ultimo Step Raggiunto</th>';
-  thead += '<th class="center">Data Step</th>';
-  thead += '<th class="center">Stato</th>';
-  thead += '<th class="center">Azioni</th>';
+  thead += '<th>#</th><th>Cliente</th><th class="center">Tipo Servizio</th><th class="center">Data Evento</th><th>Videografo</th><th>Ultimo Step Raggiunto</th><th class="center">Data Step</th><th class="center">Stato</th><th class="center">Azioni</th>';
   thead += '</tr></thead>';
-  
   let tbody = '<tbody>';
   filtered.forEach((s, idx) => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
     const lastStep = getLastStepInfo(s);
-    
-    // Calcolo percentuale globale
     let totalDone = 0, totalSteps = 0;
     if (isPreviewType(s.type)) {
       totalDone = countDone(s.previewSteps || {}, STEPS_PREVIEW) + countDone(s.steps, STEPS);
       totalSteps = STEPS_PREVIEW.length + STEPS.length;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type);
-      sections.forEach(secName => {
-        totalDone += countDone(s.sections?.[secName] || {}, STEPS);
-        totalSteps += STEPS.length;
-      });
+      sections.forEach(secName => { totalDone += countDone(s.sections?.[secName] || {}, STEPS); totalSteps += STEPS.length; });
     } else {
       totalDone = countDone(s.steps, STEPS);
       totalSteps = STEPS.length;
     }
     const pct = Math.round((totalDone / totalSteps) * 100);
     const pctClass = pct === 100 ? 'pct-100' : pct >= 70 ? 'pct-high' : pct >= 40 ? 'pct-mid' : pct > 0 ? 'pct-low' : 'pct-zero';
-    
-    // Formattazione ultimo step
     let lastStepHtml = '';
     if (lastStep) {
       const sectionTag = lastStep.section ? `<span class="section-tag" style="background:${SECTION_COLORS[lastStep.section]?.hex || '#667eea'}">${lastStep.section}</span>` : '';
@@ -1090,9 +1079,7 @@ function renderTable() {
     } else {
       lastStepHtml = `<span class="td-laststep empty">Nessuno step completato</span>`;
     }
-    
     const dateDisplay = lastStep?.date ? formatDate(lastStep.date) : '-';
-    
     tbody += '<tr>';
     tbody += `<td style="color:#888;font-size:0.85em;">${idx + 1}</td>`;
     tbody += `<td class="td-client">${s.client}</td>`;
@@ -1104,7 +1091,7 @@ function renderTable() {
     tbody += `<td class="td-center"><span class="pct-badge ${pctClass}">${pct}%</span></td>`;
     tbody += `<td><div class="cell-actions">
       <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
-      <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">️</button>
+      <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
       <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
       <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
     </div></td>`;
@@ -1129,15 +1116,12 @@ function generateTablePDF() {
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(20);
   doc.text("G&LStudio - Stato Lavori Clienti", 14, 16);
-  
-  // Ordina come nella tabella
   const sorted = services.slice().sort((a, b) => {
     const orderA = TYPE_ORDER.indexOf(a.type);
     const orderB = TYPE_ORDER.indexOf(b.type);
     if (orderA !== orderB) return orderA - orderB;
     return a.client.localeCompare(b.client, 'it');
   });
-  
   const head = [['#', 'Cliente', 'Tipo', 'Data Evento', 'Videografo', 'Ultimo Step', 'Data Step', 'Stato']];
   const body = sorted.map((s, idx) => {
     const lastStep = getLastStepInfo(s);
@@ -1154,9 +1138,7 @@ function generateTablePDF() {
     }
     const pct = Math.round((totalDone / totalSteps) * 100);
     return [
-      idx + 1,
-      s.client,
-      s.type,
+      idx + 1, s.client, s.type,
       s.date ? formatDate(s.date) : '-',
       s.videographer || '-',
       lastStep ? lastStep.label : '-',
@@ -1164,7 +1146,6 @@ function generateTablePDF() {
       `${pct}%`
     ];
   });
-  
   doc.autoTable({
     startY: 30,
     head: head,
@@ -1184,7 +1165,6 @@ function generateTablePDF() {
     },
     alternateRowStyles: { fillColor: [240, 245, 255] }
   });
-  
   const pageCount = doc.internal.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
@@ -1196,7 +1176,7 @@ function generateTablePDF() {
 }
 
 function doBackup() {
-  const data = { version: 10, exportedAt: new Date().toISOString(), services };
+  const data = { version: 11, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
