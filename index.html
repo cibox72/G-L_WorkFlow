@@ -12,7 +12,7 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     min-height: 100vh; padding: 20px; color: #333;
   }
-  .container { max-width: 1400px; margin: 0 auto; }
+  .container { max-width: 1600px; margin: 0 auto; }
   .login-box {
     max-width: 420px; margin: 80px auto; background: rgba(255,255,255,0.97);
     border-radius: 20px; padding: 40px; box-shadow: 0 15px 50px rgba(0,0,0,0.3);
@@ -193,72 +193,99 @@
   .filter-select {
     padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1em;
   }
+
+  /* ===== TABELLA STILE EXCEL ===== */
   .table-container {
-    background: white; border-radius: 18px; padding: 20px; margin-bottom: 20px;
+    background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); overflow-x: auto;
   }
   .table-header {
     display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 15px; margin-bottom: 15px;
+    flex-wrap: wrap; gap: 15px; margin-bottom: 12px;
   }
-  .table-header h2 { color: #4a3f8c; }
+  .table-header h2 { color: #4a3f8c; font-size: 1.3em; }
   .table-toolbar { display: flex; gap: 10px; flex-wrap: wrap; }
   .workflow-table {
-    width: 100%; border-collapse: collapse; font-size: 0.85em;
-    min-width: 1700px;
+    width: 100%; border-collapse: collapse; font-size: 0.8em;
+    min-width: 2000px;
   }
   .workflow-table thead {
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    color: white; position: sticky; top: 0;
+    background: #2c3e6b;
+    color: white; position: sticky; top: 0; z-index: 10;
   }
   .workflow-table th {
-    padding: 12px 8px; text-align: center; font-weight: 600;
-    border: 1px solid rgba(255,255,255,0.3); font-size: 0.8em;
-    white-space: nowrap;
+    padding: 8px 6px; text-align: center; font-weight: 600;
+    border: 1px solid #1a2547; font-size: 0.85em;
+    white-space: nowrap; letter-spacing: 0.3px;
   }
   .workflow-table th:first-child, .workflow-table th:nth-child(2), .workflow-table th:nth-child(3), .workflow-table th:nth-child(4) {
-    position: sticky; left: 0; background: linear-gradient(45deg, #667eea, #764ba2); z-index: 2;
+    position: sticky; left: 0; background: #2c3e6b; z-index: 11;
   }
-  .workflow-table th:nth-child(2) { left: 150px; }
-  .workflow-table th:nth-child(3) { left: 280px; }
-  .workflow-table th:nth-child(4) { left: 380px; }
+  .workflow-table th:nth-child(2) { left: 180px; }
+  .workflow-table th:nth-child(3) { left: 310px; }
+  .workflow-table th:nth-child(4) { left: 400px; }
   .workflow-table td {
-    padding: 8px; border: 1px solid #e0e0e0; text-align: center;
-    vertical-align: middle;
+    padding: 4px 6px; border: 1px solid #d0d5dd; text-align: center;
+    vertical-align: middle; white-space: nowrap;
   }
   .workflow-table td:first-child {
-    position: sticky; left: 0; background: #f8f9ff; font-weight: 600;
-    color: #4a3f8c; z-index: 1; min-width: 150px; text-align: left;
+    position: sticky; left: 0; background: #f0f2f8; font-weight: 600;
+    color: #2c3e6b; z-index: 5; min-width: 180px; text-align: left;
+    font-size: 0.95em;
   }
   .workflow-table td:nth-child(2) {
-    position: sticky; left: 150px; background: #f8f9ff; z-index: 1; min-width: 130px;
+    position: sticky; left: 180px; background: #f0f2f8; z-index: 5; min-width: 130px;
   }
   .workflow-table td:nth-child(3) {
-    position: sticky; left: 280px; background: #f8f9ff; z-index: 1; min-width: 100px;
+    position: sticky; left: 310px; background: #f0f2f8; z-index: 5; min-width: 90px;
   }
   .workflow-table td:nth-child(4) {
-    position: sticky; left: 380px; background: #f8f9ff; z-index: 1; min-width: 130px;
+    position: sticky; left: 400px; background: #f0f2f8; z-index: 5; min-width: 100px;
   }
-  .workflow-table tbody tr:nth-child(even) { background: #fafbff; }
-  .workflow-table tbody tr:hover { background: #f0f4ff; }
+  .workflow-table tbody tr:nth-child(even) { background: #f8f9fc; }
+  .workflow-table tbody tr:nth-child(odd) { background: #ffffff; }
+  .workflow-table tbody tr:hover { background: #e8ecf8 !important; }
   .workflow-table tbody tr:hover td:first-child,
   .workflow-table tbody tr:hover td:nth-child(2),
   .workflow-table tbody tr:hover td:nth-child(3),
-  .workflow-table tbody tr:hover td:nth-child(4) { background: #e8ecff; }
-  .cell-step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .cell-step input[type=checkbox] { width: 18px; height: 18px; accent-color: #43e97b; cursor: pointer; }
-  .cell-step input[type=date] { font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 90px; }
-  .cell-step input[type=text] { font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 110px; }
-  .cell-step select { font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 110px; background: white; }
-  .cell-done { background: linear-gradient(90deg, #e0ffe0, #f0fff0) !important; }
-  .cell-actions { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
-  .cell-actions button { padding: 4px 8px; border: none; border-radius: 5px; cursor: pointer; font-size: 0.8em; font-weight: 600; }
+  .workflow-table tbody tr:hover td:nth-child(4) { background: #dce2f5 !important; }
+  .cell-step {
+    display: flex; flex-direction: row; align-items: center; gap: 4px; justify-content: center;
+  }
+  .cell-step input[type=checkbox] {
+    width: 16px; height: 16px; accent-color: #43e97b; cursor: pointer; margin: 0;
+  }
+  .cell-step input[type=date] {
+    font-size: 0.72em; padding: 2px 3px; border: 1px solid #ccc; border-radius: 3px; width: 85px;
+  }
+  .cell-step input[type=text] {
+    font-size: 0.72em; padding: 2px 3px; border: 1px solid #ccc; border-radius: 3px; width: 90px;
+  }
+  .cell-step select {
+    font-size: 0.72em; padding: 2px 3px; border: 1px solid #ccc; border-radius: 3px; width: 95px;
+    background: white;
+  }
+  .cell-done { background: #e6f9e6 !important; }
+  .cell-actions {
+    display: flex; gap: 3px; justify-content: center; flex-wrap: nowrap;
+  }
+  .cell-actions button {
+    padding: 3px 6px; border: none; border-radius: 4px; cursor: pointer;
+    font-size: 0.85em; font-weight: 600;
+  }
   .mini-view { background: #667eea; color: white; }
   .mini-edit { background: #f093fb; color: white; }
   .mini-pdf { background: #4facfe; color: white; }
   .mini-del { background: #fa709a; color: white; }
-  .badge-cell { display: inline-block; padding: 3px 10px; border-radius: 12px; color: white; font-size: 0.8em; font-weight: 600; }
-  .summary-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 600; color: white; margin: 2px; }
+  .badge-cell {
+    display: inline-block; padding: 3px 8px; border-radius: 10px;
+    color: white; font-size: 0.78em; font-weight: 600;
+  }
+  .summary-badge {
+    display: inline-block; padding: 3px 8px; border-radius: 10px;
+    font-size: 0.72em; font-weight: 700; color: white;
+  }
+
   @media (max-width: 600px) {
     .logo { font-size: 1.5em; }
     .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
@@ -283,11 +310,11 @@
       <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
       <div class="actions">
         <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
-        <button class="btn-archive" onclick="showArchive()">📁 Archivio</button>
+        <button class="btn-archive" onclick="showArchive()"> Archivio</button>
         <button class="btn-table" onclick="showTable()">📊 Tabella Clienti</button>
         <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
-        <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
-        <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
+        <button class="btn-restore" onclick="document.getElementById('restoreFile').click()"> Ripristina</button>
+        <button class="btn-logout" onclick="doLogout()"> Esci</button>
       </div>
     </header>
 
@@ -297,22 +324,22 @@
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <option value="Anteprima + Matrimonio"> Anteprima + Matrimonio</option>
+          <option value="Anteprima + Matrimonio">💒 Anteprima + Matrimonio</option>
           <option value="Anteprima + Battesimo">👶 Anteprima + Battesimo</option>
-          <option value="Anteprima + 18° Compleanno">🎉 Anteprima + 18° Compleanno</option>
-          <option value="Maternity + New Born">🍼 Maternity + New Born</option>
+          <option value="Anteprima + 18° Compleanno"> Anteprima + 18° Compleanno</option>
+          <option value="Maternity + New Born">🤰🍼 Maternity + New Born</option>
           <option value="Maternity + Family">🤰👨‍‍👧 Maternity + Family</option>
-          <option value="Maternity + New Born + Family">🤰🍼‍👩‍👧 Maternity + New Born + Family</option>
+          <option value="Maternity + New Born + Family">🤰🍼👨👩‍👧 Maternity + New Born + Family</option>
           <option value="Matrimonio">💒 Matrimonio</option>
-          <option value="Battesimo"> Battesimo</option>
+          <option value="Battesimo">👶 Battesimo</option>
           <option value="New Born">🍼 New Born</option>
           <option value="Maternity">🤰 Maternity</option>
-          <option value="Family">👨‍👩‍ Family</option>
+          <option value="Family">‍👩‍👧 Family</option>
           <option value="1° Compleanno">🎈 1° Compleanno</option>
           <option value="18° Compleanno">🎉 18° Compleanno</option>
-          <option value="Compleanno">🎂 Compleanno</option>
+          <option value="Compleanno"> Compleanno</option>
           <option value="Anniversario">💍 Anniversario</option>
-          <option value="Comunione">⛪ Comunione</option>
+          <option value="Comunione"> Comunione</option>
           <option value="Cresima">✝️ Cresima</option>
           <option value="Evento">🎊 Evento</option>
         </select>
@@ -362,7 +389,7 @@
     <div id="tableView" style="display:none;">
       <div class="table-container">
         <div class="table-header">
-          <h2> Tabella Clienti — Workflow Completo</h2>
+          <h2>📊 Tabella Clienti — Workflow Completo</h2>
           <div class="table-toolbar">
             <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca..." oninput="renderTable()" style="min-width:200px;">
             <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
@@ -435,40 +462,36 @@
 const USER = "G&LStudio";
 const PASS = "12763Mlg";
 
-// STEP COMPLETI per ogni sezione
 const STEPS = [
-  { id: "download",    label: " Download schede", short: "📥" },
+  { id: "download",    label: "📥 Download schede", short: "📥" },
   { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
   { id: "archiveVideo",label: "🎬 Archiviazione Video", short: "🎬", extra: true, extraType: "archivedBy" },
-  { id: "backupAltro", label: " Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
+  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove" },
   { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
   { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraType: "cover" },
   { id: "albumEdit",   label: "🎨 Lavorazione album", short: "🎨" },
-  { id: "sendLab",     label: "📤 Invio laboratorio", short: "" },
+  { id: "sendLab",     label: " Invio laboratorio", short: "📤" },
   { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
   { id: "albumClient", label: "🎁 Album al cliente", short: "🎁" },
-  { id: "filesClient", label: " File e video al cliente", short: "" },
+  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
   { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
-// STEP DELL'ANTEPRIMA (ridotti)
 const STEPS_PREVIEW = [
   { id: "p_download",    label: "📥 Download schede", short: "P" },
-  { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "💾P" },
-  { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "P", extra: true, extraType: "archivedBy" },
-  { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "💿P", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
-  { id: "p_rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄P" },
-  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "📤P" }
+  { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "P💾" },
+  { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "P🎬", extra: true, extraType: "archivedBy" },
+  { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "P💿", extra: true, extraLabel: "Dove" },
+  { id: "p_rawToJpg",    label: "🔄 RAW → JPEG", short: "P🔄" },
+  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "P" }
 ];
 
-// COMBINAZIONI MULTI-SEZIONE
 const COMBO_TYPES = {
   "Maternity + New Born": ["Maternity", "New Born"],
   "Maternity + Family": ["Maternity", "Family"],
   "Maternity + New Born + Family": ["Maternity", "New Born", "Family"]
 };
 
-// COLORI SEZIONI
 const SECTION_COLORS = {
   "Maternity": { bg: "linear-gradient(45deg, #fbc2eb, #a6c1ee)", hex: "#fbc2eb" },
   "New Born":  { bg: "linear-gradient(45deg, #a1c4fd, #c2e9fb)", hex: "#a1c4fd" },
@@ -499,15 +522,12 @@ const TYPE_COLORS = {
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
 let editingId = null;
 
-// ===== MIGRAZIONE =====
 function migrateService(s) {
   if (!s.steps) s.steps = {};
   STEPS.forEach(st => {
     if (!s.steps[st.id]) s.steps[st.id] = { done: false, date: "", extra: {} };
     if (!s.steps[st.id].extra) s.steps[st.id].extra = {};
   });
-  
-  // Anteprima
   if (isPreviewType(s.type)) {
     if (!s.previewSteps) s.previewSteps = {};
     STEPS_PREVIEW.forEach(st => {
@@ -515,8 +535,6 @@ function migrateService(s) {
       if (!s.previewSteps[st.id].extra) s.previewSteps[st.id].extra = {};
     });
   }
-  
-  // Combo multi-sezione
   if (isComboType(s.type)) {
     if (!s.sections) s.sections = {};
     COMBO_TYPES[s.type].forEach(secName => {
@@ -528,21 +546,14 @@ function migrateService(s) {
       }
     });
   }
-  
   if (s.videographer === undefined) s.videographer = "";
   return s;
 }
 services = services.map(migrateService);
 
-function isPreviewType(type) {
-  return type && type.startsWith("Anteprima +");
-}
-function isComboType(type) {
-  return type && COMBO_TYPES[type];
-}
-function getComboSections(type) {
-  return COMBO_TYPES[type] || [];
-}
+function isPreviewType(type) { return type && type.startsWith("Anteprima +"); }
+function isComboType(type) { return type && COMBO_TYPES[type]; }
+function getComboSections(type) { return COMBO_TYPES[type] || []; }
 
 function doLogin() {
   const u = document.getElementById("loginUser").value.trim();
@@ -555,10 +566,7 @@ function doLogin() {
     err.textContent = "❌ Credenziali non valide";
   }
 }
-function doLogout() {
-  sessionStorage.removeItem("gl_auth");
-  location.reload();
-}
+function doLogout() { sessionStorage.removeItem("gl_auth"); location.reload(); }
 function showApp() {
   document.getElementById("loginScreen").style.display = "none";
   document.getElementById("app").classList.add("active");
@@ -566,31 +574,20 @@ function showApp() {
 }
 if (sessionStorage.getItem("gl_auth") === "1") showApp();
 
-function toggleNewService() {
-  document.getElementById("newService").classList.toggle("open");
-}
+function toggleNewService() { document.getElementById("newService").classList.toggle("open"); }
 function saveService() {
   const client = document.getElementById("inputClient").value.trim();
   const type = document.getElementById("inputType").value;
   const date = document.getElementById("inputDate").value;
   const videographer = document.getElementById("inputVideographer").value.trim();
   if (!client || !type) { alert("Inserisci nome cliente e tipo di servizio"); return; }
-  
   const steps = {};
   STEPS.forEach(s => steps[s.id] = { done: false, date: "", extra: {} });
-  
-  const newService = {
-    id: Date.now(),
-    client, type, date, videographer,
-    steps,
-    createdAt: new Date().toISOString()
-  };
-  
+  const newService = { id: Date.now(), client, type, date, videographer, steps, createdAt: new Date().toISOString() };
   if (isPreviewType(type)) {
     newService.previewSteps = {};
     STEPS_PREVIEW.forEach(s => newService.previewSteps[s.id] = { done: false, date: "", extra: {} });
   }
-  
   if (isComboType(type)) {
     newService.sections = {};
     COMBO_TYPES[type].forEach(secName => {
@@ -598,7 +595,6 @@ function saveService() {
       STEPS.forEach(st => newService.sections[secName][st.id] = { done: false, date: "", extra: {} });
     });
   }
-  
   services.unshift(newService);
   save();
   document.getElementById("inputClient").value = "";
@@ -614,7 +610,7 @@ function getArchiveByOptions(s) {
   if (s.videographer && s.videographer.trim()) {
     options.push(`<option value="${s.videographer}">${s.videographer} (collega)</option>`);
   }
-  options.push(`<option value="__altro__">✏️ Altro (scrivi nome)...</option>`);
+  options.push(`<option value="__altro__">✏️ Altro...</option>`);
   return options.join("");
 }
 
@@ -631,27 +627,16 @@ function renderServices(data = services) {
   list.innerHTML = data.map(s => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
     const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
-    
     let progressHtml = '';
-    
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
       const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
       const serviceDone = countDone(s.steps, STEPS);
       const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-      progressHtml = `
-        <div class="progress-row">
-          <div>
-            <div class="progress-label">🎬 ANTEPRIMA</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div>
-            <div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div>
-          </div>
-          <div>
-            <div class="progress-label">💒 SERVIZIO</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
-            <div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div>
-          </div>
-        </div>`;
+      progressHtml = `<div class="progress-row">
+        <div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div>
+        <div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
+      </div>`;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type);
       progressHtml = '<div class="progress-row">';
@@ -660,58 +645,42 @@ function renderServices(data = services) {
         const done = countDone(secSteps, STEPS);
         const pct = Math.round((done / STEPS.length) * 100);
         const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
-        progressHtml += `
-          <div>
-            <div class="progress-label">${getSectionEmoji(secName)} ${secName.toUpperCase()}</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div>
-            <div class="progress-text">${done}/${STEPS.length} (${pct}%)</div>
-          </div>`;
+        progressHtml += `<div><div class="progress-label">${getSectionEmoji(secName)} ${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`;
       });
       progressHtml += '</div>';
     } else {
       const serviceDone = countDone(s.steps, STEPS);
       const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-      progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
-        <div class="progress-text">Avanzamento: ${serviceDone}/${STEPS.length} (${servicePct}%)</div>`;
+      progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">Avanzamento: ${serviceDone}/${STEPS.length} (${servicePct}%)</div>`;
     }
-    
-    return `
-      <div class="card">
-        <div class="card-header" onclick="toggleSteps(${s.id})">
-          <div class="client-info">
-            <div class="client-name">${s.client}</div>
-            <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
-            ${videoInfo}
-          </div>
-          <div class="service-badge" style="background:${color}">${s.type}</div>
-        </div>
-        ${progressHtml}
-        <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
-        <div class="card-footer">
-          <button class="btn-view" onclick="viewService(${s.id})">️ Visualizza</button>
-          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
-          <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
-          <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
-        </div>
-      </div>`;
+    return `<div class="card">
+      <div class="card-header" onclick="toggleSteps(${s.id})">
+        <div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>${videoInfo}</div>
+        <div class="service-badge" style="background:${color}">${s.type}</div>
+      </div>
+      ${progressHtml}
+      <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
+      <div class="card-footer">
+        <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
+        <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
+        <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
+        <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
+      </div>
+    </div>`;
   }).join("");
 }
 
 function getSectionEmoji(name) {
-  const map = { "Maternity": "🤰", "New Born": "🍼", "Family": "👨👩‍👧" };
+  const map = { "Maternity": "🤰", "New Born": "", "Family": "👨‍‍👧" };
   return map[name] || "📋";
 }
 
 function renderSteps(s) {
   let html = '';
-  
-  // Anteprima
   if (isPreviewType(s.type)) {
-    html += `<div class="section-title preview">🎬 ANTEPRIMA</div>`;
+    html += `<div class="section-title preview"> ANTEPRIMA</div>`;
     html += STEPS_PREVIEW.map(st => renderStepRow(s, st, 'preview')).join('');
   }
-  
-  // Combo multi-sezione
   if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
     sections.forEach(secName => {
@@ -720,12 +689,9 @@ function renderSteps(s) {
     });
     return html;
   }
-  
-  // Servizio singolo
   const serviceTitle = isPreviewType(s.type) ? '💒 SERVIZIO (' + s.type.replace("Anteprima + ", "") + ')' : '📋 WORKFLOW SERVIZIO';
   html += `<div class="section-title service">${serviceTitle}</div>`;
   html += STEPS.map(st => renderStepRow(s, st, 'service')).join('');
-  
   return html;
 }
 
@@ -738,33 +704,14 @@ function renderStepRow(s, st, section) {
       const currentVal = d.extra?.archivedBy || "G&LStudio";
       const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
       const displayVal = isAltro ? currentVal : "";
-      extraHtml = `
-        <div class="step-extra">
-          <select onchange="handleArchiveByChange(${s.id}, '${st.id}', this.value, '${section}')">
-            ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
-          </select>
-          ${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value,'${section}')">` : ''}
-        </div>`;
+      extraHtml = `<div class="step-extra"><select onchange="handleArchiveByChange(${s.id}, '${st.id}', this.value, '${section}')">${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}</select>${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value,'${section}')">` : ''}</div>`;
     } else if (st.extraType === "cover") {
-      extraHtml = `
-        <div class="step-extra">
-          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value,'${section}')">
-          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value,'${section}')">
-        </div>`;
+      extraHtml = `<div class="step-extra"><input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value,'${section}')"><input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value,'${section}')"></div>`;
     } else if (st.extraLabel) {
-      extraHtml = `
-        <div class="step-extra">
-          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value,'${section}')" style="flex:2;">
-        </div>`;
+      extraHtml = `<div class="step-extra"><input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value,'${section}')" style="flex:2;"></div>`;
     }
   }
-  return `
-    <div class="step ${d.done ? 'done' : ''}">
-      <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked,'${section}')">
-      <div class="step-label">${st.label}</div>
-      <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value,'${section}')">
-      ${extraHtml}
-    </div>`;
+  return `<div class="step ${d.done ? 'done' : ''}"><input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked,'${section}')"><div class="step-label">${st.label}</div><input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value,'${section}')">${extraHtml}</div>`;
 }
 
 function renderComboStepRow(s, st, sectionName) {
@@ -776,33 +723,14 @@ function renderComboStepRow(s, st, sectionName) {
       const currentVal = d.extra?.archivedBy || "G&LStudio";
       const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
       const displayVal = isAltro ? currentVal : "";
-      extraHtml = `
-        <div class="step-extra">
-          <select onchange="handleComboArchiveByChange(${s.id}, '${sectionName}', '${st.id}', this.value)">
-            ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
-          </select>
-          ${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','archivedBy',this.value)">` : ''}
-        </div>`;
+      extraHtml = `<div class="step-extra"><select onchange="handleComboArchiveByChange(${s.id}, '${sectionName}', '${st.id}', this.value)">${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}</select>${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','archivedBy',this.value)">` : ''}</div>`;
     } else if (st.extraType === "cover") {
-      extraHtml = `
-        <div class="step-extra">
-          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','supplier',this.value)">
-          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','article',this.value)">
-        </div>`;
+      extraHtml = `<div class="step-extra"><input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','supplier',this.value)"><input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','article',this.value)"></div>`;
     } else if (st.extraLabel) {
-      extraHtml = `
-        <div class="step-extra">
-          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','luogo',this.value)" style="flex:2;">
-        </div>`;
+      extraHtml = `<div class="step-extra"><input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateComboExtra(${s.id},'${sectionName}','${st.id}','luogo',this.value)" style="flex:2;"></div>`;
     }
   }
-  return `
-    <div class="step ${d.done ? 'done' : ''}">
-      <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleComboStep(${s.id},'${sectionName}','${st.id}',this.checked)">
-      <div class="step-label">${st.label}</div>
-      <input type="date" value="${d.date || ''}" onchange="updateComboDate(${s.id},'${sectionName}','${st.id}',this.value)">
-      ${extraHtml}
-    </div>`;
+  return `<div class="step ${d.done ? 'done' : ''}"><input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleComboStep(${s.id},'${sectionName}','${st.id}',this.checked)"><div class="step-label">${st.label}</div><input type="date" value="${d.date || ''}" onchange="updateComboDate(${s.id},'${sectionName}','${st.id}',this.value)">${extraHtml}</div>`;
 }
 
 function handleArchiveByChange(serviceId, stepId, value, section) {
@@ -811,11 +739,9 @@ function handleArchiveByChange(serviceId, stepId, value, section) {
   const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
   stepsObj[stepId].extra = stepsObj[stepId].extra || {};
   stepsObj[stepId].extra.archivedBy = value;
-  save();
-  renderServices();
+  save(); renderServices();
   document.getElementById("steps-" + serviceId).classList.add("open");
 }
-
 function handleComboArchiveByChange(serviceId, sectionName, stepId, value) {
   const s = services.find(x => x.id === serviceId);
   if (value === "__altro__") return;
@@ -823,14 +749,11 @@ function handleComboArchiveByChange(serviceId, sectionName, stepId, value) {
   if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
   s.sections[sectionName][stepId].extra = s.sections[sectionName][stepId].extra || {};
   s.sections[sectionName][stepId].extra.archivedBy = value;
-  save();
-  renderServices();
+  save(); renderServices();
   document.getElementById("steps-" + serviceId).classList.add("open");
 }
 
-function toggleSteps(id) {
-  document.getElementById("steps-" + id).classList.toggle("open");
-}
+function toggleSteps(id) { document.getElementById("steps-" + id).classList.toggle("open"); }
 function toggleStep(id, stepId, checked, section) {
   const s = services.find(x => x.id === id);
   const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
@@ -843,69 +766,52 @@ function toggleStep(id, stepId, checked, section) {
   document.getElementById("steps-" + id).classList.add("open");
   renderTable();
 }
-
 function toggleComboStep(serviceId, sectionName, stepId, checked) {
   const s = services.find(x => x.id === serviceId);
   if (!s.sections[sectionName]) s.sections[sectionName] = {};
   if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
   s.sections[sectionName][stepId].done = checked;
-  if (checked && !s.sections[sectionName][stepId].date) {
-    s.sections[sectionName][stepId].date = new Date().toISOString().slice(0,10);
-  }
-  if (stepId === "archiveVideo" && !s.sections[sectionName][stepId].extra.archivedBy) {
-    s.sections[sectionName][stepId].extra.archivedBy = "G&LStudio";
-  }
+  if (checked && !s.sections[sectionName][stepId].date) s.sections[sectionName][stepId].date = new Date().toISOString().slice(0,10);
+  if (stepId === "archiveVideo" && !s.sections[sectionName][stepId].extra.archivedBy) s.sections[sectionName][stepId].extra.archivedBy = "G&LStudio";
   save(); renderServices();
   document.getElementById("steps-" + serviceId).classList.add("open");
   renderTable();
 }
-
 function updateDate(id, stepId, val, section) {
   const s = services.find(x => x.id === id);
   const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
-  stepsObj[stepId].date = val;
-  save();
+  stepsObj[stepId].date = val; save();
 }
 function updateComboDate(serviceId, sectionName, stepId, val) {
   const s = services.find(x => x.id === serviceId);
   if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
-  s.sections[sectionName][stepId].date = val;
-  save();
+  s.sections[sectionName][stepId].date = val; save();
 }
 function updateExtra(id, stepId, field, val, section) {
   const s = services.find(x => x.id === id);
   const stepsObj = section === 'preview' ? (s.previewSteps || {}) : s.steps;
   if (!stepsObj[stepId].extra) stepsObj[stepId].extra = {};
-  stepsObj[stepId].extra[field] = val;
-  save();
+  stepsObj[stepId].extra[field] = val; save();
 }
 function updateComboExtra(serviceId, sectionName, stepId, field, val) {
   const s = services.find(x => x.id === serviceId);
   if (!s.sections[sectionName][stepId]) s.sections[sectionName][stepId] = { done: false, date: "", extra: {} };
   if (!s.sections[sectionName][stepId].extra) s.sections[sectionName][stepId].extra = {};
-  s.sections[sectionName][stepId].extra[field] = val;
-  save();
+  s.sections[sectionName][stepId].extra[field] = val; save();
 }
-
 function deleteService(id) {
   if (!confirm("Eliminare questo servizio?")) return;
   services = services.filter(x => x.id !== id);
-  save(); renderServices();
-  renderTable();
+  save(); renderServices(); renderTable();
 }
-function save() {
-  localStorage.setItem("gl_services", JSON.stringify(services));
-}
+function save() { localStorage.setItem("gl_services", JSON.stringify(services)); }
 
 function viewService(id) {
   const s = services.find(x => x.id === id);
-  let html = `
-    <div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
-    <div class="detail-row"><div class="detail-label"> Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
-    <div class="detail-row"><div class="detail-label"> Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
-    <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>
-  `;
-  
+  let html = `<div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
+    <div class="detail-row"><div class="detail-label">📋 Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
+    <div class="detail-row"><div class="detail-label">📅 Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
+    <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>`;
   if (isPreviewType(s.type)) {
     const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
     const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
@@ -913,18 +819,10 @@ function viewService(id) {
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
     html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label">🎬 Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
     html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
-    
     html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">🎬 ANTEPRIMA</h3>`;
-    STEPS_PREVIEW.forEach(st => {
-      const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} };
-      html += renderStepDetail(st, d);
-    });
-    
+    STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
     html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
-    STEPS.forEach(st => {
-      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-      html += renderStepDetail(st, d);
-    });
+    STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   } else if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
     sections.forEach(secName => {
@@ -934,27 +832,19 @@ function viewService(id) {
       const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
       html += `<div class="detail-row" style="background: ${secColor};"><div class="detail-label">${getSectionEmoji(secName)} Avanzamento ${secName}</div><div class="detail-value">${done}/${STEPS.length} completati (${pct}%)</div></div>`;
     });
-    
     sections.forEach(secName => {
       const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
       html += `<h3 style="margin:20px 0 10px; padding:10px; background: ${secColor}; color: white; border-radius: 10px;">${getSectionEmoji(secName)} ${secName.toUpperCase()}</h3>`;
       const secSteps = s.sections?.[secName] || {};
-      STEPS.forEach(st => {
-        const d = secSteps[st.id] || { done: false, date: "", extra: {} };
-        html += renderStepDetail(st, d);
-      });
+      STEPS.forEach(st => { const d = secSteps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
     });
   } else {
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    html += `<div class="detail-row"><div class="detail-label"> Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
     html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
-    STEPS.forEach(st => {
-      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-      html += renderStepDetail(st, d);
-    });
+    STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   }
-  
   document.getElementById("detailTitle").textContent = `📋 ${s.client} - ${s.type}`;
   document.getElementById("detailBody").innerHTML = html;
   document.getElementById("detailModal").classList.add("active");
@@ -970,10 +860,7 @@ function renderStepDetail(st, d) {
     if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
   }
   if (st.extraLabel && d.extra?.luogo) extraInfo.push(`Luogo: ${d.extra.luogo}`);
-  return `<div class="step-detail ${d.done ? 'completed' : ''}">
-    <div class="step-name">${status} ${st.label}${dateStr}</div>
-    ${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}
-  </div>`;
+  return `<div class="step-detail ${d.done ? 'completed' : ''}"><div class="step-name">${status} ${st.label}${dateStr}</div>${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}</div>`;
 }
 
 function editService(id) {
@@ -993,30 +880,11 @@ function saveEdit() {
   s.type = document.getElementById("editType").value;
   s.date = document.getElementById("editDate").value;
   s.videographer = document.getElementById("editVideographer").value.trim();
-  
-  if (isPreviewType(s.type) && !s.previewSteps) {
-    s.previewSteps = {};
-    STEPS_PREVIEW.forEach(st => s.previewSteps[st.id] = { done: false, date: "", extra: {} });
-  }
-  if (!isPreviewType(s.type) && isPreviewType(oldType)) {
-    delete s.previewSteps;
-  }
-  
-  if (isComboType(s.type) && !s.sections) {
-    s.sections = {};
-    COMBO_TYPES[s.type].forEach(secName => {
-      s.sections[secName] = {};
-      STEPS.forEach(st => s.sections[secName][st.id] = { done: false, date: "", extra: {} });
-    });
-  }
-  if (!isComboType(s.type) && isComboType(oldType)) {
-    delete s.sections;
-  }
-  
-  save();
-  closeModal('editModal');
-  renderServices();
-  renderTable();
+  if (isPreviewType(s.type) && !s.previewSteps) { s.previewSteps = {}; STEPS_PREVIEW.forEach(st => s.previewSteps[st.id] = { done: false, date: "", extra: {} }); }
+  if (!isPreviewType(s.type) && isPreviewType(oldType)) delete s.previewSteps;
+  if (isComboType(s.type) && !s.sections) { s.sections = {}; COMBO_TYPES[s.type].forEach(secName => { s.sections[secName] = {}; STEPS.forEach(st => s.sections[secName][st.id] = { done: false, date: "", extra: {} }); }); }
+  if (!isComboType(s.type) && isComboType(oldType)) delete s.sections;
+  save(); closeModal('editModal'); renderServices(); renderTable();
 }
 
 async function generatePDF(id) {
@@ -1026,78 +894,42 @@ async function generatePDF(id) {
   doc.setFillColor(102, 126, 234);
   doc.rect(0, 0, 210, 40, 'F');
   doc.setTextColor(255, 255, 255);
-  doc.setFontSize(24);
-  doc.text("G&LStudio", 15, 20);
-  doc.setFontSize(12);
-  doc.text("Workflow Foto & Video", 15, 28);
-  doc.setTextColor(0, 0, 0);
-  doc.setFontSize(14);
+  doc.setFontSize(24); doc.text("G&LStudio", 15, 20);
+  doc.setFontSize(12); doc.text("Workflow Foto & Video", 15, 28);
+  doc.setTextColor(0, 0, 0); doc.setFontSize(14);
   doc.text(`Cliente: ${s.client}`, 15, 55);
   doc.text(`Tipo: ${s.type}`, 15, 63);
   doc.text(`Data Evento: ${s.date || 'N/D'}`, 15, 71);
   doc.text(`Videografo: ${s.videographer || 'N/D'}`, 15, 79);
-  
   let y = 92;
-  
   if (isPreviewType(s.type)) {
-    doc.setFillColor(255, 215, 0);
-    doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.text("🎬 ANTEPRIMA", 20, y);
-    y += 8;
-    STEPS_PREVIEW.forEach(st => {
-      const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} };
-      y = renderPDFStep(doc, st, d, y);
-    });
+    doc.setFillColor(255, 215, 0); doc.rect(15, y - 5, 180, 8, 'F');
+    doc.setTextColor(0, 0, 0); doc.setFontSize(12); doc.text("🎬 ANTEPRIMA", 20, y); y += 8;
+    STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
     y += 5;
-    
-    doc.setFillColor(102, 126, 234);
-    doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(12);
-    doc.text("💒 SERVIZIO", 20, y);
-    doc.setTextColor(0, 0, 0);
-    y += 8;
-    STEPS.forEach(st => {
-      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-      y = renderPDFStep(doc, st, d, y);
-    });
+    doc.setFillColor(102, 126, 234); doc.rect(15, y - 5, 180, 8, 'F');
+    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text("💒 SERVIZIO", 20, y);
+    doc.setTextColor(0, 0, 0); y += 8;
+    STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
   } else if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
     sections.forEach(secName => {
       const secColor = SECTION_COLORS[secName]?.hex || '#667eea';
       const rgb = hexToRgb(secColor);
-      doc.setFillColor(rgb.r, rgb.g, rgb.b);
-      doc.rect(15, y - 5, 180, 8, 'F');
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(12);
-      doc.text(`${getSectionEmoji(secName)} ${secName.toUpperCase()}`, 20, y);
-      doc.setTextColor(0, 0, 0);
-      y += 8;
+      doc.setFillColor(rgb.r, rgb.g, rgb.b); doc.rect(15, y - 5, 180, 8, 'F');
+      doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text(`${getSectionEmoji(secName)} ${secName.toUpperCase()}`, 20, y);
+      doc.setTextColor(0, 0, 0); y += 8;
       const secSteps = s.sections?.[secName] || {};
-      STEPS.forEach(st => {
-        const d = secSteps[st.id] || { done: false, date: "", extra: {} };
-        y = renderPDFStep(doc, st, d, y);
-      });
+      STEPS.forEach(st => { const d = secSteps[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
       y += 5;
     });
   } else {
-    doc.setFillColor(102, 126, 234);
-    doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(12);
-    doc.text("💒 SERVIZIO", 20, y);
-    doc.setTextColor(0, 0, 0);
-    y += 8;
-    STEPS.forEach(st => {
-      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-      y = renderPDFStep(doc, st, d, y);
-    });
+    doc.setFillColor(102, 126, 234); doc.rect(15, y - 5, 180, 8, 'F');
+    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text("💒 SERVIZIO", 20, y);
+    doc.setTextColor(0, 0, 0); y += 8;
+    STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
   }
-  
-  doc.setFontSize(10);
-  doc.setTextColor(150, 150, 150);
+  doc.setFontSize(10); doc.setTextColor(150, 150, 150);
   doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')}`, 15, 285);
   doc.save(`G&LStudio_${s.client.replace(/\s+/g, '_')}_${s.type.replace(/\s+/g, '_')}.pdf`);
 }
@@ -1105,59 +937,28 @@ async function generatePDF(id) {
 function renderPDFStep(doc, st, d, y) {
   const status = d.done ? "[X]" : "[ ]";
   const dateStr = d.date ? ` - ${d.date}` : '';
-  doc.text(`${status} ${st.label}${dateStr}`, 20, y);
-  y += 7;
+  doc.text(`${status} ${st.label}${dateStr}`, 20, y); y += 7;
   const extra = getExtraText(st, d);
-  if (extra) {
-    doc.setTextColor(100, 100, 100);
-    doc.text(`    → ${extra}`, 20, y);
-    doc.setTextColor(0, 0, 0);
-    y += 7;
-  }
+  if (extra) { doc.setTextColor(100, 100, 100); doc.text(`    → ${extra}`, 20, y); doc.setTextColor(0, 0, 0); y += 7; }
   if (y > 270) { doc.addPage(); y = 20; }
   return y;
 }
-
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : { r: 102, g: 126, b: 234 };
+  return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : { r: 102, g: 126, b: 234 };
 }
-
 function getExtraText(st, d) {
   const extra = [];
   if (st.extraType === "archivedBy" && d.extra?.archivedBy) extra.push(`Archiviato da: ${d.extra.archivedBy}`);
-  if (st.extraType === "cover") {
-    if (d.extra?.supplier) extra.push(`Fornitore: ${d.extra.supplier}`);
-    if (d.extra?.article) extra.push(`Articolo: ${d.extra.article}`);
-  }
+  if (st.extraType === "cover") { if (d.extra?.supplier) extra.push(`Fornitore: ${d.extra.supplier}`); if (d.extra?.article) extra.push(`Articolo: ${d.extra.article}`); }
   if (st.extraLabel && d.extra?.luogo) extra.push(`Luogo: ${d.extra.luogo}`);
   return extra.join(' | ');
 }
 
-function showArchive() {
-  document.getElementById("servicesList").style.display = "none";
-  document.getElementById("tableView").style.display = "none";
-  document.getElementById("newService").classList.remove("open");
-  document.getElementById("archiveView").style.display = "block";
-  filterServices();
-}
-function showTable() {
-  document.getElementById("servicesList").style.display = "none";
-  document.getElementById("archiveView").style.display = "none";
-  document.getElementById("newService").classList.remove("open");
-  document.getElementById("tableView").style.display = "block";
-  renderTable();
-}
-function showMain() {
-  document.getElementById("archiveView").style.display = "none";
-  document.getElementById("tableView").style.display = "none";
-  document.getElementById("servicesList").style.display = "block";
-  renderServices();
-}
+function showArchive() { document.getElementById("servicesList").style.display = "none"; document.getElementById("tableView").style.display = "none"; document.getElementById("newService").classList.remove("open"); document.getElementById("archiveView").style.display = "block"; filterServices(); }
+function showTable() { document.getElementById("servicesList").style.display = "none"; document.getElementById("archiveView").style.display = "none"; document.getElementById("newService").classList.remove("open"); document.getElementById("tableView").style.display = "block"; renderTable(); }
+function showMain() { document.getElementById("archiveView").style.display = "none"; document.getElementById("tableView").style.display = "none"; document.getElementById("servicesList").style.display = "block"; renderServices(); }
+
 function filterServices() {
   const search = document.getElementById("searchBox").value.toLowerCase();
   const type = document.getElementById("filterType").value;
@@ -1165,104 +966,45 @@ function filterServices() {
   if (search) filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || (s.videographer || '').toLowerCase().includes(search));
   if (type) filtered = filtered.filter(s => s.type === type);
   const list = document.getElementById("archiveList");
-  if (filtered.length === 0) {
-    list.innerHTML = '<div class="empty">Nessun servizio trovato</div>';
-    return;
-  }
+  if (filtered.length === 0) { list.innerHTML = '<div class="empty">Nessun servizio trovato</div>'; return; }
   list.innerHTML = filtered.map(s => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
-    const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
-    
+    const videoInfo = s.videographer ? `<div class="videographer-info"> Videografo: ${s.videographer}</div>` : '';
     let progressHtml = '';
     if (isPreviewType(s.type)) {
-      const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
-      const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
-      const serviceDone = countDone(s.steps, STEPS);
-      const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-      progressHtml = `
-        <div class="progress-row">
-          <div>
-            <div class="progress-label">🎬 ANTEPRIMA</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div>
-            <div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div>
-          </div>
-          <div>
-            <div class="progress-label">💒 SERVIZIO</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
-            <div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div>
-          </div>
-        </div>`;
+      const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW); const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
+      const serviceDone = countDone(s.steps, STEPS); const servicePct = Math.round((serviceDone / STEPS.length) * 100);
+      progressHtml = `<div class="progress-row"><div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div><div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div></div>`;
     } else if (isComboType(s.type)) {
-      const sections = getComboSections(s.type);
-      progressHtml = '<div class="progress-row">';
-      sections.forEach(secName => {
-        const secSteps = s.sections?.[secName] || {};
-        const done = countDone(secSteps, STEPS);
-        const pct = Math.round((done / STEPS.length) * 100);
-        const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
-        progressHtml += `
-          <div>
-            <div class="progress-label">${getSectionEmoji(secName)} ${secName}</div>
-            <div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div>
-            <div class="progress-text">${done}/${STEPS.length} (${pct}%)</div>
-          </div>`;
-      });
+      const sections = getComboSections(s.type); progressHtml = '<div class="progress-row">';
+      sections.forEach(secName => { const secSteps = s.sections?.[secName] || {}; const done = countDone(secSteps, STEPS); const pct = Math.round((done / STEPS.length) * 100); const secColor = SECTION_COLORS[secName]?.bg || '#667eea'; progressHtml += `<div><div class="progress-label">${getSectionEmoji(secName)} ${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`; });
       progressHtml += '</div>';
-    } else {
-      const serviceDone = countDone(s.steps, STEPS);
-      const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-      progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div>
-        <div class="progress-text">Completamento: ${servicePct}%</div>`;
-    }
-    
-    return `
-      <div class="card">
-        <div class="card-header">
-          <div class="client-info">
-            <div class="client-name">${s.client}</div>
-            <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
-            ${videoInfo}
-          </div>
-          <div class="service-badge" style="background:${color}">${s.type}</div>
-        </div>
-        ${progressHtml}
-        <div class="card-footer">
-          <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
-          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
-          <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
-        </div>
-      </div>`;
+    } else { const serviceDone = countDone(s.steps, STEPS); const servicePct = Math.round((serviceDone / STEPS.length) * 100); progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">Completamento: ${servicePct}%</div>`; }
+    return `<div class="card"><div class="card-header"><div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>${videoInfo}</div><div class="service-badge" style="background:${color}">${s.type}</div></div>${progressHtml}<div class="card-footer"><button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button><button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button><button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button></div></div>`;
   }).join("");
 }
 
 function renderTable() {
   const search = (document.getElementById("tableSearch")?.value || "").toLowerCase();
   let filtered = services;
-  if (search) {
-    filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || s.type.toLowerCase().includes(search) || (s.videographer || '').toLowerCase().includes(search));
-  }
+  if (search) filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || s.type.toLowerCase().includes(search) || (s.videographer || '').toLowerCase().includes(search));
   const table = document.getElementById("workflowTable");
-  if (filtered.length === 0) {
-    table.innerHTML = '<tr><td colspan="100%" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
-    return;
-  }
+  if (filtered.length === 0) { table.innerHTML = '<tr><td colspan="100%" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>'; return; }
   
   const hasPreview = filtered.some(s => isPreviewType(s.type));
   const hasCombo = filtered.some(s => isComboType(s.type));
   
   let thead = '<thead><tr>';
   thead += '<th>Cliente</th><th>Tipo</th><th>Data</th><th>Videografo</th>';
-  if (hasPreview) thead += '<th style="background: linear-gradient(45deg, #ffd700, #ffb347);">🎬 Anteprima</th>';
+  if (hasPreview) thead += '<th style="background:#ffd700;color:#333;">🎬Anteprima</th>';
   if (hasCombo) {
     const allSections = new Set();
     filtered.forEach(s => { if (isComboType(s.type)) getComboSections(s.type).forEach(sec => allSections.add(sec)); });
-    allSections.forEach(sec => {
-      const secColor = SECTION_COLORS[sec]?.bg || '#667eea';
-      thead += `<th style="background: ${secColor};">${getSectionEmoji(sec)} ${sec}</th>`;
-    });
+    allSections.forEach(sec => { thead += `<th style="background:${SECTION_COLORS[sec]?.hex || '#667eea'};color:white;">${getSectionEmoji(sec)}${sec}</th>`; });
   }
-  thead += '<th>💒 Servizio</th>';
-  thead += '<th>Azioni</th></tr></thead>';
+  // Step columns - tutte su una riga
+  STEPS.forEach(st => { thead += `<th title="${st.label}" style="font-size:0.75em;">${st.short}</th>`; });
+  thead += '<th>Stato</th><th>Azioni</th></tr></thead>';
   
   let tbody = '<tbody>';
   filtered.forEach(s => {
@@ -1274,13 +1016,11 @@ function renderTable() {
     tbody += `<td><span class="badge-cell" style="background:${color}">${s.type}</span></td>`;
     tbody += `<td>${s.date || '-'}</td>`;
     tbody += `<td>${s.videographer || '-'}</td>`;
-    
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
       const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
-      tbody += `<td><span class="summary-badge" style="background: linear-gradient(45deg, #ffd700, #ffb347);">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</span></td>`;
+      tbody += `<td><span class="summary-badge" style="background: linear-gradient(90deg, #ffd700, #ffb347);">${previewPct}%</span></td>`;
     }
-    
     if (isComboType(s.type)) {
       const allSections = new Set();
       filtered.forEach(x => { if (isComboType(x.type)) getComboSections(x.type).forEach(sec => allSections.add(sec)); });
@@ -1289,23 +1029,31 @@ function renderTable() {
           const secSteps = s.sections?.[sec] || {};
           const done = countDone(secSteps, STEPS);
           const pct = Math.round((done / STEPS.length) * 100);
-          const secColor = SECTION_COLORS[sec]?.bg || '#667eea';
-          tbody += `<td><span class="summary-badge" style="background: ${secColor};">${done}/${STEPS.length} (${pct}%)</span></td>`;
-        } else {
-          tbody += `<td>-</td>`;
-        }
+          tbody += `<td><span class="summary-badge" style="background:${SECTION_COLORS[sec]?.hex || '#667eea'};">${pct}%</span></td>`;
+        } else { tbody += `<td style="color:#ccc;">-</td>`; }
       });
     }
-    
-    tbody += `<td><span class="summary-badge" style="background: linear-gradient(45deg, #667eea, #764ba2);">${serviceDone}/${STEPS.length} (${servicePct}%)</span></td>`;
-    tbody += `<td>
-      <div class="cell-actions">
-        <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
-        <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
-        <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
-        <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
-      </div>
-    </td>`;
+    // Step cells - checkbox + date su una riga
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+      const cellClass = d.done ? 'cell-done' : '';
+      let extraInput = "";
+      if (st.extra) {
+        if (st.extraType === "archivedBy") {
+          const currentVal = d.extra?.archivedBy || "G&LStudio";
+          const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
+          const displayVal = isAltro ? currentVal : "";
+          extraInput = `<select onchange="handleArchiveByChange(${s.id},'${st.id}',this.value,'service');renderTable();">${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}</select>${isAltro ? `<input type="text" placeholder="Nome..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value,'service');renderTable();" style="width:70px;">` : ''}`;
+        } else if (st.extraType === "cover") {
+          extraInput = `<input type="text" placeholder="Forn." value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value,'service');renderTable();" style="width:60px;">`;
+        } else if (st.extraLabel) {
+          extraInput = `<input type="text" placeholder="Dove..." value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value,'service');renderTable();" style="width:70px;">`;
+        }
+      }
+      tbody += `<td class="${cellClass}"><div class="cell-step"><input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked,'service');renderTable();"><input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value,'service');renderTable();">${extraInput}</div></td>`;
+    });
+    tbody += `<td><span class="summary-badge" style="background: linear-gradient(90deg, #43e97b, #38f9d7);">${servicePct}%</span></td>`;
+    tbody += `<td><div class="cell-actions"><button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">️</button><button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button><button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button><button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button></div></td>`;
     tbody += '</tr>';
   });
   tbody += '</tbody>';
@@ -1320,19 +1068,17 @@ function generateTablePDF() {
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(20);
   doc.text("G&LStudio - Tabella Workflow Clienti", 14, 16);
-  
   const hasPreview = services.some(s => isPreviewType(s.type));
   const hasCombo = services.some(s => isComboType(s.type));
-  
   const head = [['Cliente', 'Tipo', 'Data', 'Videografo']];
-  if (hasPreview) head[0].push(' Anteprima');
+  if (hasPreview) head[0].push('🎬 Anteprima');
   if (hasCombo) {
     const allSections = new Set();
     services.forEach(s => { if (isComboType(s.type)) getComboSections(s.type).forEach(sec => allSections.add(sec)); });
     allSections.forEach(sec => head[0].push(`${getSectionEmoji(sec)} ${sec}`));
   }
-  head[0].push('💒 Servizio');
-  
+  STEPS.forEach(st => head[0].push(st.short));
+  head[0].push('Stato');
   const body = services.map(s => {
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
@@ -1340,7 +1086,7 @@ function generateTablePDF() {
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
       const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
-      row.push(`${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)`);
+      row.push(`${previewPct}%`);
     }
     if (isComboType(s.type)) {
       const allSections = new Set();
@@ -1350,32 +1096,32 @@ function generateTablePDF() {
           const secSteps = s.sections?.[sec] || {};
           const done = countDone(secSteps, STEPS);
           const pct = Math.round((done / STEPS.length) * 100);
-          row.push(`${done}/${STEPS.length} (${pct}%)`);
-        } else {
-          row.push('-');
-        }
+          row.push(`${pct}%`);
+        } else { row.push('-'); }
       });
     }
-    row.push(`${serviceDone}/${STEPS.length} (${servicePct}%)`);
+    STEPS.forEach(st => {
+      const d = s.steps[st.id] || { done: false, date: "" };
+      row.push(d.done ? (d.date || '✓') : '-');
+    });
+    row.push(`${servicePct}%`);
     return row;
   });
-  
   doc.autoTable({
     startY: 30,
     head: head,
     body: body,
     theme: 'grid',
-    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 7, halign: 'center' },
-    bodyStyles: { fontSize: 7, cellPadding: 2 },
+    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 6, halign: 'center' },
+    bodyStyles: { fontSize: 6, cellPadding: 1.5 },
     columnStyles: {
-      0: { cellWidth: 35 },
-      1: { cellWidth: 30, halign: 'center' },
-      2: { cellWidth: 22, halign: 'center' },
-      3: { cellWidth: 25 },
+      0: { cellWidth: 30 },
+      1: { cellWidth: 25, halign: 'center' },
+      2: { cellWidth: 18, halign: 'center' },
+      3: { cellWidth: 22 },
     },
     alternateRowStyles: { fillColor: [240, 245, 255] }
   });
-  
   const pageCount = doc.internal.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
@@ -1387,7 +1133,7 @@ function generateTablePDF() {
 }
 
 function doBackup() {
-  const data = { version: 8, exportedAt: new Date().toISOString(), services };
+  const data = { version: 9, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -1412,10 +1158,7 @@ function doRestore(e) {
   e.target.value = "";
 }
 
-function closeModal(id) {
-  document.getElementById(id).classList.remove("active");
-  editingId = null;
-}
+function closeModal(id) { document.getElementById(id).classList.remove("active"); editingId = null; }
 document.getElementById("loginPass").addEventListener("keypress", e => { if (e.key === "Enter") doLogin(); });
 </script>
 </body>
