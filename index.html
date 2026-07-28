@@ -120,9 +120,13 @@
   .step input[type=text] {
     padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9em; width: 180px;
   }
+  .step select {
+    padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9em;
+    background: white; cursor: pointer;
+  }
   .step.done .step-label { text-decoration: line-through; color: #888; }
   .step-extra { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; width: 100%; padding-left: 34px; }
-  .step-extra input { flex: 1; min-width: 150px; }
+  .step-extra input, .step-extra select { flex: 1; min-width: 150px; }
   .card-footer {
     margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px;
     padding-top: 15px; border-top: 1px dashed #ddd; flex-wrap: wrap;
@@ -241,6 +245,10 @@
   .cell-step input[type=text] {
     font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 110px;
   }
+  .cell-step select {
+    font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 110px;
+    background: white;
+  }
   .cell-done { background: linear-gradient(90deg, #e0ffe0, #f0fff0) !important; }
   .cell-actions {
     display: flex; gap: 5px; justify-content: center; flex-wrap: wrap;
@@ -309,11 +317,11 @@
       </div>
       <div class="form-row">
         <input type="date" id="inputDate">
-        <input type="text" id="inputVideographer" placeholder=" Videografo (nome)">
+        <input type="text" id="inputVideographer" placeholder=" Videografo/Collega (nome)">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="toggleNewService()">Annulla</button>
-        <button class="btn-save" onclick="saveService()">Salva</button>
+        <button class="btn-save" onclick="saveService()"> Salva</button>
       </div>
     </div>
 
@@ -344,7 +352,7 @@
     <div id="tableView" style="display:none;">
       <div class="table-container">
         <div class="table-header">
-          <h2> Tabella Clienti — Workflow Completo</h2>
+          <h2>📊 Tabella Clienti — Workflow Completo</h2>
           <div class="table-toolbar">
             <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca..." oninput="renderTable()" style="min-width:200px;">
             <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
@@ -395,11 +403,11 @@
       </div>
       <div class="form-row">
         <input type="date" id="editDate">
-        <input type="text" id="editVideographer" placeholder="🎥 Videografo">
+        <input type="text" id="editVideographer" placeholder="🎥 Videografo/Collega">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
-        <button class="btn-save" onclick="saveEdit()"> Salva Modifiche</button>
+        <button class="btn-save" onclick="saveEdit()">💾 Salva Modifiche</button>
       </div>
     </div>
   </div>
@@ -411,15 +419,15 @@ const PASS = "12763Mlg";
 
 const STEPS = [
   { id: "download",    label: "📥 Download schede", short: "📥" },
-  { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
+  { id: "backupAB",    label: " Archiviazione HD A/B", short: "", extra: true, extraType: "archivedBy" },
   { id: "backupAltro", label: "💿 Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
   { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
-  { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraLabel: "Fornitore / Articolo" },
+  { id: "selection",   label: " Selezione + Copertina", short: "", extra: true, extraType: "cover" },
   { id: "albumEdit",   label: "🎨 Lavorazione album", short: "🎨" },
   { id: "sendLab",     label: " Invio laboratorio", short: "📤" },
   { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
   { id: "albumClient", label: "🎁 Album al cliente", short: "🎁" },
-  { id: "filesClient", label: " File e video al cliente", short: "" },
+  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
   { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
@@ -500,6 +508,16 @@ function saveService() {
   renderServices();
 }
 
+// Genera opzioni dropdown "Archiviato da"
+function getArchiveByOptions(s) {
+  const options = [`<option value="G&LStudio">G&LStudio</option>`];
+  if (s.videographer && s.videographer.trim()) {
+    options.push(`<option value="${s.videographer}">${s.videographer} (collega)</option>`);
+  }
+  options.push(`<option value="__altro__">️ Altro (scrivi nome)...</option>`);
+  return options.join("");
+}
+
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
@@ -527,7 +545,7 @@ function renderServices(data = services) {
         <div class="card-footer">
           <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
           <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
-          <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
+          <button class="btn-pdf" onclick="generatePDF(${s.id})"> PDF</button>
           <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
         </div>
       </div>`;
@@ -539,16 +557,28 @@ function renderSteps(s) {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
     let extraHtml = "";
     if (st.extra) {
-      if (st.id === "backupAltro") {
+      if (st.extraType === "archivedBy") {
+        // Dropdown "Archiviato da"
+        const currentVal = d.extra?.archivedBy || "G&LStudio";
+        const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
+        const displayVal = isAltro ? currentVal : "";
         extraHtml = `
         <div class="step-extra">
-          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value)" style="flex:2;">
+          <select onchange="handleArchiveByChange(${s.id}, '${st.id}', this.value)">
+            ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
+          </select>
+          ${isAltro ? `<input type="text" placeholder="Nome collega..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value)">` : ''}
         </div>`;
-      } else if (st.id === "selection") {
+      } else if (st.extraType === "cover") {
         extraHtml = `
         <div class="step-extra">
           <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value)">
           <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value)">
+        </div>`;
+      } else if (st.extraLabel) {
+        extraHtml = `
+        <div class="step-extra">
+          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value)" style="flex:2;">
         </div>`;
       }
     }
@@ -562,6 +592,19 @@ function renderSteps(s) {
   }).join("");
 }
 
+function handleArchiveByChange(serviceId, stepId, value) {
+  const s = services.find(x => x.id === serviceId);
+  if (value === "__altro__") {
+    // Non salvare "__altro__", aspetta l'input testo
+    return;
+  }
+  s.steps[stepId].extra = s.steps[stepId].extra || {};
+  s.steps[stepId].extra.archivedBy = value;
+  save();
+  renderServices();
+  document.getElementById("steps-" + serviceId).classList.add("open");
+}
+
 function toggleSteps(id) {
   document.getElementById("steps-" + id).classList.toggle("open");
 }
@@ -569,6 +612,12 @@ function toggleStep(id, stepId, checked) {
   const s = services.find(x => x.id === id);
   s.steps[stepId].done = checked;
   if (checked && !s.steps[stepId].date) s.steps[stepId].date = new Date().toISOString().slice(0,10);
+  // Se è lo step backupAB e non è stato scelto "archiviato da", imposta G&LStudio di default
+  if (stepId === "backupAB" && checked) {
+    if (!s.steps[stepId].extra.archivedBy) {
+      s.steps[stepId].extra.archivedBy = "G&LStudio";
+    }
+  }
   save(); renderServices();
   document.getElementById("steps-" + id).classList.add("open");
   renderTable();
@@ -602,20 +651,23 @@ function viewService(id) {
     <div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
     <div class="detail-row"><div class="detail-label">📋 Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
     <div class="detail-row"><div class="detail-label">📅 Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
-    <div class="detail-row"><div class="detail-label">🎥 Videografo</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>
-    <div class="detail-row"><div class="detail-label"> Avanzamento</div><div class="detail-value">${doneCount}/${STEPS.length} completati (${pct}%)</div></div>
+    <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>
+    <div class="detail-row"><div class="detail-label">📊 Avanzamento</div><div class="detail-value">${doneCount}/${STEPS.length} completati (${pct}%)</div></div>
     <h3 style="margin:20px 0 10px; color:#4a3f8c;">📝 Workflow Steps</h3>
   `;
   STEPS.forEach(st => {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-    const status = d.done ? '✅' : '';
+    const status = d.done ? '✅' : '⏳';
     const dateStr = d.date ? ` - ${d.date}` : '';
     const extraInfo = [];
-    if (st.id === "backupAltro" && d.extra?.luogo) extraInfo.push(`Luogo: ${d.extra.luogo}`);
-    if (st.id === "selection") {
+    if (st.extraType === "archivedBy" && d.extra?.archivedBy) {
+      extraInfo.push(`Archiviato da: ${d.extra.archivedBy}`);
+    }
+    if (st.extraType === "cover") {
       if (d.extra?.supplier) extraInfo.push(`Fornitore: ${d.extra.supplier}`);
       if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
     }
+    if (st.extraLabel && d.extra?.luogo) extraInfo.push(`Luogo: ${d.extra.luogo}`);
     html += `<div class="step-detail ${d.done ? 'completed' : ''}">
       <div class="step-name">${status} ${st.label}${dateStr}</div>
       ${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}
@@ -675,11 +727,12 @@ async function generatePDF(id) {
     doc.text(`${status} ${st.label}${dateStr}`, 20, y);
     y += 8;
     const extra = [];
-    if (st.id === "backupAltro" && d.extra?.luogo) extra.push(`Luogo: ${d.extra.luogo}`);
-    if (st.id === "selection") {
+    if (st.extraType === "archivedBy" && d.extra?.archivedBy) extra.push(`Archiviato da: ${d.extra.archivedBy}`);
+    if (st.extraType === "cover") {
       if (d.extra?.supplier) extra.push(`Fornitore: ${d.extra.supplier}`);
       if (d.extra?.article) extra.push(`Articolo: ${d.extra.article}`);
     }
+    if (st.extraLabel && d.extra?.luogo) extra.push(`Luogo: ${d.extra.luogo}`);
     if (extra.length) {
       doc.setTextColor(100, 100, 100);
       doc.text(`    → ${extra.join(' | ')}`, 20, y);
@@ -735,7 +788,7 @@ function filterServices() {
         <div class="card-header">
           <div class="client-info">
             <div class="client-name">${s.client}</div>
-            <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
+            <div class="client-date">${s.date ? ' ' + s.date : ''}</div>
             ${videoInfo}
           </div>
           <div class="service-badge" style="background:${color}">${s.type}</div>
@@ -744,7 +797,7 @@ function filterServices() {
         <div class="progress-text">Completamento: ${pct}%</div>
         <div class="card-footer">
           <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
-          <button class="btn-edit" onclick="editService(${s.id})">️ Modifica</button>
+          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
           <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
         </div>
       </div>`;
@@ -779,10 +832,20 @@ function renderTable() {
       const cellClass = d.done ? 'cell-done' : '';
       let extraInput = "";
       if (st.extra) {
-        if (st.id === "backupAltro") {
-          extraInput = `<input type="text" placeholder="Dove..." value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value); renderTable();">`;
-        } else if (st.id === "selection") {
+        if (st.extraType === "archivedBy") {
+          const currentVal = d.extra?.archivedBy || "G&LStudio";
+          const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
+          const displayVal = isAltro ? currentVal : "";
+          extraInput = `
+            <select onchange="handleArchiveByChange(${s.id},'${st.id}',this.value); renderTable();">
+              ${getArchiveByOptions(s).replace(`value="${currentVal}"`, `value="${currentVal}" selected`)}
+            </select>
+            ${isAltro ? `<input type="text" placeholder="Nome..." value="${displayVal}" onchange="updateExtra(${s.id},'${st.id}','archivedBy',this.value); renderTable();" style="width:80px;">` : ''}
+          `;
+        } else if (st.extraType === "cover") {
           extraInput = `<input type="text" placeholder="Fornitore" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value); renderTable();" style="width:80px;">`;
+        } else if (st.extraLabel) {
+          extraInput = `<input type="text" placeholder="Dove..." value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value); renderTable();">`;
         }
       }
       tbody += `<td class="${cellClass}">
@@ -823,9 +886,10 @@ function generateTablePDF() {
     const pct = Math.round((doneCount / STEPS.length) * 100);
     const row = [s.client, s.type, s.date || '-', s.videographer || '-'];
     STEPS.forEach(st => {
-      const d = s.steps[st.id] || { done: false, date: "" };
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
       let cell = d.done ? (d.date || '✓') : '-';
-      if (st.id === "backupAltro" && d.extra?.luogo) cell += ` (${d.extra.luogo})`;
+      if (st.extraType === "archivedBy" && d.extra?.archivedBy) cell += ` (${d.extra.archivedBy})`;
+      if (st.extraLabel && d.extra?.luogo) cell += ` (${d.extra.luogo})`;
       row.push(cell);
     });
     row.push(`${pct}%`);
@@ -867,7 +931,7 @@ function generateTablePDF() {
 }
 
 function doBackup() {
-  const data = { version: 2, exportedAt: new Date().toISOString(), services };
+  const data = { version: 3, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
