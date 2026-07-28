@@ -193,7 +193,7 @@
   .table-toolbar { display: flex; gap: 10px; flex-wrap: wrap; }
   .workflow-table {
     width: 100%; border-collapse: collapse; font-size: 0.85em;
-    min-width: 1600px;
+    min-width: 1700px;
   }
   .workflow-table thead {
     background: linear-gradient(45deg, #667eea, #764ba2);
@@ -286,12 +286,12 @@
 <div id="app" class="app">
   <div class="container">
     <header>
-      <div class="logo"> G&LStudio<span>Workflow Foto & Video</span></div>
+      <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
       <div class="actions">
         <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
         <button class="btn-archive" onclick="showArchive()">📁 Archivio</button>
-        <button class="btn-table" onclick="showTable()"> Tabella Clienti</button>
-        <button class="btn-backup" onclick="doBackup()"> Backup</button>
+        <button class="btn-table" onclick="showTable()">📊 Tabella Clienti</button>
+        <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
         <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
         <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
       </div>
@@ -303,25 +303,25 @@
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <option value="Matrimonio">💒 Matrimonio</option>
+          <option value="Matrimonio"> Matrimonio</option>
           <option value="Battesimo">👶 Battesimo</option>
           <option value="New Born">🍼 New Born</option>
           <option value="1° Compleanno">🎈 1° Compleanno</option>
           <option value="18° Compleanno">🎉 18° Compleanno</option>
-          <option value="Compleanno">🎂 Compleanno</option>
+          <option value="Compleanno"> Compleanno</option>
           <option value="Anniversario">💍 Anniversario</option>
-          <option value="Comunione">⛪ Comunione</option>
+          <option value="Comunione"> Comunione</option>
           <option value="Cresima">✝️ Cresima</option>
           <option value="Evento">🎊 Evento</option>
         </select>
       </div>
       <div class="form-row">
         <input type="date" id="inputDate">
-        <input type="text" id="inputVideographer" placeholder=" Videografo/Collega (nome)">
+        <input type="text" id="inputVideographer" placeholder="🎥 Videografo/Collega (nome)">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="toggleNewService()">Annulla</button>
-        <button class="btn-save" onclick="saveService()"> Salva</button>
+        <button class="btn-save" onclick="saveService()">💾 Salva</button>
       </div>
     </div>
 
@@ -403,7 +403,7 @@
       </div>
       <div class="form-row">
         <input type="date" id="editDate">
-        <input type="text" id="editVideographer" placeholder="🎥 Videografo/Collega">
+        <input type="text" id="editVideographer" placeholder=" Videografo/Collega">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
@@ -419,15 +419,16 @@ const PASS = "12763Mlg";
 
 const STEPS = [
   { id: "download",    label: "📥 Download schede", short: "📥" },
-  { id: "backupAB",    label: " Archiviazione HD A/B", short: "", extra: true, extraType: "archivedBy" },
-  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
+  { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
+  { id: "archiveVideo",label: "🎬 Archiviazione Video", short: "🎬", extra: true, extraType: "archivedBy" },
+  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
   { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
-  { id: "selection",   label: " Selezione + Copertina", short: "", extra: true, extraType: "cover" },
+  { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraType: "cover" },
   { id: "albumEdit",   label: "🎨 Lavorazione album", short: "🎨" },
-  { id: "sendLab",     label: " Invio laboratorio", short: "📤" },
+  { id: "sendLab",     label: "📤 Invio laboratorio", short: "" },
   { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
   { id: "albumClient", label: "🎁 Album al cliente", short: "🎁" },
-  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
+  { id: "filesClient", label: " File e video al cliente", short: "" },
   { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
@@ -447,7 +448,6 @@ const TYPE_COLORS = {
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
 let editingId = null;
 
-// ===== MIGRAZIONE: aggiunge step mancanti ai servizi vecchi =====
 function migrateService(s) {
   STEPS.forEach(st => {
     if (!s.steps[st.id]) {
@@ -508,13 +508,12 @@ function saveService() {
   renderServices();
 }
 
-// Genera opzioni dropdown "Archiviato da"
 function getArchiveByOptions(s) {
   const options = [`<option value="G&LStudio">G&LStudio</option>`];
   if (s.videographer && s.videographer.trim()) {
     options.push(`<option value="${s.videographer}">${s.videographer} (collega)</option>`);
   }
-  options.push(`<option value="__altro__">️ Altro (scrivi nome)...</option>`);
+  options.push(`<option value="__altro__">✏️ Altro (scrivi nome)...</option>`);
   return options.join("");
 }
 
@@ -545,8 +544,8 @@ function renderServices(data = services) {
         <div class="card-footer">
           <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
           <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
-          <button class="btn-pdf" onclick="generatePDF(${s.id})"> PDF</button>
-          <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
+          <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
+          <button class="btn-del" onclick="deleteService(${s.id})">️ Elimina</button>
         </div>
       </div>`;
   }).join("");
@@ -558,7 +557,6 @@ function renderSteps(s) {
     let extraHtml = "";
     if (st.extra) {
       if (st.extraType === "archivedBy") {
-        // Dropdown "Archiviato da"
         const currentVal = d.extra?.archivedBy || "G&LStudio";
         const isAltro = currentVal && !["G&LStudio", s.videographer].includes(currentVal);
         const displayVal = isAltro ? currentVal : "";
@@ -594,10 +592,7 @@ function renderSteps(s) {
 
 function handleArchiveByChange(serviceId, stepId, value) {
   const s = services.find(x => x.id === serviceId);
-  if (value === "__altro__") {
-    // Non salvare "__altro__", aspetta l'input testo
-    return;
-  }
+  if (value === "__altro__") return;
   s.steps[stepId].extra = s.steps[stepId].extra || {};
   s.steps[stepId].extra.archivedBy = value;
   save();
@@ -612,8 +607,7 @@ function toggleStep(id, stepId, checked) {
   const s = services.find(x => x.id === id);
   s.steps[stepId].done = checked;
   if (checked && !s.steps[stepId].date) s.steps[stepId].date = new Date().toISOString().slice(0,10);
-  // Se è lo step backupAB e non è stato scelto "archiviato da", imposta G&LStudio di default
-  if (stepId === "backupAB" && checked) {
+  if (stepId === "archiveVideo" && checked) {
     if (!s.steps[stepId].extra.archivedBy) {
       s.steps[stepId].extra.archivedBy = "G&LStudio";
     }
@@ -858,7 +852,7 @@ function renderTable() {
     });
     tbody += `<td>
       <div class="cell-actions">
-        <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">️</button>
+        <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
         <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
         <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
         <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
@@ -931,7 +925,7 @@ function generateTablePDF() {
 }
 
 function doBackup() {
-  const data = { version: 3, exportedAt: new Date().toISOString(), services };
+  const data = { version: 4, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
