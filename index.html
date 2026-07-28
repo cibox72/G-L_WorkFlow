@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G&LStudio — Workflow Foto & Video</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    min-height: 100vh; padding: 20px; color: #333;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* LOGIN */
+  .login-box {
+    max-width: 420px; margin: 80px auto; background: rgba(255,255,255,0.97);
+    border-radius: 20px; padding: 40px; box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .login-box h1 {
+    background: linear-gradient(45deg, #667eea, #f093fb);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-size: 2.2em; margin-bottom: 5px;
+  }
+  .login-box p { color: #888; margin-bottom: 25px; }
+  .login-box input {
+    width: 100%; padding: 12px 15px; margin: 8px 0; border: 2px solid #e0e0e0;
+    border-radius: 10px; font-size: 1em; transition: border 0.3s;
+  }
+  .login-box input:focus { outline: none; border-color: #764ba2; }
+  .login-box button {
+    width: 100%; padding: 12px; margin-top: 15px; border: none; border-radius: 10px;
+    background: linear-gradient(45deg, #667eea, #f093fb); color: white;
+    font-size: 1.1em; font-weight: 600; cursor: pointer; transition: transform 0.2s;
+  }
+  .login-box button:hover { transform: translateY(-2px); }
+  .login-error { color: #e74c3c; margin-top: 10px; font-size: 0.9em; min-height: 20px; }
+
+  /* APP */
+  .app { display: none; }
+  .app.active { display: block; }
+  header {
+    background: rgba(255,255,255,0.95); border-radius: 20px; padding: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2); margin-bottom: 25px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+  }
+  .logo {
+    font-size: 2em; font-weight: bold;
+    background: linear-gradient(45deg, #667eea, #f093fb);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .logo span { font-size: 0.5em; display: block; color: #888; -webkit-text-fill-color: #888; }
+  .actions button {
+    margin-left: 8px; padding: 10px 18px; border: none; border-radius: 10px;
+    cursor: pointer; font-weight: 600; transition: transform 0.2s;
+  }
+  .actions button:hover { transform: translateY(-2px); }
+  .btn-new { background: linear-gradient(45deg, #f093fb, #f5576c); color: white; }
+  .btn-backup { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; }
+  .btn-restore { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
+  .btn-logout { background: linear-gradient(45deg, #fa709a, #fee140); color: white; }
+
+  /* FORM NUOVO SERVIZIO */
+  .new-service {
+    background: white; border-radius: 18px; padding: 25px; margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); display: none;
+  }
+  .new-service.open { display: block; }
+  .new-service h2 { color: #4a3f8c; margin-bottom: 15px; }
+  .form-row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 12px; }
+  .form-row input, .form-row select {
+    flex: 1; min-width: 200px; padding: 10px; border: 2px solid #e0e0e0;
+    border-radius: 10px; font-size: 1em;
+  }
+  .form-row input:focus, .form-row select:focus { outline: none; border-color: #764ba2; }
+  .form-actions { display: flex; gap: 10px; justify-content: flex-end; }
+  .form-actions button {
+    padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;
+  }
+  .btn-save { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
+  .btn-cancel { background: #eee; color: #555; }
+
+  /* CARDS SERVIZI */
+  .card {
+    background: white; border-radius: 18px; padding: 20px; margin-bottom: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); }
+  .card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; flex-wrap: wrap; gap: 10px;
+  }
+  .client-info { flex: 1; min-width: 200px; }
+  .client-name { font-size: 1.3em; font-weight: 700; color: #4a3f8c; }
+  .client-date { font-size: 0.85em; color: #888; margin-top: 3px; }
+  .service-badge {
+    padding: 6px 14px; border-radius: 20px; font-size: 0.85em;
+    color: white; font-weight: 600; text-transform: uppercase;
+  }
+  .progress-bar {
+    background: #eee; height: 10px; border-radius: 5px; margin-top: 12px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #43e97b, #38f9d7);
+    transition: width 0.4s;
+  }
+  .progress-text { font-size: 0.85em; color: #666; margin-top: 5px; }
+
+  /* STEPS */
+  .steps { margin-top: 18px; display: none; padding-top: 15px; border-top: 1px dashed #ddd; }
+  .steps.open { display: block; }
+  .step {
+    display: flex; align-items: center; padding: 10px; margin: 6px 0;
+    background: #f8f9ff; border-radius: 10px; gap: 12px; flex-wrap: wrap;
+  }
+  .step.done { background: linear-gradient(90deg, #e0ffe0, #f0fff0); }
+  .step input[type=checkbox] {
+    width: 22px; height: 22px; cursor: pointer; accent-color: #43e97b; flex-shrink: 0;
+  }
+  .step-label { flex: 1; font-weight: 500; min-width: 200px; }
+  .step input[type=date] {
+    padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9em;
+  }
+  .step input[type=text] {
+    padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9em; width: 150px;
+  }
+  .step.done .step-label { text-decoration: line-through; color: #888; }
+  .step-extra { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; width: 100%; padding-left: 34px; }
+  .step-extra input { flex: 1; min-width: 150px; }
+
+  .card-footer {
+    margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px;
+    padding-top: 15px; border-top: 1px dashed #ddd;
+  }
+  .btn-del {
+    padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer;
+    background: linear-gradient(45deg, #fa709a, #fee140); color: white; font-weight: 600;
+  }
+
+  .empty {
+    text-align: center; padding: 60px 20px; color: white; font-size: 1.2em;
+    background: rgba(255,255,255,0.15); border-radius: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .logo { font-size: 1.5em; }
+    .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="login-box">
+  <h1>📸 G&LStudio</h1>
+  <p>Foto & Video — Workflow Manager</p>
+  <input type="text" id="loginUser" placeholder="Utente" autocomplete="username">
+  <input type="password" id="loginPass" placeholder="Password" autocomplete="current-password">
+  <button onclick="doLogin()">Accedi</button>
+  <div class="login-error" id="loginError"></div>
+</div>
+
+<!-- APP -->
+<div id="app" class="app">
+  <div class="container">
+    <header>
+      <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
+      <div class="actions">
+        <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
+        <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
+        <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
+        <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="doRestore(event)">
+        <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
+      </div>
+    </header>
+
+    <!-- FORM NUOVO -->
+    <div id="newService" class="new-service">
+      <h2>✨ Nuovo Servizio</h2>
+      <div class="form-row">
+        <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
+        <select id="inputType">
+          <option value="">-- Tipo di servizio --</option>
+          <option value="Matrimonio">💒 Matrimonio</option>
+          <option value="Battesimo">👶 Battesimo</option>
+          <option value="18° Compleanno">🎉 18° Compleanno</option>
+          <option value="Compleanno">🎂 Compleanno</option>
+          <option value="Anniversario">💍 Anniversario</option>
+          <option value="Comunione">⛪ Comunione</option>
+          <option value="Cresima">✝️ Cresima</option>
+          <option value="Evento">🎊 Evento</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input type="date" id="inputDate">
+      </div>
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="toggleNewService()">Annulla</button>
+        <button class="btn-save" onclick="saveService()">Salva</button>
+      </div>
+    </div>
+
+    <div id="servicesList"></div>
+  </div>
+</div>
+
+<script>
+// ===== CREDENZIALI =====
+const USER = "G&LStudio";
+const PASS = "12763Mlg";
+
+// ===== STEP DEL WORKFLOW =====
+const STEPS = [
+  { id: "download",    label: "📥 Download schede dopo servizio" },
+  { id: "backupAB",    label: "💾 Archiviazione sicurezza HD A + HD B" },
+  { id: "rawToJpg",    label: "🔄 Conversione RAW → JPEG" },
+  { id: "selection",   label: "👀 Selezione foto con cliente + copertina", extra: true },
+  { id: "albumEdit",   label: "🎨 Lavorazione file per album" },
+  { id: "sendLab",     label: "📤 Invio file al laboratorio" },
+  { id: "labToStudio", label: "📦 Consegna laboratorio → Studio" },
+  { id: "albumClient", label: "🎁 Consegna album al cliente" },
+  { id: "filesClient", label: "📁 Consegna file e video al cliente" },
+  { id: "confirmDel",  label: "✅ Conferma cliente — autorizzazione cancellazione" }
+];
+
+const TYPE_COLORS = {
+  "Matrimonio":     "linear-gradient(45deg,#f093fb,#f5576c)",
+  "Battesimo":      "linear-gradient(45deg,#4facfe,#00f2fe)",
+  "18° Compleanno": "linear-gradient(45deg,#fa709a,#fee140)",
+  "Compleanno":     "linear-gradient(45deg,#ff9a9e,#fad0c4)",
+  "Anniversario":   "linear-gradient(45deg,#a18cd1,#fbc2eb)",
+  "Comunione":      "linear-gradient(45deg,#84fab0,#8fd3f4)",
+  "Cresima":        "linear-gradient(45deg,#fccb90,#d57eeb)",
+  "Evento":         "linear-gradient(45deg,#667eea,#764ba2)"
+};
+
+let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
+
+// ===== LOGIN =====
+function doLogin() {
+  const u = document.getElementById("loginUser").value.trim();
+  const p = document.getElementById("loginPass").value;
+  const err = document.getElementById("loginError");
+  if (u === USER && p === PASS) {
+    sessionStorage.setItem("gl_auth", "1");
+    showApp();
+  } else {
+    err.textContent = "❌ Credenziali non valide";
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem("gl_auth");
+  location.reload();
+}
+function showApp() {
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("app").classList.add("active");
+  renderServices();
+}
+if (sessionStorage.getItem("gl_auth") === "1") showApp();
+
+// ===== NUOVO SERVIZIO =====
+function toggleNewService() {
+  document.getElementById("newService").classList.toggle("open");
+}
+function saveService() {
+  const client = document.getElementById("inputClient").value.trim();
+  const type = document.getElementById("inputType").value;
+  const date = document.getElementById("inputDate").value;
+  if (!client || !type) { alert("Inserisci nome cliente e tipo di servizio"); return; }
+  const steps = {};
+  STEPS.forEach(s => steps[s.id] = { done: false, date: "", extra: {} });
+  services.unshift({
+    id: Date.now(),
+    client, type, date,
+    steps,
+    createdAt: new Date().toISOString()
+  });
+  save();
+  document.getElementById("inputClient").value = "";
+  document.getElementById("inputType").value = "";
+  document.getElementById("inputDate").value = "";
+  toggleNewService();
+  renderServices();
+}
+
+// ===== RENDER =====
+function renderServices() {
+  const list = document.getElementById("servicesList");
+  if (services.length === 0) {
+    list.innerHTML = '<div class="empty">📭 Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
+    return;
+  }
+  list.innerHTML = services.map(s => {
+    const doneCount = Object.values(s.steps).filter(x => x.done).length;
+    const pct = Math.round((doneCount / STEPS.length) * 100);
+    const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
+    const stepsHtml = STEPS.map(st => {
+      const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+      const extraHtml = st.extra ? `
+        <div class="step-extra">
+          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ""}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value)">
+          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ""}" onchange="updateExtra(${s.id},'${st.id}','article',this.value)">
+        </div>` : "";
+      return `
+        <div class="step ${d.done ? 'done' : ''}">
+          <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked)">
+          <div class="step-label">${st.label}</div>
+          <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value)">
+          ${extraHtml}
+        </div>`;
+    }).join("");
+    return `
+      <div class="card">
+        <div class="card-header" onclick="toggleSteps(${s.id})">
+          <div class="client-info">
+            <div class="client-name">${s.client}</div>
+            <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
+          </div>
+          <div class="service-badge" style="background:${color}">${s.type}</div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="progress-text">Avanzamento: ${doneCount}/${STEPS.length} (${pct}%)</div>
+        <div class="steps" id="steps-${s.id}">${stepsHtml}</div>
+        <div class="card-footer">
+          <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function toggleSteps(id) {
+  document.getElementById("steps-" + id).classList.toggle("open");
+}
+function toggleStep(id, stepId, checked) {
+  const s = services.find(x => x.id === id);
+  s.steps[stepId].done = checked;
+  if (checked && !s.steps[stepId].date) s.steps[stepId].date = new Date().toISOString().slice(0,10);
+  save(); renderServices();
+  document.getElementById("steps-" + id).classList.add("open");
+}
+function updateDate(id, stepId, val) {
+  const s = services.find(x => x.id === id);
+  s.steps[stepId].date = val;
+  save();
+}
+function updateExtra(id, stepId, field, val) {
+  const s = services.find(x => x.id === id);
+  if (!s.steps[stepId].extra) s.steps[stepId].extra = {};
+  s.steps[stepId].extra[field] = val;
+  save();
+}
+function deleteService(id) {
+  if (!confirm("Eliminare questo servizio?")) return;
+  services = services.filter(x => x.id !== id);
+  save(); renderServices();
+}
+function save() {
+  localStorage.setItem("gl_services", JSON.stringify(services));
+}
+
+// ===== BACKUP / RIPRISTINO =====
+function doBackup() {
+  const data = { version: 1, exportedAt: new Date().toISOString(), services };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "GLStudio_Backup_" + new Date().toISOString().slice(0,10) + ".json";
+  a.click();
+}
+function doRestore(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (!data.services || !Array.isArray(data.services)) throw new Error();
+      if (!confirm("Il ripristino sovrascriverà i dati attuali. Continuare?")) return;
+      services = data.services;
+      save(); renderServices();
+      alert("✅ Ripristino completato!");
+    } catch { alert("❌ File di backup non valido"); }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+}
+
+// Enter per login
+document.getElementById("loginPass").addEventListener("keypress", e => { if (e.key === "Enter") doLogin(); });
+</script>
+</body>
+</html>
