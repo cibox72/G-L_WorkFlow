@@ -13,8 +13,6 @@
     min-height: 100vh; padding: 20px; color: #333;
   }
   .container { max-width: 1400px; margin: 0 auto; }
-
-  /* LOGIN */
   .login-box {
     max-width: 420px; margin: 80px auto; background: rgba(255,255,255,0.97);
     border-radius: 20px; padding: 40px; box-shadow: 0 15px 50px rgba(0,0,0,0.3);
@@ -38,8 +36,6 @@
   }
   .login-box button:hover { transform: translateY(-2px); }
   .login-error { color: #e74c3c; margin-top: 10px; font-size: 0.9em; min-height: 20px; }
-
-  /* APP */
   .app { display: none; }
   .app.active { display: block; }
   header {
@@ -64,8 +60,6 @@
   .btn-backup { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; }
   .btn-restore { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
   .btn-logout { background: linear-gradient(45deg, #fa709a, #fee140); color: white; }
-
-  /* FORM NUOVO SERVIZIO */
   .new-service {
     background: white; border-radius: 18px; padding: 25px; margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); display: none;
@@ -84,8 +78,6 @@
   }
   .btn-save { background: linear-gradient(45deg, #43e97b, #38f9d7); color: white; }
   .btn-cancel { background: #eee; color: #555; }
-
-  /* CARDS SERVIZI */
   .card {
     background: white; border-radius: 18px; padding: 20px; margin-bottom: 18px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: transform 0.2s;
@@ -98,6 +90,7 @@
   .client-info { flex: 1; min-width: 200px; }
   .client-name { font-size: 1.3em; font-weight: 700; color: #4a3f8c; }
   .client-date { font-size: 0.85em; color: #888; margin-top: 3px; }
+  .videographer-info { font-size: 0.85em; color: #764ba2; margin-top: 3px; font-weight: 500; }
   .service-badge {
     padding: 6px 14px; border-radius: 20px; font-size: 0.85em;
     color: white; font-weight: 600; text-transform: uppercase;
@@ -110,8 +103,6 @@
     transition: width 0.4s;
   }
   .progress-text { font-size: 0.85em; color: #666; margin-top: 5px; }
-
-  /* STEPS */
   .steps { margin-top: 18px; display: none; padding-top: 15px; border-top: 1px dashed #ddd; }
   .steps.open { display: block; }
   .step {
@@ -127,12 +118,11 @@
     padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9em;
   }
   .step input[type=text] {
-    padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9em; width: 150px;
+    padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9em; width: 180px;
   }
   .step.done .step-label { text-decoration: line-through; color: #888; }
   .step-extra { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; width: 100%; padding-left: 34px; }
   .step-extra input { flex: 1; min-width: 150px; }
-
   .card-footer {
     margin-top: 15px; display: flex; justify-content: flex-end; gap: 10px;
     padding-top: 15px; border-top: 1px dashed #ddd; flex-wrap: wrap;
@@ -141,13 +131,10 @@
   .btn-edit { background: linear-gradient(45deg, #f093fb, #f5576c); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
   .btn-pdf { background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
   .btn-del { background: linear-gradient(45deg, #fa709a, #fee140); color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
-
   .empty {
     text-align: center; padding: 60px 20px; color: white; font-size: 1.2em;
     background: rgba(255,255,255,0.15); border-radius: 20px;
   }
-
-  /* MODAL */
   .modal {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
@@ -179,8 +166,6 @@
   .step-detail .step-name { font-weight: 600; margin-bottom: 5px; }
   .step-detail .step-date { color: #667eea; font-size: 0.9em; }
   .step-detail .step-extra-info { color: #888; font-size: 0.85em; margin-top: 3px; }
-
-  /* ARCHIVIO */
   .archive-header {
     background: white; border-radius: 18px; padding: 20px; margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
@@ -192,8 +177,6 @@
   .filter-select {
     padding: 10px 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1em;
   }
-
-  /* TABELLA CLIENTI */
   .table-container {
     background: white; border-radius: 18px; padding: 20px; margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15); overflow-x: auto;
@@ -206,7 +189,7 @@
   .table-toolbar { display: flex; gap: 10px; flex-wrap: wrap; }
   .workflow-table {
     width: 100%; border-collapse: collapse; font-size: 0.85em;
-    min-width: 1400px;
+    min-width: 1600px;
   }
   .workflow-table thead {
     background: linear-gradient(45deg, #667eea, #764ba2);
@@ -217,11 +200,12 @@
     border: 1px solid rgba(255,255,255,0.3); font-size: 0.8em;
     white-space: nowrap;
   }
-  .workflow-table th:first-child, .workflow-table th:nth-child(2), .workflow-table th:nth-child(3) {
+  .workflow-table th:first-child, .workflow-table th:nth-child(2), .workflow-table th:nth-child(3), .workflow-table th:nth-child(4) {
     position: sticky; left: 0; background: linear-gradient(45deg, #667eea, #764ba2); z-index: 2;
   }
   .workflow-table th:nth-child(2) { left: 150px; }
-  .workflow-table th:nth-child(3) { left: 300px; }
+  .workflow-table th:nth-child(3) { left: 280px; }
+  .workflow-table th:nth-child(4) { left: 380px; }
   .workflow-table td {
     padding: 8px; border: 1px solid #e0e0e0; text-align: center;
     vertical-align: middle;
@@ -231,16 +215,20 @@
     color: #4a3f8c; z-index: 1; min-width: 150px; text-align: left;
   }
   .workflow-table td:nth-child(2) {
-    position: sticky; left: 150px; background: #f8f9ff; z-index: 1; min-width: 150px;
+    position: sticky; left: 150px; background: #f8f9ff; z-index: 1; min-width: 130px;
   }
   .workflow-table td:nth-child(3) {
-    position: sticky; left: 300px; background: #f8f9ff; z-index: 1; min-width: 100px;
+    position: sticky; left: 280px; background: #f8f9ff; z-index: 1; min-width: 100px;
+  }
+  .workflow-table td:nth-child(4) {
+    position: sticky; left: 380px; background: #f8f9ff; z-index: 1; min-width: 130px;
   }
   .workflow-table tbody tr:nth-child(even) { background: #fafbff; }
   .workflow-table tbody tr:hover { background: #f0f4ff; }
   .workflow-table tbody tr:hover td:first-child,
   .workflow-table tbody tr:hover td:nth-child(2),
-  .workflow-table tbody tr:hover td:nth-child(3) { background: #e8ecff; }
+  .workflow-table tbody tr:hover td:nth-child(3),
+  .workflow-table tbody tr:hover td:nth-child(4) { background: #e8ecff; }
   .cell-step {
     display: flex; flex-direction: column; align-items: center; gap: 4px;
   }
@@ -249,6 +237,9 @@
   }
   .cell-step input[type=date] {
     font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 90px;
+  }
+  .cell-step input[type=text] {
+    font-size: 0.75em; padding: 2px 4px; border: 1px solid #ccc; border-radius: 4px; width: 110px;
   }
   .cell-done { background: linear-gradient(90deg, #e0ffe0, #f0fff0) !important; }
   .cell-actions {
@@ -262,12 +253,10 @@
   .mini-edit { background: #f093fb; color: white; }
   .mini-pdf { background: #4facfe; color: white; }
   .mini-del { background: #fa709a; color: white; }
-
   .badge-cell {
     display: inline-block; padding: 3px 10px; border-radius: 12px;
     color: white; font-size: 0.8em; font-weight: 600;
   }
-
   @media (max-width: 600px) {
     .logo { font-size: 1.5em; }
     .actions button { margin: 4px; padding: 8px 12px; font-size: 0.9em; }
@@ -277,7 +266,6 @@
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen" class="login-box">
   <h1>📸 G&LStudio</h1>
   <p>Foto & Video — Workflow Manager</p>
@@ -287,30 +275,30 @@
   <div class="login-error" id="loginError"></div>
 </div>
 
-<!-- APP -->
 <div id="app" class="app">
   <div class="container">
     <header>
-      <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
+      <div class="logo"> G&LStudio<span>Workflow Foto & Video</span></div>
       <div class="actions">
         <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
-        <button class="btn-archive" onclick="showArchive()"> Archivio</button>
-        <button class="btn-table" onclick="showTable()">📊 Tabella Clienti</button>
-        <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
+        <button class="btn-archive" onclick="showArchive()">📁 Archivio</button>
+        <button class="btn-table" onclick="showTable()"> Tabella Clienti</button>
+        <button class="btn-backup" onclick="doBackup()"> Backup</button>
         <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
         <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
       </div>
     </header>
 
-    <!-- FORM NUOVO -->
     <div id="newService" class="new-service">
       <h2>✨ Nuovo Servizio</h2>
       <div class="form-row">
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <option value="Matrimonio"> Matrimonio</option>
+          <option value="Matrimonio">💒 Matrimonio</option>
           <option value="Battesimo">👶 Battesimo</option>
+          <option value="New Born">🍼 New Born</option>
+          <option value="1° Compleanno">🎈 1° Compleanno</option>
           <option value="18° Compleanno">🎉 18° Compleanno</option>
           <option value="Compleanno">🎂 Compleanno</option>
           <option value="Anniversario">💍 Anniversario</option>
@@ -321,6 +309,7 @@
       </div>
       <div class="form-row">
         <input type="date" id="inputDate">
+        <input type="text" id="inputVideographer" placeholder=" Videografo (nome)">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="toggleNewService()">Annulla</button>
@@ -328,7 +317,6 @@
       </div>
     </div>
 
-    <!-- ARCHIVIO -->
     <div id="archiveView" style="display:none;">
       <div class="archive-header">
         <h2>📁 Archivio Servizi</h2>
@@ -338,6 +326,8 @@
             <option value="">Tutti i tipi</option>
             <option value="Matrimonio">Matrimonio</option>
             <option value="Battesimo">Battesimo</option>
+            <option value="New Born">New Born</option>
+            <option value="1° Compleanno">1° Compleanno</option>
             <option value="18° Compleanno">18° Compleanno</option>
             <option value="Compleanno">Compleanno</option>
             <option value="Anniversario">Anniversario</option>
@@ -351,14 +341,13 @@
       <div id="archiveList"></div>
     </div>
 
-    <!-- TABELLA CLIENTI -->
     <div id="tableView" style="display:none;">
       <div class="table-container">
         <div class="table-header">
           <h2> Tabella Clienti — Workflow Completo</h2>
           <div class="table-toolbar">
             <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca..." oninput="renderTable()" style="min-width:200px;">
-            <button class="btn-pdf" onclick="generateTablePDF()"> PDF Tabella</button>
+            <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
             <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
           </div>
         </div>
@@ -372,7 +361,6 @@
   </div>
 </div>
 
-<!-- MODAL DETTAGLI -->
 <div id="detailModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
@@ -383,11 +371,10 @@
   </div>
 </div>
 
-<!-- MODAL MODIFICA -->
 <div id="editModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h2>️ Modifica Servizio</h2>
+      <h2>✏️ Modifica Servizio</h2>
       <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
     </div>
     <div class="modal-body">
@@ -396,6 +383,8 @@
         <select id="editType">
           <option value="Matrimonio">Matrimonio</option>
           <option value="Battesimo">Battesimo</option>
+          <option value="New Born">New Born</option>
+          <option value="1° Compleanno">1° Compleanno</option>
           <option value="18° Compleanno">18° Compleanno</option>
           <option value="Compleanno">Compleanno</option>
           <option value="Anniversario">Anniversario</option>
@@ -406,37 +395,39 @@
       </div>
       <div class="form-row">
         <input type="date" id="editDate">
+        <input type="text" id="editVideographer" placeholder="🎥 Videografo">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
-        <button class="btn-save" onclick="saveEdit()">💾 Salva Modifiche</button>
+        <button class="btn-save" onclick="saveEdit()"> Salva Modifiche</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-// ===== CREDENZIALI =====
 const USER = "G&LStudio";
 const PASS = "12763Mlg";
 
-// ===== STEP DEL WORKFLOW =====
 const STEPS = [
   { id: "download",    label: "📥 Download schede", short: "📥" },
   { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
+  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "💿", extra: true, extraLabel: "Dove (cloud, NAS, altro HD...)" },
   { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
-  { id: "selection",   label: " Selezione + Copertina", short: "", extra: true },
-  { id: "albumEdit",   label: " Lavorazione album", short: "🎨" },
-  { id: "sendLab",     label: "📤 Invio laboratorio", short: "📤" },
+  { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraLabel: "Fornitore / Articolo" },
+  { id: "albumEdit",   label: "🎨 Lavorazione album", short: "🎨" },
+  { id: "sendLab",     label: " Invio laboratorio", short: "📤" },
   { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
-  { id: "albumClient", label: " Album al cliente", short: "🎁" },
-  { id: "filesClient", label: "📁 File e video al cliente", short: "📁" },
+  { id: "albumClient", label: "🎁 Album al cliente", short: "🎁" },
+  { id: "filesClient", label: " File e video al cliente", short: "" },
   { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
 ];
 
 const TYPE_COLORS = {
   "Matrimonio":     "#f5576c",
   "Battesimo":      "#4facfe",
+  "New Born":       "#a1c4fd",
+  "1° Compleanno":  "#ffd700",
   "18° Compleanno": "#fa709a",
   "Compleanno":     "#ff9a9e",
   "Anniversario":   "#a18cd1",
@@ -448,7 +439,19 @@ const TYPE_COLORS = {
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
 let editingId = null;
 
-// ===== LOGIN =====
+// ===== MIGRAZIONE: aggiunge step mancanti ai servizi vecchi =====
+function migrateService(s) {
+  STEPS.forEach(st => {
+    if (!s.steps[st.id]) {
+      s.steps[st.id] = { done: false, date: "", extra: {} };
+    }
+    if (!s.steps[st.id].extra) s.steps[st.id].extra = {};
+  });
+  if (s.videographer === undefined) s.videographer = "";
+  return s;
+}
+services = services.map(migrateService);
+
 function doLogin() {
   const u = document.getElementById("loginUser").value.trim();
   const p = document.getElementById("loginPass").value;
@@ -471,7 +474,6 @@ function showApp() {
 }
 if (sessionStorage.getItem("gl_auth") === "1") showApp();
 
-// ===== NUOVO SERVIZIO =====
 function toggleNewService() {
   document.getElementById("newService").classList.toggle("open");
 }
@@ -479,12 +481,13 @@ function saveService() {
   const client = document.getElementById("inputClient").value.trim();
   const type = document.getElementById("inputType").value;
   const date = document.getElementById("inputDate").value;
+  const videographer = document.getElementById("inputVideographer").value.trim();
   if (!client || !type) { alert("Inserisci nome cliente e tipo di servizio"); return; }
   const steps = {};
   STEPS.forEach(s => steps[s.id] = { done: false, date: "", extra: {} });
   services.unshift({
     id: Date.now(),
-    client, type, date,
+    client, type, date, videographer,
     steps,
     createdAt: new Date().toISOString()
   });
@@ -492,11 +495,11 @@ function saveService() {
   document.getElementById("inputClient").value = "";
   document.getElementById("inputType").value = "";
   document.getElementById("inputDate").value = "";
+  document.getElementById("inputVideographer").value = "";
   toggleNewService();
   renderServices();
 }
 
-// ===== RENDER CARDS =====
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
@@ -507,12 +510,14 @@ function renderServices(data = services) {
     const doneCount = Object.values(s.steps).filter(x => x.done).length;
     const pct = Math.round((doneCount / STEPS.length) * 100);
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
+    const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
     return `
       <div class="card">
         <div class="card-header" onclick="toggleSteps(${s.id})">
           <div class="client-info">
             <div class="client-name">${s.client}</div>
             <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
+            ${videoInfo}
           </div>
           <div class="service-badge" style="background:${color}">${s.type}</div>
         </div>
@@ -520,7 +525,7 @@ function renderServices(data = services) {
         <div class="progress-text">Avanzamento: ${doneCount}/${STEPS.length} (${pct}%)</div>
         <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
         <div class="card-footer">
-          <button class="btn-view" onclick="viewService(${s.id})">️ Visualizza</button>
+          <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
           <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
           <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
           <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
@@ -532,16 +537,27 @@ function renderServices(data = services) {
 function renderSteps(s) {
   return STEPS.map(st => {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
+    let extraHtml = "";
+    if (st.extra) {
+      if (st.id === "backupAltro") {
+        extraHtml = `
+        <div class="step-extra">
+          <input type="text" placeholder="${st.extraLabel}" value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value)" style="flex:2;">
+        </div>`;
+      } else if (st.id === "selection") {
+        extraHtml = `
+        <div class="step-extra">
+          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value)">
+          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value)">
+        </div>`;
+      }
+    }
     return `
       <div class="step ${d.done ? 'done' : ''}">
         <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked)">
         <div class="step-label">${st.label}</div>
         <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value)">
-        ${st.extra ? `
-        <div class="step-extra">
-          <input type="text" placeholder="Fornitore copertina" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value)">
-          <input type="text" placeholder="Articolo prodotto" value="${d.extra?.article || ''}" onchange="updateExtra(${s.id},'${st.id}','article',this.value)">
-        </div>` : ""}
+        ${extraHtml}
       </div>`;
   }).join("");
 }
@@ -555,6 +571,7 @@ function toggleStep(id, stepId, checked) {
   if (checked && !s.steps[stepId].date) s.steps[stepId].date = new Date().toISOString().slice(0,10);
   save(); renderServices();
   document.getElementById("steps-" + id).classList.add("open");
+  renderTable();
 }
 function updateDate(id, stepId, val) {
   const s = services.find(x => x.id === id);
@@ -577,60 +594,45 @@ function save() {
   localStorage.setItem("gl_services", JSON.stringify(services));
 }
 
-// ===== VISUALIZZA =====
 function viewService(id) {
   const s = services.find(x => x.id === id);
   const doneCount = Object.values(s.steps).filter(x => x.done).length;
   const pct = Math.round((doneCount / STEPS.length) * 100);
-  
   let html = `
-    <div class="detail-row">
-      <div class="detail-label">👤 Cliente</div>
-      <div class="detail-value">${s.client}</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-label">📋 Tipo Servizio</div>
-      <div class="detail-value">${s.type}</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-label">📅 Data Evento</div>
-      <div class="detail-value">${s.date || 'Non specificata'}</div>
-    </div>
-    <div class="detail-row">
-      <div class="detail-label">📊 Avanzamento</div>
-      <div class="detail-value">${doneCount}/${STEPS.length} completati (${pct}%)</div>
-    </div>
+    <div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
+    <div class="detail-row"><div class="detail-label">📋 Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
+    <div class="detail-row"><div class="detail-label">📅 Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
+    <div class="detail-row"><div class="detail-label">🎥 Videografo</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>
+    <div class="detail-row"><div class="detail-label"> Avanzamento</div><div class="detail-value">${doneCount}/${STEPS.length} completati (${pct}%)</div></div>
     <h3 style="margin:20px 0 10px; color:#4a3f8c;">📝 Workflow Steps</h3>
   `;
-  
   STEPS.forEach(st => {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
-    const status = d.done ? '✅' : '⏳';
+    const status = d.done ? '✅' : '';
     const dateStr = d.date ? ` - ${d.date}` : '';
     const extraInfo = [];
-    if (d.extra?.supplier) extraInfo.push(`Fornitore: ${d.extra.supplier}`);
-    if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
-    
-    html += `
-      <div class="step-detail ${d.done ? 'completed' : ''}">
-        <div class="step-name">${status} ${st.label}${dateStr}</div>
-        ${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}
-      </div>
-    `;
+    if (st.id === "backupAltro" && d.extra?.luogo) extraInfo.push(`Luogo: ${d.extra.luogo}`);
+    if (st.id === "selection") {
+      if (d.extra?.supplier) extraInfo.push(`Fornitore: ${d.extra.supplier}`);
+      if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
+    }
+    html += `<div class="step-detail ${d.done ? 'completed' : ''}">
+      <div class="step-name">${status} ${st.label}${dateStr}</div>
+      ${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}
+    </div>`;
   });
-  
-  document.getElementById("detailTitle").textContent = ` ${s.client} - ${s.type}`;
+  document.getElementById("detailTitle").textContent = `📋 ${s.client} - ${s.type}`;
   document.getElementById("detailBody").innerHTML = html;
   document.getElementById("detailModal").classList.add("active");
 }
 
-// ===== MODIFICA =====
 function editService(id) {
   const s = services.find(x => x.id === id);
   editingId = id;
   document.getElementById("editClient").value = s.client;
   document.getElementById("editType").value = s.type;
   document.getElementById("editDate").value = s.date || '';
+  document.getElementById("editVideographer").value = s.videographer || '';
   document.getElementById("editModal").classList.add("active");
 }
 function saveEdit() {
@@ -639,18 +641,17 @@ function saveEdit() {
   s.client = document.getElementById("editClient").value.trim();
   s.type = document.getElementById("editType").value;
   s.date = document.getElementById("editDate").value;
+  s.videographer = document.getElementById("editVideographer").value.trim();
   save();
   closeModal('editModal');
   renderServices();
   renderTable();
 }
 
-// ===== PDF SINGOLO =====
 async function generatePDF(id) {
   const s = services.find(x => x.id === id);
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-  
   doc.setFillColor(102, 126, 234);
   doc.rect(0, 0, 210, 40, 'F');
   doc.setTextColor(255, 255, 255);
@@ -658,48 +659,41 @@ async function generatePDF(id) {
   doc.text("G&LStudio", 15, 20);
   doc.setFontSize(12);
   doc.text("Workflow Foto & Video", 15, 28);
-  
   doc.setTextColor(0, 0, 0);
   doc.setFontSize(14);
   doc.text(`Cliente: ${s.client}`, 15, 55);
   doc.text(`Tipo: ${s.type}`, 15, 63);
   doc.text(`Data Evento: ${s.date || 'N/D'}`, 15, 71);
-  
+  doc.text(`Videografo: ${s.videographer || 'N/D'}`, 15, 79);
   doc.setFontSize(12);
-  doc.text("WORKFLOW COMPLETAMENTO:", 15, 85);
-  
-  let y = 95;
-  STEPS.forEach((st, i) => {
+  doc.text("WORKFLOW COMPLETAMENTO:", 15, 92);
+  let y = 102;
+  STEPS.forEach((st) => {
     const d = s.steps[st.id] || { done: false, date: "", extra: {} };
     const status = d.done ? "[X]" : "[ ]";
     const dateStr = d.date ? ` - ${d.date}` : '';
     doc.text(`${status} ${st.label}${dateStr}`, 20, y);
     y += 8;
-    
-    if (d.extra?.supplier || d.extra?.article) {
-      const extra = [];
-      if (d.extra.supplier) extra.push(`Fornitore: ${d.extra.supplier}`);
-      if (d.extra.article) extra.push(`Articolo: ${d.extra.article}`);
+    const extra = [];
+    if (st.id === "backupAltro" && d.extra?.luogo) extra.push(`Luogo: ${d.extra.luogo}`);
+    if (st.id === "selection") {
+      if (d.extra?.supplier) extra.push(`Fornitore: ${d.extra.supplier}`);
+      if (d.extra?.article) extra.push(`Articolo: ${d.extra.article}`);
+    }
+    if (extra.length) {
       doc.setTextColor(100, 100, 100);
       doc.text(`    → ${extra.join(' | ')}`, 20, y);
       doc.setTextColor(0, 0, 0);
       y += 8;
     }
-    
-    if (y > 270) {
-      doc.addPage();
-      y = 20;
-    }
+    if (y > 270) { doc.addPage(); y = 20; }
   });
-  
   doc.setFontSize(10);
   doc.setTextColor(150, 150, 150);
   doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')}`, 15, 285);
-  
   doc.save(`G&LStudio_${s.client.replace(/\s+/g, '_')}_${s.type}.pdf`);
 }
 
-// ===== ARCHIVIO =====
 function showArchive() {
   document.getElementById("servicesList").style.display = "none";
   document.getElementById("tableView").style.display = "none";
@@ -723,31 +717,26 @@ function showMain() {
 function filterServices() {
   const search = document.getElementById("searchBox").value.toLowerCase();
   const type = document.getElementById("filterType").value;
-  
   let filtered = services;
-  if (search) {
-    filtered = filtered.filter(s => s.client.toLowerCase().includes(search));
-  }
-  if (type) {
-    filtered = filtered.filter(s => s.type === type);
-  }
-  
+  if (search) filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || (s.videographer || '').toLowerCase().includes(search));
+  if (type) filtered = filtered.filter(s => s.type === type);
   const list = document.getElementById("archiveList");
   if (filtered.length === 0) {
     list.innerHTML = '<div class="empty">Nessun servizio trovato</div>';
     return;
   }
-  
   list.innerHTML = filtered.map(s => {
     const doneCount = Object.values(s.steps).filter(x => x.done).length;
     const pct = Math.round((doneCount / STEPS.length) * 100);
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
+    const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
     return `
       <div class="card">
         <div class="card-header">
           <div class="client-info">
             <div class="client-name">${s.client}</div>
             <div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>
+            ${videoInfo}
           </div>
           <div class="service-badge" style="background:${color}">${s.type}</div>
         </div>
@@ -755,36 +744,28 @@ function filterServices() {
         <div class="progress-text">Completamento: ${pct}%</div>
         <div class="card-footer">
           <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
-          <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
+          <button class="btn-edit" onclick="editService(${s.id})">️ Modifica</button>
           <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
         </div>
       </div>`;
   }).join("");
 }
 
-// ===== TABELLA CLIENTI =====
 function renderTable() {
   const search = (document.getElementById("tableSearch")?.value || "").toLowerCase();
   let filtered = services;
   if (search) {
-    filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || s.type.toLowerCase().includes(search));
+    filtered = filtered.filter(s => s.client.toLowerCase().includes(search) || s.type.toLowerCase().includes(search) || (s.videographer || '').toLowerCase().includes(search));
   }
-  
   const table = document.getElementById("workflowTable");
   if (filtered.length === 0) {
     table.innerHTML = '<tr><td colspan="100%" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
     return;
   }
-  
-  // HEADER
   let thead = '<thead><tr>';
-  thead += '<th>Cliente</th><th>Tipo</th><th>Data Evento</th>';
-  STEPS.forEach(st => {
-    thead += `<th title="${st.label}">${st.short}</th>`;
-  });
+  thead += '<th>Cliente</th><th>Tipo</th><th>Data</th><th>Videografo</th>';
+  STEPS.forEach(st => { thead += `<th title="${st.label}">${st.short}</th>`; });
   thead += '<th>Azioni</th></tr></thead>';
-  
-  // BODY
   let tbody = '<tbody>';
   filtered.forEach(s => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
@@ -792,18 +773,26 @@ function renderTable() {
     tbody += `<td>${s.client}</td>`;
     tbody += `<td><span class="badge-cell" style="background:${color}">${s.type}</span></td>`;
     tbody += `<td>${s.date || '-'}</td>`;
-    
+    tbody += `<td>${s.videographer || '-'}</td>`;
     STEPS.forEach(st => {
       const d = s.steps[st.id] || { done: false, date: "", extra: {} };
       const cellClass = d.done ? 'cell-done' : '';
+      let extraInput = "";
+      if (st.extra) {
+        if (st.id === "backupAltro") {
+          extraInput = `<input type="text" placeholder="Dove..." value="${d.extra?.luogo || ''}" onchange="updateExtra(${s.id},'${st.id}','luogo',this.value); renderTable();">`;
+        } else if (st.id === "selection") {
+          extraInput = `<input type="text" placeholder="Fornitore" value="${d.extra?.supplier || ''}" onchange="updateExtra(${s.id},'${st.id}','supplier',this.value); renderTable();" style="width:80px;">`;
+        }
+      }
       tbody += `<td class="${cellClass}">
         <div class="cell-step">
           <input type="checkbox" ${d.done ? 'checked' : ''} onchange="toggleStep(${s.id},'${st.id}',this.checked); renderTable();">
           <input type="date" value="${d.date || ''}" onchange="updateDate(${s.id},'${st.id}',this.value); renderTable();">
+          ${extraInput}
         </div>
       </td>`;
     });
-    
     tbody += `<td>
       <div class="cell-actions">
         <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">️</button>
@@ -815,65 +804,58 @@ function renderTable() {
     tbody += '</tr>';
   });
   tbody += '</tbody>';
-  
   table.innerHTML = thead + tbody;
 }
 
-// ===== PDF TABELLA =====
 function generateTablePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
-  
-  // Header
   doc.setFillColor(102, 126, 234);
   doc.rect(0, 0, 297, 25, 'F');
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(20);
   doc.text("G&LStudio - Tabella Workflow Clienti", 14, 16);
-  
-  // Table data
-  const head = [['Cliente', 'Tipo', 'Data']];
+  const head = [['Cliente', 'Tipo', 'Data', 'Videografo']];
   STEPS.forEach(st => head[0].push(st.short));
   head[0].push('Stato');
-  
   const body = services.map(s => {
     const doneCount = Object.values(s.steps).filter(x => x.done).length;
     const pct = Math.round((doneCount / STEPS.length) * 100);
-    const row = [s.client, s.type, s.date || '-'];
+    const row = [s.client, s.type, s.date || '-', s.videographer || '-'];
     STEPS.forEach(st => {
       const d = s.steps[st.id] || { done: false, date: "" };
-      row.push(d.done ? (d.date || '✓') : '-');
+      let cell = d.done ? (d.date || '✓') : '-';
+      if (st.id === "backupAltro" && d.extra?.luogo) cell += ` (${d.extra.luogo})`;
+      row.push(cell);
     });
     row.push(`${pct}%`);
     return row;
   });
-  
   doc.autoTable({
     startY: 30,
     head: head,
     body: body,
     theme: 'grid',
-    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 8, halign: 'center' },
-    bodyStyles: { fontSize: 7, cellPadding: 2 },
+    headStyles: { fillColor: [102, 126, 234], textColor: 255, fontSize: 7, halign: 'center' },
+    bodyStyles: { fontSize: 6.5, cellPadding: 2 },
     columnStyles: {
-      0: { cellWidth: 35 },
-      1: { cellWidth: 25, halign: 'center' },
-      2: { cellWidth: 22, halign: 'center' },
-      [head[0].length - 1]: { cellWidth: 15, halign: 'center', fontStyle: 'bold' }
+      0: { cellWidth: 30 },
+      1: { cellWidth: 22, halign: 'center' },
+      2: { cellWidth: 20, halign: 'center' },
+      3: { cellWidth: 25 },
+      [head[0].length - 1]: { cellWidth: 13, halign: 'center', fontStyle: 'bold' }
     },
     alternateRowStyles: { fillColor: [240, 245, 255] },
     didParseCell: function(data) {
-      if (data.section === 'body' && data.column.index >= 3 && data.column.index < head[0].length - 1) {
+      if (data.section === 'body' && data.column.index >= 4 && data.column.index < head[0].length - 1) {
         const val = data.cell.raw;
-        if (val && val !== '-') {
+        if (val && val !== '-' && !val.startsWith('-')) {
           data.cell.styles.fillColor = [220, 255, 220];
           data.cell.styles.textColor = [0, 100, 0];
         }
       }
     }
   });
-  
-  // Footer
   const pageCount = doc.internal.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
@@ -881,13 +863,11 @@ function generateTablePDF() {
     doc.setTextColor(150, 150, 150);
     doc.text(`Pagina ${i} di ${pageCount} - Generato il ${new Date().toLocaleDateString('it-IT')}`, 14, doc.internal.pageSize.height - 10);
   }
-  
   doc.save(`G&LStudio_Tabella_Clienti_${new Date().toISOString().slice(0,10)}.pdf`);
 }
 
-// ===== BACKUP / RIPRISTINO =====
 function doBackup() {
-  const data = { version: 1, exportedAt: new Date().toISOString(), services };
+  const data = { version: 2, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -903,7 +883,7 @@ function doRestore(e) {
       const data = JSON.parse(ev.target.result);
       if (!data.services || !Array.isArray(data.services)) throw new Error();
       if (!confirm("Il ripristino sovrascriverà i dati attuali. Continuare?")) return;
-      services = data.services;
+      services = data.services.map(migrateService);
       save(); renderServices(); renderTable();
       alert("✅ Ripristino completato!");
     } catch { alert("❌ File di backup non valido"); }
@@ -912,7 +892,6 @@ function doRestore(e) {
   e.target.value = "";
 }
 
-// ===== UTILS =====
 function closeModal(id) {
   document.getElementById(id).classList.remove("active");
   editingId = null;
