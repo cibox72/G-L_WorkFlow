@@ -270,7 +270,7 @@
 <body>
 
 <div id="loginScreen" class="login-box">
-  <h1>📸 G&LStudio</h1>
+  <h1>G&LStudio</h1>
   <p>Foto & Video — Workflow Manager</p>
   <input type="text" id="loginUser" placeholder="Utente" autocomplete="username">
   <input type="password" id="loginPass" placeholder="Password" autocomplete="current-password">
@@ -281,77 +281,77 @@
 <div id="app" class="app">
   <div class="container">
     <header>
-      <div class="logo">📸 G&LStudio<span>Workflow Foto & Video</span></div>
+      <div class="logo">G&LStudio<span>Workflow Foto & Video</span></div>
       <div class="actions">
-        <button class="btn-new" onclick="toggleNewService()">➕ Nuovo Servizio</button>
-        <button class="btn-archive" onclick="showArchive()"> Archivio</button>
-        <button class="btn-table" onclick="showTable()">📊 Tabella Clienti</button>
-        <button class="btn-backup" onclick="doBackup()">💾 Backup</button>
-        <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">📥 Ripristina</button>
-        <button class="btn-logout" onclick="doLogout()">🚪 Esci</button>
+        <button class="btn-new" onclick="toggleNewService()">Nuovo Servizio</button>
+        <button class="btn-archive" onclick="showArchive()">Archivio</button>
+        <button class="btn-table" onclick="showTable()">Tabella Clienti</button>
+        <button class="btn-backup" onclick="doBackup()">Backup</button>
+        <button class="btn-restore" onclick="document.getElementById('restoreFile').click()">Ripristina</button>
+        <button class="btn-logout" onclick="doLogout()">Esci</button>
       </div>
     </header>
 
     <div id="newService" class="new-service">
-      <h2>✨ Nuovo Servizio</h2>
+      <h2>Nuovo Servizio</h2>
       <div class="form-row">
         <input type="text" id="inputClient" placeholder="Nome cliente (es. Rossi - Bianchi)">
         <select id="inputType">
           <option value="">-- Tipo di servizio --</option>
-          <optgroup label="🎬 Anteprima">
-            <option value="Anteprima + Matrimonio">💒 Anteprima + Matrimonio</option>
-            <option value="Anteprima + Battesimo">👶 Anteprima + Battesimo</option>
-            <option value="Anteprima + 18° Compleanno"> Anteprima + 18° Compleanno</option>
+          <optgroup label="Anteprima">
+            <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
+            <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
+            <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
           </optgroup>
-          <optgroup label="👶 Famiglia & Neonati">
-            <option value="Maternity + New Born + Family">🤰🍼👨‍‍👧 Maternity + New Born + Family</option>
-            <option value="Maternity + New Born">🤰🍼 Maternity + New Born</option>
-            <option value="Maternity + Family">🤰👨‍👩‍👧 Maternity + Family</option>
-            <option value="New Born + Family">🍼👨‍‍👧 New Born + Family</option>
-            <option value="Maternity"> Maternity</option>
-            <option value="New Born">🍼 New Born</option>
-            <option value="Family">👨‍👩‍👧 Family</option>
+          <optgroup label="Famiglia & Neonati">
+            <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
+            <option value="Maternity + New Born">Maternity + New Born</option>
+            <option value="Maternity + Family">Maternity + Family</option>
+            <option value="New Born + Family">New Born + Family</option>
+            <option value="Maternity">Maternity</option>
+            <option value="New Born">New Born</option>
+            <option value="Family">Family</option>
           </optgroup>
-          <optgroup label=" Cerimonie">
-            <option value="Matrimonio">💒 Matrimonio</option>
-            <option value="Battesimo">👶 Battesimo</option>
-            <option value="Comunione">⛪ Comunione</option>
-            <option value="Cresima">✝️ Cresima</option>
+          <optgroup label="Cerimonie">
+            <option value="Matrimonio">Matrimonio</option>
+            <option value="Battesimo">Battesimo</option>
+            <option value="Comunione">Comunione</option>
+            <option value="Cresima">Cresima</option>
           </optgroup>
-          <optgroup label="🎉 Feste & Celebrazioni">
-            <option value="1° Compleanno">🎈 1° Compleanno</option>
-            <option value="18° Compleanno"> 18° Compleanno</option>
-            <option value="Compleanno">🎂 Compleanno</option>
-            <option value="Anniversario">💍 Anniversario</option>
+          <optgroup label="Feste & Celebrazioni">
+            <option value="1° Compleanno">1° Compleanno</option>
+            <option value="18° Compleanno">18° Compleanno</option>
+            <option value="Compleanno">Compleanno</option>
+            <option value="Anniversario">Anniversario</option>
           </optgroup>
-          <optgroup label=" Altro">
-            <option value="Evento"> Evento</option>
+          <optgroup label="Altro">
+            <option value="Evento">Evento</option>
           </optgroup>
         </select>
       </div>
       <div class="form-row">
         <input type="date" id="inputDate">
-        <input type="text" id="inputVideographer" placeholder="🎥 Videografo/Collega (nome)">
+        <input type="text" id="inputVideographer" placeholder="Videografo/Collega (nome)">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="toggleNewService()">Annulla</button>
-        <button class="btn-save" onclick="saveService()">💾 Salva</button>
+        <button class="btn-save" onclick="saveService()">Salva</button>
       </div>
     </div>
 
     <div id="archiveView" style="display:none;">
       <div class="archive-header">
-        <h2> Archivio Servizi</h2>
+        <h2>Archivio Servizi</h2>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <input type="text" class="search-box" id="searchBox" placeholder="🔍 Cerca cliente..." oninput="filterServices()">
+          <input type="text" class="search-box" id="searchBox" placeholder="Cerca cliente..." oninput="filterServices()">
           <select class="filter-select" id="filterType" onchange="filterServices()">
             <option value="">Tutti i tipi</option>
-            <optgroup label="🎬 Anteprima">
+            <optgroup label="Anteprima">
               <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
               <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
               <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
             </optgroup>
-            <optgroup label="👶 Famiglia & Neonati">
+            <optgroup label="Famiglia & Neonati">
               <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
               <option value="Maternity + New Born">Maternity + New Born</option>
               <option value="Maternity + Family">Maternity + Family</option>
@@ -360,24 +360,24 @@
               <option value="New Born">New Born</option>
               <option value="Family">Family</option>
             </optgroup>
-            <optgroup label="💒 Cerimonie">
+            <optgroup label="Cerimonie">
               <option value="Matrimonio">Matrimonio</option>
               <option value="Battesimo">Battesimo</option>
               <option value="Comunione">Comunione</option>
               <option value="Cresima">Cresima</option>
             </optgroup>
-            <optgroup label="🎉 Feste & Celebrazioni">
+            <optgroup label="Feste & Celebrazioni">
               <option value="1° Compleanno">1° Compleanno</option>
               <option value="18° Compleanno">18° Compleanno</option>
               <option value="Compleanno">Compleanno</option>
               <option value="Anniversario">Anniversario</option>
             </optgroup>
-            <optgroup label="🎊 Altro">
+            <optgroup label="Altro">
               <option value="Evento">Evento</option>
             </optgroup>
           </select>
-          <button class="btn-pdf" onclick="generateArchivePDF()" style="background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; padding: 10px 18px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;">📄 PDF Archivio</button>
-          <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
+          <button class="btn-pdf" onclick="generateArchivePDF()" style="background: linear-gradient(45deg, #4facfe, #00f2fe); color: white; padding: 10px 18px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;">PDF Archivio</button>
+          <button class="btn-cancel" onclick="showMain()">Torna alla Home</button>
         </div>
       </div>
       <div id="archiveList"></div>
@@ -386,11 +386,11 @@
     <div id="tableView" style="display:none;">
       <div class="table-container">
         <div class="table-header">
-          <h2>📊 Tabella Clienti — Stato Lavori</h2>
+          <h2>Tabella Clienti — Stato Lavori</h2>
           <div class="table-toolbar">
-            <input type="text" class="search-box" id="tableSearch" placeholder="🔍 Cerca cliente..." oninput="renderTable()" style="min-width:200px;">
-            <button class="btn-pdf" onclick="generateTablePDF()">📄 PDF Tabella</button>
-            <button class="btn-cancel" onclick="showMain()">← Torna alla Home</button>
+            <input type="text" class="search-box" id="tableSearch" placeholder="Cerca cliente..." oninput="renderTable()" style="min-width:200px;">
+            <button class="btn-pdf" onclick="generateTablePDF()">PDF Tabella</button>
+            <button class="btn-cancel" onclick="showMain()">Torna alla Home</button>
           </div>
         </div>
         <div style="overflow-x:auto;">
@@ -406,7 +406,7 @@
 <div id="detailModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h2 id="detailTitle">📋 Dettagli Servizio</h2>
+      <h2 id="detailTitle">Dettagli Servizio</h2>
       <button class="modal-close" onclick="closeModal('detailModal')">&times;</button>
     </div>
     <div class="modal-body" id="detailBody"></div>
@@ -416,19 +416,19 @@
 <div id="editModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h2>✏️ Modifica Servizio</h2>
+      <h2>Modifica Servizio</h2>
       <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
     </div>
     <div class="modal-body">
       <div class="form-row">
         <input type="text" id="editClient" placeholder="Nome cliente">
         <select id="editType">
-          <optgroup label="🎬 Anteprima">
+          <optgroup label="Anteprima">
             <option value="Anteprima + Matrimonio">Anteprima + Matrimonio</option>
             <option value="Anteprima + Battesimo">Anteprima + Battesimo</option>
             <option value="Anteprima + 18° Compleanno">Anteprima + 18° Compleanno</option>
           </optgroup>
-          <optgroup label="👶 Famiglia & Neonati">
+          <optgroup label="Famiglia & Neonati">
             <option value="Maternity + New Born + Family">Maternity + New Born + Family</option>
             <option value="Maternity + New Born">Maternity + New Born</option>
             <option value="Maternity + Family">Maternity + Family</option>
@@ -437,30 +437,30 @@
             <option value="New Born">New Born</option>
             <option value="Family">Family</option>
           </optgroup>
-          <optgroup label="💒 Cerimonie">
+          <optgroup label="Cerimonie">
             <option value="Matrimonio">Matrimonio</option>
             <option value="Battesimo">Battesimo</option>
             <option value="Comunione">Comunione</option>
             <option value="Cresima">Cresima</option>
           </optgroup>
-          <optgroup label="🎉 Feste & Celebrazioni">
+          <optgroup label="Feste & Celebrazioni">
             <option value="1° Compleanno">1° Compleanno</option>
             <option value="18° Compleanno">18° Compleanno</option>
             <option value="Compleanno">Compleanno</option>
             <option value="Anniversario">Anniversario</option>
           </optgroup>
-          <optgroup label=" Altro">
+          <optgroup label="Altro">
             <option value="Evento">Evento</option>
           </optgroup>
         </select>
       </div>
       <div class="form-row">
         <input type="date" id="editDate">
-        <input type="text" id="editVideographer" placeholder="🎥 Videografo/Collega">
+        <input type="text" id="editVideographer" placeholder="Videografo/Collega">
       </div>
       <div class="form-actions">
         <button class="btn-cancel" onclick="closeModal('editModal')">Annulla</button>
-        <button class="btn-save" onclick="saveEdit()">💾 Salva Modifiche</button>
+        <button class="btn-save" onclick="saveEdit()">Salva Modifiche</button>
       </div>
     </div>
   </div>
@@ -479,30 +479,29 @@ const TYPE_ORDER = [
   "Evento"
 ];
 
-// 13 step: "File e video" diviso in "Consegna file" + "Video Pronto"
 const STEPS = [
-  { id: "download",    label: "📥 Download schede", short: "📥" },
-  { id: "backupAB",    label: "💾 Archiviazione HD A/B", short: "💾" },
-  { id: "archiveVideo",label: "🎬 Archiviazione Video", short: "🎬", extra: true, extraType: "archivedBy" },
-  { id: "backupAltro", label: "💿 Archiviazione su altro", short: "", extra: true, extraLabel: "Dove" },
-  { id: "rawToJpg",    label: "🔄 RAW → JPEG", short: "🔄" },
-  { id: "selection",   label: "👀 Selezione + Copertina", short: "👀", extra: true, extraType: "cover" },
-  { id: "albumEdit",   label: " Lavorazione album", short: "🎨" },
-  { id: "sendLab",     label: "📤 Invio laboratorio", short: "📤" },
-  { id: "labToStudio", label: "📦 Lab → Studio", short: "📦" },
-  { id: "albumClient", label: " Album al cliente", short: "🎁" },
-  { id: "filesClient", label: "📁 Consegna file cliente", short: "📁" },
-  { id: "videoClient", label: "🎬 Video Pronto cliente", short: "🎬" },
-  { id: "confirmDel",  label: "✅ Conferma cancellazione", short: "✅" }
+  { id: "download",    label: "Download schede", short: "D" },
+  { id: "backupAB",    label: "Archiviazione HD A/B", short: "A" },
+  { id: "archiveVideo",label: "Archiviazione Video", short: "V", extra: true, extraType: "archivedBy" },
+  { id: "backupAltro", label: "Archiviazione su altro", short: "O", extra: true, extraLabel: "Dove" },
+  { id: "rawToJpg",    label: "RAW → JPEG", short: "R" },
+  { id: "selection",   label: "Selezione + Copertina", short: "S", extra: true, extraType: "cover" },
+  { id: "albumEdit",   label: "Lavorazione album", short: "L" },
+  { id: "sendLab",     label: "Invio laboratorio", short: "I" },
+  { id: "labToStudio", label: "Lab → Studio", short: "B" },
+  { id: "albumClient", label: "Album al cliente", short: "C" },
+  { id: "filesClient", label: "Consegna file cliente", short: "F" },
+  { id: "videoClient", label: "Video Pronto cliente", short: "P" },
+  { id: "confirmDel",  label: "Conferma cancellazione", short: "X" }
 ];
 
 const STEPS_PREVIEW = [
-  { id: "p_download",    label: "📥 Download schede", short: "P📥" },
-  { id: "p_backupAB",    label: "💾 Archiviazione HD A/B", short: "P💾" },
-  { id: "p_archiveVideo",label: "🎬 Archiviazione Video", short: "P🎬", extra: true, extraType: "archivedBy" },
-  { id: "p_backupAltro", label: "💿 Archiviazione su altro", short: "P💿", extra: true, extraLabel: "Dove" },
-  { id: "p_rawToJpg",    label: "🔄 RAW → JPEG", short: "P🔄" },
-  { id: "p_deliverPreview", label: "📤 Consegna Anteprima al cliente", short: "P📤" }
+  { id: "p_download",    label: "Download schede", short: "PD" },
+  { id: "p_backupAB",    label: "Archiviazione HD A/B", short: "PA" },
+  { id: "p_archiveVideo",label: "Archiviazione Video", short: "PV", extra: true, extraType: "archivedBy" },
+  { id: "p_backupAltro", label: "Archiviazione su altro", short: "PO", extra: true, extraLabel: "Dove" },
+  { id: "p_rawToJpg",    label: "RAW → JPEG", short: "PR" },
+  { id: "p_deliverPreview", label: "Consegna Anteprima al cliente", short: "PC" }
 ];
 
 const COMBO_TYPES = {
@@ -541,20 +540,20 @@ const TYPE_COLORS = {
 };
 
 const STEP_LABEL_CLEAN = {
-  "📥 Download schede": "Download schede",
-  "💾 Archiviazione HD A/B": "Archiviazione HD A/B",
-  "🎬 Archiviazione Video": "Archiviazione Video",
-  "💿 Archiviazione su altro": "Archiviazione su altro",
-  "🔄 RAW → JPEG": "RAW -> JPEG",
-  " Selezione + Copertina": "Selezione + Copertina",
-  "🎨 Lavorazione album": "Lavorazione album",
-  " Invio laboratorio": "Invio laboratorio",
-  "📦 Lab → Studio": "Lab -> Studio",
-  "🎁 Album al cliente": "Album al cliente",
-  "📁 Consegna file cliente": "Consegna file cliente",
-  "🎬 Video Pronto cliente": "Video Pronto cliente",
-  "✅ Conferma cancellazione": "Conferma cancellazione",
-  " Consegna Anteprima al cliente": "Consegna Anteprima al cliente"
+  "Download schede": "Download schede",
+  "Archiviazione HD A/B": "Archiviazione HD A/B",
+  "Archiviazione Video": "Archiviazione Video",
+  "Archiviazione su altro": "Archiviazione su altro",
+  "RAW → JPEG": "RAW -> JPEG",
+  "Selezione + Copertina": "Selezione + Copertina",
+  "Lavorazione album": "Lavorazione album",
+  "Invio laboratorio": "Invio laboratorio",
+  "Lab → Studio": "Lab -> Studio",
+  "Album al cliente": "Album al cliente",
+  "Consegna file cliente": "Consegna file cliente",
+  "Video Pronto cliente": "Video Pronto cliente",
+  "Conferma cancellazione": "Conferma cancellazione",
+  "Consegna Anteprima al cliente": "Consegna Anteprima al cliente"
 };
 
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
@@ -596,7 +595,7 @@ function doLogin() {
   const p = document.getElementById("loginPass").value;
   const err = document.getElementById("loginError");
   if (u === USER && p === PASS) { sessionStorage.setItem("gl_auth", "1"); showApp(); }
-  else { err.textContent = "❌ Credenziali non valide"; }
+  else { err.textContent = "Credenziali non valide"; }
 }
 function doLogout() { sessionStorage.removeItem("gl_auth"); location.reload(); }
 function showApp() {
@@ -642,7 +641,7 @@ function getArchiveByOptions(s) {
   if (s.videographer && s.videographer.trim()) {
     options.push(`<option value="${s.videographer}">${s.videographer} (collega)</option>`);
   }
-  options.push(`<option value="__altro__">✏️ Altro...</option>`);
+  options.push(`<option value="__altro__">Altro...</option>`);
   return options.join("");
 }
 
@@ -676,12 +675,27 @@ function getLastMainStepInfo(s) {
   return completed[completed.length - 1];
 }
 
-// Nuova funzione: ottiene la data del "Video Pronto cliente"
+function getLastPreviewStepInfo(s) {
+  if (!isPreviewType(s.type) || !s.previewSteps) return null;
+  const completed = [];
+  STEPS_PREVIEW.forEach((st, idx) => {
+    const d = s.previewSteps[st.id];
+    if (d && d.done) completed.push({ label: st.label, date: d.date, order: idx });
+  });
+  if (completed.length === 0) return null;
+  completed.sort((a, b) => {
+    if (a.date && b.date) { const cmp = a.date.localeCompare(b.date); if (cmp !== 0) return cmp; }
+    else if (a.date && !b.date) return -1;
+    else if (!a.date && b.date) return 1;
+    return a.order - b.order;
+  });
+  return completed[completed.length - 1];
+}
+
 function getVideoReadyDate(s) {
   const mainSteps = s.steps || {};
   const videoStep = mainSteps["videoClient"];
   if (videoStep && videoStep.done && videoStep.date) return videoStep.date;
-  
   if (isComboType(s.type) && s.sections) {
     for (let secName of Object.keys(s.sections)) {
       const secSteps = s.sections[secName];
@@ -695,12 +709,12 @@ function getVideoReadyDate(s) {
 function renderServices(data = services) {
   const list = document.getElementById("servicesList");
   if (data.length === 0) {
-    list.innerHTML = '<div class="empty">📭 Nessun servizio. Clicca su "➕ Nuovo Servizio" per iniziare!</div>';
+    list.innerHTML = '<div class="empty">Nessun servizio. Clicca su "Nuovo Servizio" per iniziare!</div>';
     return;
   }
   list.innerHTML = data.map(s => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
-    const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
+    const videoInfo = s.videographer ? `<div class="videographer-info">Videografo: ${s.videographer}</div>` : '';
     let progressHtml = '';
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
@@ -708,8 +722,8 @@ function renderServices(data = services) {
       const serviceDone = countDone(s.steps, STEPS);
       const servicePct = Math.round((serviceDone / STEPS.length) * 100);
       progressHtml = `<div class="progress-row">
-        <div><div class="progress-label">🎬 ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div>
-        <div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
+        <div><div class="progress-label">ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div>
+        <div><div class="progress-label">SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div>
       </div>`;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type);
@@ -719,7 +733,7 @@ function renderServices(data = services) {
         const done = countDone(secSteps, STEPS);
         const pct = Math.round((done / STEPS.length) * 100);
         const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
-        progressHtml += `<div><div class="progress-label">${getSectionEmoji(secName)} ${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`;
+        progressHtml += `<div><div class="progress-label">${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`;
       });
       progressHtml += '</div>';
     } else {
@@ -729,41 +743,36 @@ function renderServices(data = services) {
     }
     return `<div class="card">
       <div class="card-header" onclick="toggleSteps(${s.id})">
-        <div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? ' ' + s.date : ''}</div>${videoInfo}</div>
+        <div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? s.date : ''}</div>${videoInfo}</div>
         <div class="service-badge" style="background:${color}">${s.type}</div>
       </div>
       ${progressHtml}
       <div class="steps" id="steps-${s.id}">${renderSteps(s)}</div>
       <div class="card-footer">
-        <button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button>
-        <button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button>
-        <button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button>
-        <button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button>
+        <button class="btn-view" onclick="viewService(${s.id})">Visualizza</button>
+        <button class="btn-edit" onclick="editService(${s.id})">Modifica</button>
+        <button class="btn-pdf" onclick="generatePDF(${s.id})">PDF</button>
+        <button class="btn-del" onclick="deleteService(${s.id})">Elimina</button>
       </div>
     </div>`;
   }).join("");
 }
 
-function getSectionEmoji(name) {
-  const map = { "Maternity": "🤰", "New Born": "🍼", "Family": "👨‍👩‍👧" };
-  return map[name] || "";
-}
-
 function renderSteps(s) {
   let html = '';
   if (isPreviewType(s.type)) {
-    html += `<div class="section-title preview"> ANTEPRIMA</div>`;
+    html += `<div class="section-title preview">ANTEPRIMA</div>`;
     html += STEPS_PREVIEW.map(st => renderStepRow(s, st, 'preview')).join('');
   }
   if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
     sections.forEach(secName => {
-      html += `<div class="section-title ${secName.toLowerCase().replace(' ', '')}">${getSectionEmoji(secName)} ${secName.toUpperCase()}</div>`;
+      html += `<div class="section-title ${secName.toLowerCase().replace(' ', '')}">${secName.toUpperCase()}</div>`;
       html += STEPS.map(st => renderComboStepRow(s, st, secName)).join('');
     });
     return html;
   }
-  const serviceTitle = isPreviewType(s.type) ? '💒 SERVIZIO (' + s.type.replace("Anteprima + ", "") + ')' : ' WORKFLOW SERVIZIO';
+  const serviceTitle = isPreviewType(s.type) ? `SERVIZIO (${s.type.replace("Anteprima + ", "")})` : 'WORKFLOW SERVIZIO';
   html += `<div class="section-title service">${serviceTitle}</div>`;
   html += STEPS.map(st => renderStepRow(s, st, 'service')).join('');
   return html;
@@ -882,20 +891,20 @@ function save() { localStorage.setItem("gl_services", JSON.stringify(services));
 
 function viewService(id) {
   const s = services.find(x => x.id === id);
-  let html = `<div class="detail-row"><div class="detail-label">👤 Cliente</div><div class="detail-value">${s.client}</div></div>
-    <div class="detail-row"><div class="detail-label">📋 Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
-    <div class="detail-row"><div class="detail-label">📅 Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
-    <div class="detail-row"><div class="detail-label">🎥 Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>`;
+  let html = `<div class="detail-row"><div class="detail-label">Cliente</div><div class="detail-value">${s.client}</div></div>
+    <div class="detail-row"><div class="detail-label">Tipo Servizio</div><div class="detail-value">${s.type}</div></div>
+    <div class="detail-row"><div class="detail-label">Data Evento</div><div class="detail-value">${s.date || 'Non specificata'}</div></div>
+    <div class="detail-row"><div class="detail-label">Videografo/Collega</div><div class="detail-value">${s.videographer || 'Non specificato'}</div></div>`;
   if (isPreviewType(s.type)) {
     const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW);
     const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-    html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label">🎬 Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
-    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">🎬 ANTEPRIMA</h3>`;
+    html += `<div class="detail-row" style="background: linear-gradient(90deg, #fff8e0, #fff0c0);"><div class="detail-label">Avanzamento ANTEPRIMA</div><div class="detail-value">${previewDone}/${STEPS_PREVIEW.length} completati (${previewPct}%)</div></div>`;
+    html += `<div class="detail-row"><div class="detail-label">Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #ffd700, #ffb347); color: white; border-radius: 10px;">ANTEPRIMA</h3>`;
     STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">SERVIZIO</h3>`;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   } else if (isComboType(s.type)) {
     const sections = getComboSections(s.type);
@@ -904,28 +913,28 @@ function viewService(id) {
       const done = countDone(secSteps, STEPS);
       const pct = Math.round((done / STEPS.length) * 100);
       const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
-      html += `<div class="detail-row" style="background: ${secColor};"><div class="detail-label">${getSectionEmoji(secName)} Avanzamento ${secName}</div><div class="detail-value">${done}/${STEPS.length} completati (${pct}%)</div></div>`;
+      html += `<div class="detail-row" style="background: ${secColor};"><div class="detail-label">Avanzamento ${secName}</div><div class="detail-value">${done}/${STEPS.length} completati (${pct}%)</div></div>`;
     });
     sections.forEach(secName => {
       const secColor = SECTION_COLORS[secName]?.bg || '#667eea';
-      html += `<h3 style="margin:20px 0 10px; padding:10px; background: ${secColor}; color: white; border-radius: 10px;">${getSectionEmoji(secName)} ${secName.toUpperCase()}</h3>`;
+      html += `<h3 style="margin:20px 0 10px; padding:10px; background: ${secColor}; color: white; border-radius: 10px;">${secName.toUpperCase()}</h3>`;
       const secSteps = s.sections?.[secName] || {};
       STEPS.forEach(st => { const d = secSteps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
     });
   } else {
     const serviceDone = countDone(s.steps, STEPS);
     const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-    html += `<div class="detail-row"><div class="detail-label">💒 Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
-    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">💒 SERVIZIO</h3>`;
+    html += `<div class="detail-row"><div class="detail-label">Avanzamento SERVIZIO</div><div class="detail-value">${serviceDone}/${STEPS.length} completati (${servicePct}%)</div></div>`;
+    html += `<h3 style="margin:20px 0 10px; padding:10px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 10px;">SERVIZIO</h3>`;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; html += renderStepDetail(st, d); });
   }
-  document.getElementById("detailTitle").textContent = `📋 ${s.client} - ${s.type}`;
+  document.getElementById("detailTitle").textContent = `${s.client} - ${s.type}`;
   document.getElementById("detailBody").innerHTML = html;
   document.getElementById("detailModal").classList.add("active");
 }
 
 function renderStepDetail(st, d) {
-  const status = d.done ? '✅' : '⏳';
+  const status = d.done ? 'Completato' : 'In attesa';
   const dateStr = d.date ? ` - ${d.date}` : '';
   const extraInfo = [];
   if (st.extraType === "archivedBy" && d.extra?.archivedBy) extraInfo.push(`Archiviato da: ${d.extra.archivedBy}`);
@@ -934,7 +943,7 @@ function renderStepDetail(st, d) {
     if (d.extra?.article) extraInfo.push(`Articolo: ${d.extra.article}`);
   }
   if (st.extraLabel && d.extra?.luogo) extraInfo.push(`Luogo: ${d.extra.luogo}`);
-  return `<div class="step-detail ${d.done ? 'completed' : ''}"><div class="step-name">${status} ${st.label}${dateStr}</div>${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}</div>`;
+  return `<div class="step-detail ${d.done ? 'completed' : ''}"><div class="step-name">${status} - ${st.label}${dateStr}</div>${extraInfo.length ? `<div class="step-extra-info">${extraInfo.join(' | ')}</div>` : ''}</div>`;
 }
 
 function editService(id) {
@@ -978,11 +987,11 @@ async function generatePDF(id) {
   let y = 92;
   if (isPreviewType(s.type)) {
     doc.setFillColor(255, 215, 0); doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(0, 0, 0); doc.setFontSize(12); doc.text("🎬 ANTEPRIMA", 20, y); y += 8;
+    doc.setTextColor(0, 0, 0); doc.setFontSize(12); doc.text("ANTEPRIMA", 20, y); y += 8;
     STEPS_PREVIEW.forEach(st => { const d = (s.previewSteps || {})[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
     y += 5;
     doc.setFillColor(102, 126, 234); doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text("💒 SERVIZIO", 20, y);
+    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text("SERVIZIO", 20, y);
     doc.setTextColor(0, 0, 0); y += 8;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
   } else if (isComboType(s.type)) {
@@ -991,7 +1000,7 @@ async function generatePDF(id) {
       const secColor = SECTION_COLORS[secName]?.hex || '#667eea';
       const rgb = hexToRgb(secColor);
       doc.setFillColor(rgb.r, rgb.g, rgb.b); doc.rect(15, y - 5, 180, 8, 'F');
-      doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text(`${getSectionEmoji(secName)} ${secName.toUpperCase()}`, 20, y);
+      doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text(secName.toUpperCase(), 20, y);
       doc.setTextColor(0, 0, 0); y += 8;
       const secSteps = s.sections?.[secName] || {};
       STEPS.forEach(st => { const d = secSteps[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
@@ -999,7 +1008,7 @@ async function generatePDF(id) {
     });
   } else {
     doc.setFillColor(102, 126, 234); doc.rect(15, y - 5, 180, 8, 'F');
-    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text(" SERVIZIO", 20, y);
+    doc.setTextColor(255, 255, 255); doc.setFontSize(12); doc.text("SERVIZIO", 20, y);
     doc.setTextColor(0, 0, 0); y += 8;
     STEPS.forEach(st => { const d = s.steps[st.id] || { done: false, date: "", extra: {} }; y = renderPDFStep(doc, st, d, y); });
   }
@@ -1044,18 +1053,18 @@ function filterServices() {
   if (filtered.length === 0) { list.innerHTML = '<div class="empty">Nessun servizio trovato</div>'; return; }
   list.innerHTML = filtered.map(s => {
     const color = TYPE_COLORS[s.type] || TYPE_COLORS["Evento"];
-    const videoInfo = s.videographer ? `<div class="videographer-info">🎥 Videografo: ${s.videographer}</div>` : '';
+    const videoInfo = s.videographer ? `<div class="videographer-info">Videografo: ${s.videographer}</div>` : '';
     let progressHtml = '';
     if (isPreviewType(s.type)) {
       const previewDone = countDone(s.previewSteps || {}, STEPS_PREVIEW); const previewPct = Math.round((previewDone / STEPS_PREVIEW.length) * 100);
       const serviceDone = countDone(s.steps, STEPS); const servicePct = Math.round((serviceDone / STEPS.length) * 100);
-      progressHtml = `<div class="progress-row"><div><div class="progress-label"> ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div><div><div class="progress-label">💒 SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div></div>`;
+      progressHtml = `<div class="progress-row"><div><div class="progress-label">ANTEPRIMA</div><div class="progress-bar"><div class="progress-fill" style="width:${previewPct}%; background: linear-gradient(90deg, #ffd700, #ffb347);"></div></div><div class="progress-text">${previewDone}/${STEPS_PREVIEW.length} (${previewPct}%)</div></div><div><div class="progress-label">SERVIZIO</div><div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">${serviceDone}/${STEPS.length} (${servicePct}%)</div></div></div>`;
     } else if (isComboType(s.type)) {
       const sections = getComboSections(s.type); progressHtml = '<div class="progress-row">';
-      sections.forEach(secName => { const secSteps = s.sections?.[secName] || {}; const done = countDone(secSteps, STEPS); const pct = Math.round((done / STEPS.length) * 100); const secColor = SECTION_COLORS[secName]?.bg || '#667eea'; progressHtml += `<div><div class="progress-label">${getSectionEmoji(secName)} ${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`; });
+      sections.forEach(secName => { const secSteps = s.sections?.[secName] || {}; const done = countDone(secSteps, STEPS); const pct = Math.round((done / STEPS.length) * 100); const secColor = SECTION_COLORS[secName]?.bg || '#667eea'; progressHtml += `<div><div class="progress-label">${secName}</div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%; background: ${secColor};"></div></div><div class="progress-text">${done}/${STEPS.length} (${pct}%)</div></div>`; });
       progressHtml += '</div>';
     } else { const serviceDone = countDone(s.steps, STEPS); const servicePct = Math.round((serviceDone / STEPS.length) * 100); progressHtml = `<div class="progress-bar"><div class="progress-fill" style="width:${servicePct}%"></div></div><div class="progress-text">Completamento: ${servicePct}%</div>`; }
-    return `<div class="card"><div class="card-header"><div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? '📅 ' + s.date : ''}</div>${videoInfo}</div><div class="service-badge" style="background:${color}">${s.type}</div></div>${progressHtml}<div class="card-footer"><button class="btn-view" onclick="viewService(${s.id})">👁️ Visualizza</button><button class="btn-edit" onclick="editService(${s.id})">✏️ Modifica</button><button class="btn-pdf" onclick="generatePDF(${s.id})">📄 PDF</button><button class="btn-del" onclick="deleteService(${s.id})">🗑️ Elimina</button></div></div>`;
+    return `<div class="card"><div class="card-header"><div class="client-info"><div class="client-name">${s.client}</div><div class="client-date">${s.date ? s.date : ''}</div>${videoInfo}</div><div class="service-badge" style="background:${color}">${s.type}</div></div>${progressHtml}<div class="card-footer"><button class="btn-view" onclick="viewService(${s.id})">Visualizza</button><button class="btn-edit" onclick="editService(${s.id})">Modifica</button><button class="btn-pdf" onclick="generatePDF(${s.id})">PDF</button><button class="btn-del" onclick="deleteService(${s.id})">Elimina</button></div></div>`;
   }).join("");
 }
 
@@ -1073,7 +1082,7 @@ function renderTable() {
   });
   const table = document.getElementById("workflowTable");
   if (filtered.length === 0) {
-    table.innerHTML = '<tr><td colspan="10" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
+    table.innerHTML = '<tr><td colspan="11" style="padding:40px;text-align:center;color:#888;">Nessun servizio trovato</td></tr>';
     return;
   }
   let thead = '<thead><tr>';
@@ -1106,7 +1115,7 @@ function renderTable() {
     }
     const dateDisplay = lastStep?.date ? formatDate(lastStep.date) : '-';
     const videoDisplay = videoDate ? formatDate(videoDate) : '-';
-    const videoDone = videoDate ? '✅' : '⏳';
+    const videoDone = videoDate ? 'OK' : '-';
     tbody += '<tr>';
     tbody += `<td style="color:#888;font-size:0.85em;">${idx + 1}</td>`;
     tbody += `<td class="td-client">${s.client}</td>`;
@@ -1119,10 +1128,10 @@ function renderTable() {
     tbody += `<td class="td-center" style="font-weight:600;color:#667eea;">${dateDisplay}</td>`;
     tbody += `<td class="td-center"><span class="pct-badge ${pctClass}">${pct}%</span></td>`;
     tbody += `<td><div class="cell-actions">
-      <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">👁️</button>
-      <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">✏️</button>
-      <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">📄</button>
-      <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">🗑️</button>
+      <button class="mini-view" onclick="viewService(${s.id})" title="Visualizza">V</button>
+      <button class="mini-edit" onclick="editService(${s.id})" title="Modifica">M</button>
+      <button class="mini-pdf" onclick="generatePDF(${s.id})" title="PDF">P</button>
+      <button class="mini-del" onclick="deleteService(${s.id})" title="Elimina">X</button>
     </div></td>`;
     tbody += '</tr>';
   });
@@ -1137,7 +1146,6 @@ function formatDate(dateStr) {
   return dateStr;
 }
 
-// ===== PDF TABELLA =====
 function generateTablePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -1173,7 +1181,7 @@ function generateTablePDF() {
       idx + 1, s.client, s.type,
       s.date ? formatDate(s.date) : '-',
       s.videographer || '-',
-      videoDate ? '✅' : '-',
+      videoDate ? 'OK' : '-',
       videoDate ? formatDate(videoDate) : '-',
       cleanLabel,
       lastStep?.date ? formatDate(lastStep.date) : '-',
@@ -1212,7 +1220,6 @@ function generateTablePDF() {
   doc.save(`G&LStudio_Stato_Lavori_${new Date().toISOString().slice(0,10)}.pdf`);
 }
 
-// ===== PDF ARCHIVIO CON VIDEO PRONTO =====
 function generateArchivePDF() {
   const search = (document.getElementById("searchBox")?.value || "").toLowerCase();
   const type = document.getElementById("filterType")?.value || "";
@@ -1244,9 +1251,10 @@ function generateArchivePDF() {
   doc.setFontSize(11);
   doc.text(`Generato il ${new Date().toLocaleDateString('it-IT')} - ${filtered.length} servizi`, 14, 23);
   
-  const head = [['#', 'Cliente', 'Tipo Servizio', 'Data Evento', 'Videografo', 'Video Pronto', 'Data Video', 'Ultimo Step', 'Data Step', 'Stato']];
+  const head = [['#', 'Cliente', 'Tipo', 'Data', 'Videografo', 'Video', 'Data Video', 'Ult. Step Anteprima', 'Data Anteprima', 'Ult. Step Servizio', 'Data Servizio', 'Stato']];
   const body = filtered.map((s, idx) => {
-    const lastStep = getLastMainStepInfo(s);
+    const lastMainStep = getLastMainStepInfo(s);
+    const lastPreviewStep = getLastPreviewStepInfo(s);
     const videoDate = getVideoReadyDate(s);
     let totalDone = 0, totalSteps = 0;
     if (isPreviewType(s.type)) {
@@ -1260,57 +1268,67 @@ function generateArchivePDF() {
       totalSteps = STEPS.length;
     }
     const pct = Math.round((totalDone / totalSteps) * 100);
-    const cleanLabel = lastStep ? (STEP_LABEL_CLEAN[lastStep.label] || lastStep.label) : 'Nessuno step';
+    
+    const cleanMainLabel = lastMainStep ? (STEP_LABEL_CLEAN[lastMainStep.label] || lastMainStep.label) : '-';
+    const mainDate = lastMainStep?.date ? formatDate(lastMainStep.date) : '-';
+    
+    const cleanPreviewLabel = lastPreviewStep ? (STEP_LABEL_CLEAN[lastPreviewStep.label] || lastPreviewStep.label) : '-';
+    const previewDate = lastPreviewStep?.date ? formatDate(lastPreviewStep.date) : '-';
+    
     return [
       idx + 1,
       s.client,
       s.type,
       s.date ? formatDate(s.date) : '-',
       s.videographer || '-',
-      videoDate ? '✅' : '-',
+      videoDate ? 'OK' : '-',
       videoDate ? formatDate(videoDate) : '-',
-      cleanLabel,
-      lastStep?.date ? formatDate(lastStep.date) : '-',
+      cleanPreviewLabel,
+      previewDate,
+      cleanMainLabel,
+      mainDate,
       `${pct}%`
     ];
   });
   
   doc.autoTable({
     startY: 35,
-    margin: { left: 8, right: 8, top: 35, bottom: 15 },
+    margin: { left: 6, right: 6, top: 35, bottom: 15 },
     head: head,
     body: body,
     theme: 'grid',
     headStyles: { 
       fillColor: [102, 126, 234], 
       textColor: 255, 
-      fontSize: 7, 
+      fontSize: 6, 
       halign: 'center',
       fontStyle: 'bold'
     },
-    bodyStyles: { fontSize: 6.5, cellPadding: 2 },
+    bodyStyles: { fontSize: 6, cellPadding: 1.8 },
     columnStyles: {
-      0: { cellWidth: 8, halign: 'center' },
-      1: { cellWidth: 50 },
-      2: { cellWidth: 38, halign: 'center' },
-      3: { cellWidth: 18, halign: 'center' },
-      4: { cellWidth: 38 },
-      5: { cellWidth: 18, halign: 'center' },
-      6: { cellWidth: 18, halign: 'center' },
-      7: { cellWidth: 35 },
-      8: { cellWidth: 18, halign: 'center' },
-      9: { cellWidth: 13, halign: 'center', fontStyle: 'bold' }
+      0: { cellWidth: 7, halign: 'center' },
+      1: { cellWidth: 42 },
+      2: { cellWidth: 30, halign: 'center' },
+      3: { cellWidth: 17, halign: 'center' },
+      4: { cellWidth: 32 },
+      5: { cellWidth: 12, halign: 'center' },
+      6: { cellWidth: 17, halign: 'center' },
+      7: { cellWidth: 32 },
+      8: { cellWidth: 17, halign: 'center' },
+      9: { cellWidth: 32 },
+      10: { cellWidth: 17, halign: 'center' },
+      11: { cellWidth: 12, halign: 'center', fontStyle: 'bold' }
     },
     alternateRowStyles: { fillColor: [240, 245, 255] },
     didParseCell: function(data) {
-      if (data.section === 'body' && data.column.index === 9) {
+      if (data.section === 'body' && data.column.index === 11) {
         if (data.cell.raw === '100%') {
           data.cell.styles.fillColor = [67, 233, 123];
           data.cell.styles.textColor = [255, 255, 255];
         }
       }
       if (data.section === 'body' && data.column.index === 5) {
-        if (data.cell.raw === '✅') {
+        if (data.cell.raw === 'OK') {
           data.cell.styles.fillColor = [220, 255, 220];
         }
       }
@@ -1322,7 +1340,7 @@ function generateArchivePDF() {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
-    doc.text(`Nota: L'ultimo step mostrato è sempre quello del SERVIZIO PRINCIPALE (anteprima esclusa)`, 14, doc.internal.pageSize.height - 15);
+    doc.text(`Nota: L'ultimo step del servizio principale è sempre mostrato separatamente dall'anteprima`, 14, doc.internal.pageSize.height - 15);
     doc.text(`Pagina ${i} di ${pageCount}`, 14, doc.internal.pageSize.height - 8);
   }
   
@@ -1330,7 +1348,7 @@ function generateArchivePDF() {
 }
 
 function doBackup() {
-  const data = { version: 16, exportedAt: new Date().toISOString(), services };
+  const data = { version: 18, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -1348,8 +1366,8 @@ function doRestore(e) {
       if (!confirm("Il ripristino sovrascriverà i dati attuali. Continuare?")) return;
       services = data.services.map(migrateService);
       save(); renderServices(); renderTable();
-      alert("✅ Ripristino completato!");
-    } catch { alert("❌ File di backup non valido"); }
+      alert("Ripristino completato!");
+    } catch { alert("File di backup non valido"); }
   };
   reader.readAsText(file);
   e.target.value = "";
