@@ -292,6 +292,8 @@
       </div>
     </header>
 
+    <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="doRestore(event)">
+
     <div id="newService" class="new-service">
       <h2>Nuovo Servizio</h2>
       <div class="form-row">
@@ -559,32 +561,64 @@ const STEP_LABEL_CLEAN = {
 let services = JSON.parse(localStorage.getItem("gl_services") || "[]");
 let editingId = null;
 
+// ===== MIGRAZIONE ROBUSTA PER BACKUP DI OGNI VERSIONE =====
 function migrateService(s) {
+  if (!s) return null;
+  
+  // Assicurati che ci siano i campi base
+  if (!s.client) s.client = "Cliente sconosciuto";
+  if (!s.type) s.type = "Evento";
   if (!s.steps) s.steps = {};
+  if (!s.createdAt) s.createdAt = new Date().toISOString();
+  if (s.videographer === undefined) s.videographer = "";
+  
+  // Inizializza tutti gli step del servizio principale
   STEPS.forEach(st => {
-    if (!s.steps[st.id]) s.steps[st.id] = { done: false, date: "", extra: {} };
+    if (!s.steps[st.id]) {
+      s.steps[st.id] = { done: false, date: "", extra: {} };
+    }
     if (!s.steps[st.id].extra) s.steps[st.id].extra = {};
+    if (s.steps[st.id].done === undefined) s.steps[st.id].done = false;
+    if (!s.steps[st.id].date) s.steps[st.id].date = "";
   });
+  
+  // Inizializza step anteprima se necessario
   if (isPreviewType(s.type)) {
     if (!s.previewSteps) s.previewSteps = {};
     STEPS_PREVIEW.forEach(st => {
-      if (!s.previewSteps[st.id]) s.previewSteps[st.id] = { done: false, date: "", extra: {} };
+      if (!s.previewSteps[st.id]) {
+        s.previewSteps[st.id] = { done: false, date: "", extra: {} };
+      }
       if (!s.previewSteps[st.id].extra) s.previewSteps[st.id].extra = {};
+      if (s.previewSteps[st.id].done === undefined) s.previewSteps[st.id].done = false;
+      if (!s.previewSteps[st.id].date) s.previewSteps[st.id].date = "";
     });
+  } else {
+    delete s.previewSteps;
   }
+  
+  // Inizializza sezioni combo se necessario
   if (isComboType(s.type)) {
     if (!s.sections) s.sections = {};
     COMBO_TYPES[s.type].forEach(secName => {
       if (!s.sections[secName]) {
         s.sections[secName] = {};
-        STEPS.forEach(st => { s.sections[secName][st.id] = { done: false, date: "", extra: {} }; });
       }
+      STEPS.forEach(st => {
+        if (!s.sections[secName][st.id]) {
+          s.sections[secName][st.id] = { done: false, date: "", extra: {} };
+        }
+        if (!s.sections[secName][st.id].extra) s.sections[secName][st.id].extra = {};
+        if (s.sections[secName][st.id].done === undefined) s.sections[secName][st.id].done = false;
+        if (!s.sections[secName][st.id].date) s.sections[secName][st.id].date = "";
+      });
     });
+  } else {
+    delete s.sections;
   }
-  if (s.videographer === undefined) s.videographer = "";
+  
   return s;
 }
-services = services.map(migrateService);
 
 function isPreviewType(type) { return type && type.startsWith("Anteprima +"); }
 function isComboType(type) { return type && COMBO_TYPES[type]; }
@@ -1023,7 +1057,7 @@ function renderPDFStep(doc, st, d, y) {
   const cleanLabel = STEP_LABEL_CLEAN[st.label] || st.label;
   doc.text(`${status} ${cleanLabel}${dateStr}`, 20, y); y += 7;
   const extra = getExtraText(st, d);
-  if (extra) { doc.setTextColor(100, 100, 100); doc.text(`    → ${extra}`, 20, y); doc.setTextColor(0, 0, 0); y += 7; }
+  if (extra) { doc.setTextColor(100, 100, 100); doc.text(`    -> ${extra}`, 20, y); doc.setTextColor(0, 0, 0); y += 7; }
   if (y > 270) { doc.addPage(); y = 20; }
   return y;
 }
@@ -1348,27 +1382,88 @@ function generateArchivePDF() {
 }
 
 function doBackup() {
-  const data = { version: 18, exportedAt: new Date().toISOString(), services };
+  const data = { version: 19, exportedAt: new Date().toISOString(), services };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "GLStudio_Backup_" + new Date().toISOString().slice(0,10) + ".json";
   a.click();
 }
+
+// ===== RIPRISTINO ROBUSTO CON DEBUG =====
 function doRestore(e) {
   const file = e.target.files[0];
   if (!file) return;
+  
   const reader = new FileReader();
   reader.onload = ev => {
     try {
-      const data = JSON.parse(ev.target.result);
-      if (!data.services || !Array.isArray(data.services)) throw new Error();
-      if (!confirm("Il ripristino sovrascriverà i dati attuali. Continuare?")) return;
-      services = data.services.map(migrateService);
-      save(); renderServices(); renderTable();
-      alert("Ripristino completato!");
-    } catch { alert("File di backup non valido"); }
+      const rawText = ev.target.result;
+      let data;
+      
+      try {
+        data = JSON.parse(rawText);
+      } catch (parseErr) {
+        alert("ERRORE: Il file non è un JSON valido.\n\n" + parseErr.message);
+        return;
+      }
+      
+      // Supporta diversi formati di backup
+      let servicesToImport = null;
+      
+      if (data.services && Array.isArray(data.services)) {
+        servicesToImport = data.services;
+      } else if (Array.isArray(data)) {
+        servicesToImport = data;
+      } else if (data.data && Array.isArray(data.data)) {
+        servicesToImport = data.data;
+      }
+      
+      if (!servicesToImport || servicesToImport.length === 0) {
+        alert("ERRORE: Nessun servizio trovato nel file di backup.\n\nIl file potrebbe essere vuoto o in un formato non riconosciuto.\n\nStruttura file:\n" + JSON.stringify(data).substring(0, 200));
+        return;
+      }
+      
+      // Mostra info sul file
+      const info = `File di backup trovato:\n\n` +
+        `- Servizi: ${servicesToImport.length}\n` +
+        `- Versione: ${data.version || 'sconosciuta'}\n` +
+        `- Data export: ${data.exportedAt || 'sconosciuta'}\n\n` +
+        `Vuoi ripristinare questi ${servicesToImport.length} servizi?\n\n` +
+        `ATTENZIONE: i dati attuali verranno sostituiti.`;
+      
+      if (!confirm(info)) {
+        e.target.value = "";
+        return;
+      }
+      
+      // Migra ogni servizio
+      const migrated = servicesToImport
+        .map(migrateService)
+        .filter(s => s !== null);
+      
+      if (migrated.length === 0) {
+        alert("ERRORE: Nessun servizio valido dopo la migrazione.");
+        return;
+      }
+      
+      services = migrated;
+      save();
+      renderServices();
+      renderTable();
+      
+      alert(`RIPRISTINO COMPLETATO!\n\n${migrated.length} servizi recuperati con successo.`);
+      
+    } catch (err) {
+      alert("ERRORE DURANTE IL RIPRISTINO:\n\n" + err.message + "\n\nControlla che il file sia un backup valido di G&LStudio.");
+      console.error(err);
+    }
   };
+  
+  reader.onerror = () => {
+    alert("ERRORE: Impossibile leggere il file.");
+  };
+  
   reader.readAsText(file);
   e.target.value = "";
 }
